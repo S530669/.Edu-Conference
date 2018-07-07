@@ -1,5 +1,4 @@
-db.admin.insertMany(
-  [
+ [
     { 
         "Name" : {
             "FirstName":"Samy",
@@ -19,4 +18,3 @@ db.admin.insertMany(
         "Password":"oreoshake21"
     }
   ]
-)

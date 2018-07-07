@@ -1,6 +1,4 @@
-db.attendee.insertMany
-(
-  [
+[
     { 
        "Attendee id":"1",
         "Name" :{
@@ -30,5 +28,4 @@ db.attendee.insertMany
             "Meal":"NonVegeterian"
     },
   ]
-)
   

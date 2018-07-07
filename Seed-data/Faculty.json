@@ -1,5 +1,4 @@
-db.faculty.insertMany(
-  [
+[
     { 
        "Faculty id":"50",
         "Name" :{
@@ -29,4 +28,3 @@ db.faculty.insertMany(
             "Meal":"Vegeterian"
     },
   ]
-  )
