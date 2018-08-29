@@ -1,0 +1,13 @@
+{   "name": "Registration",
+    "version": "0.0.1",
+    "description": "Registration",
+    "main": "server.js",
+    "dependencies": {
+        "express": "latest",
+        "morgan": "latest",
+        "body-parser": "latest",
+        "ejs": "latest",
+        "mailgun-js": "latest"
+    },
+     "license": "Apache-2.0"
+}
