@@ -27,7 +27,7 @@ app.get("/home", function(request, response) {
   response.sendFile(__dirname+"/views/home.html");
 });
 
-app.get("/attendee", function(request, response) {
+app.get("/attendee/", function(request, response) {
   response.sendFile(__dirname+"/views/attendee.html");
 });
 
@@ -42,6 +42,9 @@ app.get("/faculty", function(request, response) {
 app.get("/vendor", function(request, response) {
   response.sendFile(__dirname+"/views/faculty.html");
 });
+
+
+
 
 
 
