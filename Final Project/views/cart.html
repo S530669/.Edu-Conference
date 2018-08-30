@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+.column {
+    float: left;
+    width: 40%;
+    padding: 10px;
+    height: 300px;
+    }
+.column1 {
+    float: left;
+    width: 20%;
+    padding: 10px;
+    height: 300px;
+    }
+    .column2 {
+    float: left;
+    width: 20%;
+    padding: 10px;
+    height: 300px;
+    }
+    .column3 {
+    float: left;
+    width: 20%;
+    padding: 10px;
+    height: 300px;
+    }
+  
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+    $(document).ready(function(){
+        $("button").click(function(){
+            $("p1").remove();
+          
+        });
+    });
+    </script>
+
+    </head>
+<body>
+
+<h2>Items in your cart</h2>
+
+   
+    
+
+
+<div class="row">
+  <div class="column">
+    <h2>Item Name</h2>
+    <p>First Name</p>
+    <p>Last Name</p>
+    <p>919 Number</p>
+   
+  </div>
+  <div class="column1">
+    <h2>Quantity</h2>
+   <p1>
+  <input type="number">
+   </p1>
+    
+  </div>
+  <div class="column2">
+    <h2>Remove</h2>
+      
+    <button>Delete</button>
+    
+  </div>
+   <div class="column3">
+    <h2>Amount</h2>
+    <p>$21.5</p>
+  </div>
+
+        <div class="btn-row">
+                <a class="btn btn-default btn-block" href="file:///C:/Users/S530714/Desktop/gdp-group03/Final%20Project/views/checkout.html" role="button">Continue Shopping</a> 
+        
+                <a class="btn btn-default btn-block" href="file:///C:/Users/S530714/Desktop/gdp-group03/Final%20Project/views/cart.html" role="button">Update Cart</a>
+
+                <a class="btn btn-primary btn-block" href="javascript:TN.ustores.submitForm(TN.selectors.DeliveryMethodNav);" role="button">Checkout</a>
+        </div>
+
+</body>
+</html>
