@@ -1,4 +1,5 @@
-{   "name": "Registration",
+{
+    "name": "Registration",
     "version": "0.0.1",
     "description": "Registration",
     "main": "server.js",
@@ -9,5 +10,5 @@
         "ejs": "latest",
         "mailgun-js": "latest"
     },
-     "license": "Apache-2.0"
+    "license": "Apache-2.0"
 }
