@@ -4,11 +4,12 @@
     "description": "Registration",
     "main": "server.js",
     "dependencies": {
-        "express": "latest",
-        "morgan": "latest",
         "body-parser": "latest",
         "ejs": "latest",
-        "mailgun-js": "latest"
+        "express": "latest",
+        "mailgun-js": "latest",
+        "morgan": "latest",
+        "nodemon": "^1.18.4"
     },
     "license": "Apache-2.0"
 }
