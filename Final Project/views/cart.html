@@ -32,22 +32,17 @@
     }
   
     </style>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script>
-    $(document).ready(function(){
-        $("button").click(function(){
-            $("p1").remove();
-          
-        });
-    });
-    </script>
+   
 
     </head>
 <body>
 
 <h2>Items in your cart</h2>
 
-   
+<p id="demo"></p>
+
+
+
     
 
 
@@ -61,29 +56,42 @@
   </div>
   <div class="column1">
     <h2>Quantity</h2>
-   <p1>
-  <input type="number">
-   </p1>
+    <input type="number" id="myNumber" value="1">
+   
     
   </div>
   <div class="column2">
     <h2>Remove</h2>
+  
+
+    <div class="btn-row">
       
-    <button>Delete</button>
+        <a class="btn btn-default btn-block" href="file:///C:/Users/S530714/Desktop/gdp-group03/Final%20Project/views/delete%20quantity.html" role="button">Delete</a> 
+      
+    </div>
     
   </div>
    <div class="column3">
     <h2>Amount</h2>
-    <p>$21.5</p>
+    <p id="demo1"></p>  
+
   </div>
 
         <div class="btn-row">
                 <a class="btn btn-default btn-block" href="file:///C:/Users/S530714/Desktop/gdp-group03/Final%20Project/views/checkout.html" role="button">Continue Shopping</a> 
-        
-                <a class="btn btn-default btn-block" href="file:///C:/Users/S530714/Desktop/gdp-group03/Final%20Project/views/cart.html" role="button">Update Cart</a>
-
+            
+                <button onclick="myFunction()">Update Cart</button>
+               
                 <a class="btn btn-primary btn-block" href="javascript:TN.ustores.submitForm(TN.selectors.DeliveryMethodNav);" role="button">Checkout</a>
         </div>
+        <script>
+                function myFunction() {
+                  
+                  document.getElementById("demo").innerHTML = "Your shopping cart has been updated successfully";
 
+                  var x = document.getElementById("myNumber").value;
+                  document.getElementById("demo1").innerHTML = x*21.5;
+                }
+                </script>
 </body>
 </html>
