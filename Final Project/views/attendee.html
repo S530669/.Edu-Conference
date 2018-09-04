@@ -16,7 +16,7 @@
 	<br>
 	<div class = "container-fluid">
 		<div class ="container">
-				<!-- <div class="page-header"> -->
+				<div class="page-header">
 					<div class="row">
 						   <div class="col-md-2">
 							   <a class="active" href="home">Home</a></div>
@@ -51,8 +51,8 @@
 					</div>
 					<div class="col-md-2"></div>
 				</div>
-	<form method="POST" action="views" role="form">
-			<div class="row">
+	<form action="/attendee/cart" method="POST">
+			<div class="row"> 
 				<div class="col-md-4"></div>
 				<div class="col-md-4">
 				<div class="form-group">
@@ -102,14 +102,11 @@
 						<input type="cheque" class="form-control" id="presenter" name="presenter" required></div></div>
 				<div class="col-md-4"></div>
 			</div>
-			<div class="row"><div class="col-md-4"></div><div class="col-md-4">
-				<!-- <form action="checkout.html">
-						<input type="submit" value="Submit">
-					</form> -->
-					<a href="./views/checkout.html"><button>Submit</button></a>
-				
-				<!-- <button type="submit" onclick=checkout.html class="btn" value="Submit">Submit</button></div></div> -->
-				<div class="col-md-4"></div>
+			<div class="row">
+			<div class="col-md-4"></div>
+			<div class="col-md-4">
+			<input type="submit" value="Submit" ></div>
+			<div class="col-md-4"></div>
 		</form>
 	</div>
 </body>

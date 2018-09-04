@@ -6,29 +6,29 @@ var app = express()
 var http = require('http').Server(app)  
 
 
-
-http.listen(8082, function () {
-  console.log('Registration listening on http://127.0.0.1:8082/') 
-})
-
+//app.set("view engine", "html");
+//app.set("views", "./views");
 
 app.set("views", path.resolve(__dirname, "views")) 
-app.set("view engine", "html") 
-
-
-app.use(logger("dev"))    
+app.set('view engine', 'html') 
+   
 app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json());
 
 app.get("/", function(request, response) {
-response.sendFile(__dirname+"/views/home.html");
+  response.sendFile(__dirname+"/views/home.html");
 });
 
 app.get("/home", function(request, response) {
   response.sendFile(__dirname+"/views/home.html");
+}); 
+
+app.get("/attendee", function(request, response) {
+  response.sendFile(__dirname+"/views/attendee.html");
 });
 
-app.get("/attendee/", function(request, response) {
-  response.sendFile(__dirname+"/views/attendee.html");
+app.post("/attendee/cart", function(request, response) {
+  response.sendFile(__dirname+"/views/cart.html");
 });
 
 app.get("/presenter", function(request, response) {
@@ -42,6 +42,13 @@ app.get("/faculty", function(request, response) {
 app.get("/vendor", function(request, response) {
   response.sendFile(__dirname+"/views/faculty.html");
 });
+
+
+
+
+http.listen(8082, function () {
+  console.log('Registration listening on http://127.0.0.1:8082/') 
+})
 
 
 
