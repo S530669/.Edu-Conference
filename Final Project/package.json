@@ -9,7 +9,8 @@
         "express": "latest",
         "mailgun-js": "latest",
         "morgan": "latest",
-        "nodemon": "^1.18.4"
+        "nodemon": "^1.18.4",
+        "nodemailer": "latest"
     },
     "license": "Apache-2.0"
 }

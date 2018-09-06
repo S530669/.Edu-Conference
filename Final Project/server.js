@@ -2,9 +2,8 @@ var path = require("path")
 var express = require("express")
 var logger = require("morgan")
 var bodyParser = require("body-parser") 
-var app = express() 
-var http = require('http').Server(app)  
-
+var app = express()   
+var nodemailer = require('nodemailer');
 
 //app.set("view engine", "html");
 //app.set("views", "./views");
@@ -43,11 +42,39 @@ app.get("/vendor", function(request, response) {
   response.sendFile(__dirname+"/views/faculty.html");
 });
 
+//mail
 
 
+app.post("/mail",function(request,response){
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'gdp2.fastrack@gmail.com',
+    pass: 'gdp21234'
+  }
+});
 
-http.listen(8082, function () {
-  console.log('Registration listening on http://127.0.0.1:8082/') 
+var mailOptions = {
+  from: 'gdp2.fastrack@gmail.com',
+  to: request.body.email,
+  subject: 'Coupon code for code regestration',
+  html: '<p>Hello,</p><p>Here is the coupon code that you need enter.</p><p>Thanks&Regards</p><p>.edu team</p> ',
+};
+
+transporter.sendMail(mailOptions, function(error, info){
+  if (error) {
+    console.log(error);
+  } else {
+    console.log('Email sent: ' + info.response);
+    response.sendFile(path.join(__dirname,'/views','couponcode.html'));
+  }
+});
+});
+
+app.set('port',(process.env.PORT || 8083));
+
+app.listen(app.get('port'), function () {
+  console.log('App listening on http://127.0.0.1:8083/') 
 })
 
 
