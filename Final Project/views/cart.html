@@ -79,12 +79,25 @@
     <p id="demo1"></p>  
 
   </div>
-
+    
+    <div class="btn-row">
+      
+        <a class="btn btn-default btn-block" href="file:///C:/Users/S530664/Desktop/gdp-group03/Final%20Project/views/Paymentthroughcheck.html" role="button">Pay Through Check</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a class="btn btn-default btn-block" href="file:///C:/Users/S530664/Desktop/gdp-group03/Final%20Project/views/PayThroughCards.html" role="button">Pay Through Cards</a> 
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button onclick="goBack()">Go Back</button>
+    </div>
+    </div>
+   
+       
+    
         <script>
                 function myFunction() {
                  document.getElementById("demo").innerHTML = "Your shopping cart has been updated successfully";
                   var x = document.getElementById("val").value;
                   document.getElementById("demo1").innerHTML = x*21.5;
+                  function goBack() {
+    window.history.back();
+    }
                  
                 }
                 </script>
