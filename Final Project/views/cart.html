@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+ 
+   <title> .EDU Conference </title>
 <style>
 * {
     box-sizing: border-box;
@@ -56,8 +57,9 @@
   </div>
   <div class="column1">
     <h2>Quantity</h2>
-    <input type="number" min="0" id="myNumber" >
-   
+    <label for="val"></label>
+    <input onchange="myFunction()" type="number" class="form-control" id="val" >
+      
     
   </div>
   <div class="column2">
@@ -73,24 +75,17 @@
   </div>
    <div class="column3">
     <h2>Amount</h2>
+      
     <p id="demo1"></p>  
 
   </div>
 
-        <div class="btn-row">
-                <a class="btn btn-default btn-block" href="file:///C:/Users/S530714/Desktop/gdp-group03/Final%20Project/views/checkout.html" role="button">Continue Shopping</a> 
-            
-                <button onclick="myFunction()">Update Cart</button>
-               
-                <a class="btn btn-primary btn-block" href="javascript:TN.ustores.submitForm(TN.selectors.DeliveryMethodNav);" role="button">Checkout</a>
-        </div>
         <script>
                 function myFunction() {
-                  
-                  document.getElementById("demo").innerHTML = "Your shopping cart has been updated successfully";
-
-                  var x = document.getElementById("myNumber").value;
+                 document.getElementById("demo").innerHTML = "Your shopping cart has been updated successfully";
+                  var x = document.getElementById("val").value;
                   document.getElementById("demo1").innerHTML = x*21.5;
+                 
                 }
                 </script>
 </body>
