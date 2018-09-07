@@ -26,10 +26,6 @@ app.get("/attendee", function(request, response) {
   response.sendFile(__dirname+"/views/attendee.html");
 });
 
-app.post("/attendee/cart", function(request, response) {
-  response.sendFile(__dirname+"/views/cart.html");
-});
-
 app.get("/presenter", function(request, response) {
   response.sendFile(__dirname+"/views/presenter.html");
 });
@@ -39,8 +35,25 @@ app.get("/faculty", function(request, response) {
 });
 
 app.get("/vendor", function(request, response) {
-  response.sendFile(__dirname+"/views/faculty.html");
+  response.sendFile(__dirname+"/views/vendor.html");
 });
+
+app.get("/cart", function(request, response) {
+  response.sendFile(__dirname+"/views/cart.html");
+});
+
+app.get("/payThroughCards", function(request, response) {
+  response.sendFile(__dirname+"/views/payThroughCards.html");
+});
+
+app.get("/paymentthroughcheck", function(request, response) {
+  response.sendFile(__dirname+"/views/paymentthroughcheck.html");
+});
+
+app.get("/deleteQuantity", function(request, response) {
+  response.sendFile(__dirname+"/views/deleteQuantity.html");
+});
+
 
 //mail
 
