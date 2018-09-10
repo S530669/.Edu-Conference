@@ -1,26 +1,46 @@
-<!DOCTYPE html>
+
 <html>
 <head>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 <title> coupon code</title>
-    </head>
+<script src="../server.js"></script>
+<script>
+function verification(Request, Response){
+		
+		if(document.getElementById("coupon").innerHTML==cd){
+			Response.sendfile(path.join(__dirname, './views', 'Paymentthroughcheck.html'));
+		//   response.sendfile(__dirname+"/views/Paymentthroughcheck.html");
+		}else{
+	//    response.sendfile(__dirname+"/views/couponcode.html"); 
+		}
+	  
+	   }
+	   </script>
+	
+
+
+ </head>
 <body>
-<form>
+
+	
 <div class="row">
-				<div class="col-md-4"></div>
+	<br><br><br><br><br>
+				<div class="col-md-4" style="margin-top:100px"></div>
 				<div class="col-md-4">
 				<div class="form-group">
 					<label for="coupon">Enter coupon code here</label>
 					<input type="text" class="form-control" id="coupon" name="coupon" required></div></div>
-                    <div class="col-md-4"></div>
+					<div class="col-md-4"></div>
+					<p id ="j"> </p>
                 </div>    
 			
 			<div class="row">
 				<div class="col-md-4"></div>
-				<div class="col-md-4">
-				<button type="submit" class="btn btn-primary">Submit</button></div>
+				<div class="col-md-4">					
+				<button type="submit"  style="margin-left: 170px" class="btn btn-primary" onclick="verification()">Submit</button></div>
 				<div class="col-md-4"></div>
 
-</form>
+
 </body>
 
 </html>

@@ -4,13 +4,15 @@
     "description": "Registration",
     "main": "server.js",
     "dependencies": {
+        "bluebird": "^3.5.2",
         "body-parser": "latest",
+        "coupon-code": "^0.4.5",
         "ejs": "latest",
         "express": "latest",
         "mailgun-js": "latest",
         "morgan": "latest",
-        "nodemon": "^1.18.4",
-        "nodemailer": "latest"
+        "nodemailer": "latest",
+        "nodemon": "^1.18.4"
     },
     "license": "Apache-2.0"
 }
