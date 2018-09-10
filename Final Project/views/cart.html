@@ -67,9 +67,9 @@
   
 
     <div class="btn-row">
-      
-        <a class="btn btn-default btn-block" href="file:///C:/Users/S530714/Desktop/gdp-group03/Final%20Project/views/delete%20quantity.html" role="button">Delete</a> 
-      
+        <form action="/deleteQuantity" method="GET">
+            <a class="btn btn-default btn-block" href="deleteQuantity" role="button">Delete</a></form>
+    </form>
     </div>
     
   </div>
@@ -81,12 +81,19 @@
   </div>
     
     <div class="btn-row">
-      
-        <a class="btn btn-default btn-block" href="file:///C:/Users/S530664/Desktop/gdp-group03/Final%20Project/views/Paymentthroughcheck.html" role="button">Pay Through Check</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <a class="btn btn-default btn-block" href="file:///C:/Users/S530664/Desktop/gdp-group03/Final%20Project/views/PayThroughCards.html" role="button">Pay Through Cards</a> 
+        <form action="/paymentthroughcheck" method="GET">
+        <a class="btn btn-default btn-block" href="Paymentthroughcheck" role="button">Pay Through Check</a></form> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <form action="/PayThroughCards" method="GET">
+        <a class="btn btn-default btn-block" href="payThroughCards" role="button">Pay Through Cards</a></form>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button onclick="goBack()">Go Back</button>
     </div>
     </div>
+
+    <script>
+        function goBack() {
+        window.history.back();
+        }
+        </script>
    
        
     

@@ -4,8 +4,6 @@ var logger = require("morgan")
 var bodyParser = require("body-parser") 
 var app = express()   
 var nodemailer = require('nodemailer');
-var couponCode = require('coupon-code');
-var Promise = require('bluebird');
 
 //app.set("view engine", "html");
 //app.set("views", "./views");
@@ -28,10 +26,6 @@ app.get("/attendee", function(request, response) {
   response.sendFile(__dirname+"/views/attendee.html");
 });
 
-app.post("/attendee/cart", function(request, response) {
-  response.sendFile(__dirname+"/views/cart.html");
-});
-
 app.get("/presenter", function(request, response) {
   response.sendFile(__dirname+"/views/presenter.html");
 });
@@ -41,16 +35,29 @@ app.get("/faculty", function(request, response) {
 });
 
 app.get("/vendor", function(request, response) {
-  response.sendFile(__dirname+"/views/faculty.html");
+  response.sendFile(__dirname+"/views/vendor.html");
 });
 
-app.get("/Paymentthroughcheck", function(request, response) {
-  response.sendFile(__dirname+"/views/Paymentthroughcheck.html");
+app.get("/cart", function(request, response) {
+  response.sendFile(__dirname+"/views/cart.html");
 });
+
+app.get("/payThroughCards", function(request, response) {
+  response.sendFile(__dirname+"/views/payThroughCards.html");
+});
+
+app.get("/paymentthroughcheck", function(request, response) {
+  response.sendFile(__dirname+"/views/paymentthroughcheck.html");
+});
+
+app.get("/deleteQuantity", function(request, response) {
+  response.sendFile(__dirname+"/views/deleteQuantity.html");
+});
+
 
 //mail
 
-var cd=couponCode.generate();
+
 app.post("/mail",function(request,response){
 var transporter = nodemailer.createTransport({
   service: 'gmail',
@@ -60,15 +67,11 @@ var transporter = nodemailer.createTransport({
   }
 });
 
-
 var mailOptions = {
-    from: 'gdp2.fastrack@gmail.com',
+  from: 'gdp2.fastrack@gmail.com',
   to: request.body.email,
-  subject: 'Coupon code for code registration',
-  html: "Hello,<br>" + "Your coupon code is: " + cd +"<br>Thanks & Regards <br>" + ".EDU Conference" 
-  // html: '<a href="http://127.0.0.1:8083/check">click here</a>'
-  
-  
+  subject: 'Coupon code for code regestration',
+  html: '<p>Hello,</p><p>Here is the coupon code that you need enter.</p><p>Thanks&Regards</p><p>.edu team</p> ',
 };
 
 transporter.sendMail(mailOptions, function(error, info){
@@ -88,39 +91,7 @@ app.listen(app.get('port'), function () {
 })
 
 
-var count = 0;
-// this is code that checks uniqueness and returns a promise
-function check(cd) {
-  return new Promise(function(resolve, reject) {
-    setTimeout(function() {
-      count++;
-      // first resolve with false, on second try resolve with true
-      if (count === 1) {
-        console.log(cd + ' is not unique');
-        resolve(false);
-      } else {
-        console.log(cd + ' is unique');
-        resolve(true);
-      }
-    }, 1000);
-  });
-}
 
-var generateUniqueCode = Promise.method(function() {
-  // var code = couponCode.generate();
-  return check(cd)
-    .then(function(result) {
-      if (result) {
-        return cd;
-      } else {
-        return generateUniqueCode();
-      }
-    });
-});
-
-generateUniqueCode().then(function(cd) {
-  console.log(cd);
-});
 
 
 
