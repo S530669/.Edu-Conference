@@ -43,6 +43,9 @@ app.get("/vendor", function(request, response) {
 app.get("/cart", function(request, response) {
   response.sendFile(__dirname+"/views/cart.html");
 });
+app.get("/Presentercart", function(request, response) {
+  response.sendFile(__dirname+"/views/Presentercart.html");
+});
 
 app.get("/payThroughCards", function(request, response) {
   response.sendFile(__dirname+"/views/payThroughCards.html");
@@ -55,6 +58,9 @@ app.get("/paymentthroughcheck", function(request, response) {
 app.get("/deleteQuantity", function(request, response) {
   response.sendFile(__dirname+"/views/deleteQuantity.html");
 });
+app.get("/Style", function(request, response) {
+  response.sendFile(__dirname+"/views/Style.css");
+}); 
 
 // coupon code
 
