@@ -55,8 +55,8 @@ app.get("/paymentthroughcheck", function(request, response) {
   response.sendFile(__dirname+"/views/paymentthroughcheck.html");
 });
 
-app.get("/deleteQuantity", function(request, response) {
-  response.sendFile(__dirname+"/views/deleteQuantity.html");
+app.get("/brickpayment.html", function(request, response) {
+  response.sendFile(__dirname+"/views/brickpayment.html");
 });
 app.get("/Style", function(request, response) {
   response.sendFile(__dirname+"/views/Style.css");
