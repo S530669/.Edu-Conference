@@ -12,6 +12,7 @@ var Promise = require('bluebird');
 
 app.set("views", path.resolve(__dirname, "views")) 
 app.set('view engine', 'html') 
+
    
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
@@ -31,6 +32,10 @@ app.get("/attendee", function(request, response) {
 app.get("/presenter", function(request, response) {
   response.sendFile(__dirname+"/views/presenter.html");
 });
+app.get("/Graduatestudent", function(request, response) {
+  response.sendFile(__dirname+"/views/Graduatestudent.html");
+});
+
 
 app.get("/faculty", function(request, response) {
   response.sendFile(__dirname+"/views/faculty.html");
