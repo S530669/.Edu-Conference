@@ -1,6 +1,10 @@
+body {
+  background-image: url("dotedu.jpg");
+  background-color:lightcoral;
+}
 .header {
   overflow: hidden;
-  background-color: #f1f1f1;
+  background-color: lightcyan;
   padding: 20px 10px;
 }
 .header a {
@@ -19,7 +23,7 @@
   font-weight: bold;
 }
 .header a:hover {
-  background-color: #ddd;
+  background-color:lightseagreen;
   color: black;
   
   
