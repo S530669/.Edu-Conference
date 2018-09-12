@@ -85,6 +85,21 @@
 					<div class="col-md-4"></div>
 			</div>
 			<div class="row">
+					<div class="col-md-4"></div>
+					<div class="col-md-4">
+					<div class="form-group">
+					<label for="Attendee Type">Attendee Type</label>	
+			 <form action="/action_page.php">
+				<select name="Attendee Types"Style="width:370px">
+	                <option value="Northwest Graduation Student">Northwest Graduation Student</option>
+	                <option value="Graduation Student">Graduation Student</option>
+	                <option value="Northwest Faculty">Northwest Faculty</option>
+	            </select>
+			</form> 
+		</div>
+	</div>
+</div>
+			<div class="row">
 				<div class="col-md-4"></div>
 				<div class="col-md-4">
 					<div class="form-group">
@@ -107,6 +122,19 @@
 			<div class="col-md-4"></div>
 		</form>
 	</div>
+	<script>
+			function myFunction() {
+			document.getElementById("myDropdown").classList.toggle("show");
+			}
+			window.onclick = function(e) {
+			  if (!e.target.matches('.dropbtn')) {
+				var myDropdown = document.getElementById("myDropdown");
+				  if (myDropdown.classList.contains('show')) {
+					myDropdown.classList.remove('show');
+				  }
+			  }
+			}
+	</script>
 </body>
 </html>
 

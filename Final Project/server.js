@@ -63,6 +63,9 @@ app.get("/paymentthroughcheck", function(request, response) {
 app.get("/brickpayment.html", function(request, response) {
   response.sendFile(__dirname+"/views/brickpayment.html");
 });
+app.get("/edupay.html", function(request, response) {
+  response.sendFile(__dirname+"/views/edupay.html");
+});
 app.get("/Style", function(request, response) {
   response.sendFile(__dirname+"/views/Style.css");
 }); 
