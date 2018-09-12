@@ -10,9 +10,16 @@ var Attendee = new Schema({
     });
 
 var Faculty = new Schema({
-        "name": {type:String, required:true},
+        "category": {type:String, required:true},
+        "company": {type: String, required: true},
+        "city": {type: String, required: true},
+        "state": {type: String, required: true},
+        "zip": {type: String, required: true},
+        "website": {type: String, required: true},
+        "name": {type: String, required: true},
+        "title": {type: String, required: true},
         "email": {type: String, required: true},
-        "contact": {type: String, required: true},
+        "contact": {type: String, required: true}
     }); 
 	
 var Presenter = new Schema({
