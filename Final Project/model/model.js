@@ -37,6 +37,18 @@ var Vendor = new Schema({
     "email": {type: String, required: true},
 	"contact": {type: String, required: true},
     });
+
+
+var Student = new Schema({
+        "name": {type:String, required:true},
+        "email": {type: String, required: true},
+        "contact": {type: String, required: true},
+        "program": {type: String, required: true},
+        "presenter": {type:String, required:true}
+        });
+
+
+
   
 	
 
@@ -44,7 +56,9 @@ var AttendeeModel = mongoose.model("tasks", Attendee);
 var PresenterModel = mongoose.model("tasks", Presenter);
 var VendorModel = mongoose.model("tasks", Vendor);
 var FacultyModel = mongoose.model("tasks",Faculty);
+var StudentModel = mongoose.model("tasks",Student);
 module.exports = Attendee;
 module.exports = Presenter;
 module.exports = Vendor;
 module.exports = Faculty;
+module.exports = Student;
