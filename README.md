@@ -1,2 +1,0 @@
-# GDP Group03
-
