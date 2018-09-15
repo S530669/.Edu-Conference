@@ -34,6 +34,9 @@ router.get('/', function(request, response) {
     response.render('cart.ejs');
   });
 
+  router.get("/contact", function(request, response) {
+    response.render('contact.ejs');
+  });
 //   app.get("/Presentercart", function(request, response) {
 //     response.sendFile(__dirname+"/views/Presentercart.html");
 //   });

@@ -16,7 +16,7 @@ app.set('view engine', 'html')
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
 app.use('/', routes);
-
+app.use(express.static(path.join(__dirname, 'Assets')));
 
 // coupon code
 
