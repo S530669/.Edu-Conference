@@ -10,6 +10,7 @@
         "ejs": "latest",
         "express": "latest",
         "mailgun-js": "latest",
+        "mongoose": "^5.2.15",
         "morgan": "latest",
         "nodemailer": "latest",
         "nodemon": "^1.18.4"
