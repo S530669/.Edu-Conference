@@ -37,26 +37,6 @@ router.get('/', function(request, response) {
   router.get("/contact", function(request, response) {
     response.render('contact.ejs');
   });
-//   app.get("/Presentercart", function(request, response) {
-//     response.sendFile(__dirname+"/views/Presentercart.html");
-//   });
-  
-//   app.get("/payThroughCards", function(request, response) {
-//     response.sendFile(__dirname+"/views/payThroughCards.html");
-//   });
-  
-//   app.get("/paymentthroughcheck", function(request, response) {
-//     response.sendFile(__dirname+"/views/paymentthroughcheck.html");
-//   });
-  
-//   app.get("/brickpayment.html", function(request, response) {
-//     response.sendFile(__dirname+"/views/brickpayment.html");
-//   });
-//   app.get("/edupay.html", function(request, response) {
-//     response.sendFile(__dirname+"/views/edupay.html");
-//   });
-//   app.get("/Style", function(request, response) {
-//     response.sendFile(__dirname+"/views/Style.css");
-//   }); 
+
   
   module.exports = router;

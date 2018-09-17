@@ -11,7 +11,8 @@ var mongoose = require('mongoose');
 var routes = require('./routes/index');
 
 mongoose.connect('mongodb://localhost:27017/conference');
-var Attendee = require('./models/product.js');
+var Attendee = require('./models/attendee.js');
+var Presenter = require('./models/presenter.js');
 
 app.set("views", path.resolve(__dirname, "views")) 
 app.set('view engine', 'html') 
@@ -23,11 +24,25 @@ app.use('/', routes);
 app.use(express.static(path.join(__dirname, 'Assets')));
 
 app.post("/attendee", (req, res) => {
-  var myData = new Attendee(req.body);
+  var myData1 = new Attendee(req.body);
+  myData1.save()
+  .then(item => {
+    res.send("Items saved successfully");
+})
+.catch(err => {
+  res.status(400).send("unable to save to database");
+  });
+});
+
+app.post("/presenter", (req, res) => {
+  var myData = new Presenter(req.body);
   myData.save()
   .then(item => {
-    res.send("/cart");
+    res.send("Items saved successfully");
 })
+.catch(err => {
+  res.status(400).send("unable to save to database");
+  });
 });
 
 // coupon code
