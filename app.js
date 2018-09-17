@@ -13,6 +13,7 @@ var routes = require('./routes/index');
 mongoose.connect('mongodb://localhost:27017/conference');
 var Attendee = require('./models/attendee.js');
 var Presenter = require('./models/presenter.js');
+var Graduatestudent = require('./models/Graduatestudent.js');
 
 app.set("views", path.resolve(__dirname, "views")) 
 app.set('view engine', 'html') 
@@ -44,6 +45,19 @@ app.post("/presenter", (req, res) => {
   res.status(400).send("unable to save to database");
   });
 });
+
+app.post("/Graduatestudent", (req, res) => {
+  var myData1 = new Graduatestudent(req.body);
+  myData1.save()
+  .then(item => {
+    res.send("Items saved successfully");
+})
+.catch(err => {
+  res.status(400).send("unable to save to database");
+  });
+});
+
+
 
 // coupon code
 
