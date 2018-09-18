@@ -14,6 +14,7 @@ mongoose.connect('mongodb://localhost:27017/conference');
 var Attendee = require('./models/attendee.js');
 var Presenter = require('./models/presenter.js');
 var Graduatestudent = require('./models/Graduatestudent.js');
+var faculty = require('./models/faculty.js');
 
 app.set("views", path.resolve(__dirname, "views")) 
 app.set('view engine', 'html') 
@@ -37,6 +38,16 @@ app.post("/attendee", (req, res) => {
 
 app.post("/presenter", (req, res) => {
   var myData = new Presenter(req.body);
+  myData.save()
+  .then(item => {
+    res.send("Items saved successfully");
+})
+.catch(err => {
+  res.status(400).send("unable to save to database");
+  });
+});
+app.post("/faculty", (req, res) => {
+  var myData = new faculty(req.body);
   myData.save()
   .then(item => {
     res.send("Items saved successfully");
