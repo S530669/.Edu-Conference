@@ -63,8 +63,8 @@ app.post("/faculty", (req, res) => {
 });
 
 app.post("/Graduatestudent", (req, res) => {
-  var myData1 = new Graduatestudent(req.body);
-  myData1.save()
+  var myData = new Graduatestudent(req.body);
+  myData.save()
   .then(item => {
     res.send("Items saved successfully");
 })

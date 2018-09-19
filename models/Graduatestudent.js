@@ -6,7 +6,7 @@ var Graduatestudent = new Schema({
     "email": {type: String, required: true},
 	"contact": {type: String, required: true},
     "topic": {type:String, required:true},
-    "Presenter": {type:String, required:true},
+    "presenter": {type:String, required:true},
     "food": {type:String, required:false},
     "restrict": {type:String, required:false}
     });
