@@ -3,11 +3,11 @@ var router = express.Router();
 var path = require ('path');
 
 router.get('/', function(request, response) {
-    response.render('home.ejs');
+    response.render('homepage.ejs');
   });
   
-  router.get('/home', function(request, response) {
-    response.render('home.ejs');
+  router.get('/homepage', function(request, response) {
+    response.render('homepage.ejs');
   }); 
   
   router.get('/attendee', function(request, response) {
