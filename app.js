@@ -16,10 +16,13 @@ var Presenter = require('./models/presenter.js');
 var Graduatestudent = require('./models/Graduatestudent.js');
 var faculty = require('./models/faculty.js');
 
+
 app.set("views", path.resolve(__dirname, "views")) 
 app.set('view engine', 'html') 
 
-   
+var code = couponCode.generate();
+var count = 0;
+
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json());
 app.use('/', routes);
@@ -47,10 +50,12 @@ app.post("/presenter", (req, res) => {
   });
 });
 app.post("/faculty", (req, res) => {
+  
   var myData = new faculty(req.body);
   myData.save()
   .then(item => {
-    res.send("Items saved successfully");
+    res.render('couponcode.ejs',{code1 : code});
+   // res.send("Items saved succaxessfully");
 })
 .catch(err => {
   res.status(400).send("unable to save to database");
@@ -70,10 +75,11 @@ app.post("/Graduatestudent", (req, res) => {
 
 
 
+
+
 // coupon code
 
-var code = couponCode.generate();
-var count = 0;
+
 // this is code that checks uniqueness and returns a promise
 function check(code) {
   return new Promise(function(resolve, reject) {

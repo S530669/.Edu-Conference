@@ -38,5 +38,15 @@ router.get('/', function(request, response) {
     response.render('contact.ejs');
   });
 
+  router.get("/couponcode", function(request, response) {
+    response.render('couponcode.ejs');
+  });
   
+  router.get("/Paymentthroughcheck", function(request, response){
+    response.render('Paymentthroughcheck.ejs');
+  });
+  router.get("/edupay", function(request, response){
+    response.render('edupay.ejs');
+  });
+
   module.exports = router;
