@@ -15,6 +15,7 @@ var Attendee = require('./models/attendee.js');
 var Presenter = require('./models/presenter.js');
 var Graduatestudent = require('./models/Graduatestudent.js');
 var faculty = require('./models/faculty.js');
+var vendor = require('./models/vendor.js');
 
 app.set("views", path.resolve(__dirname, "views")) 
 app.set('view engine', 'html') 
@@ -60,6 +61,17 @@ app.post("/faculty", (req, res) => {
 app.post("/Graduatestudent", (req, res) => {
   var myData = new Graduatestudent(req.body);
   myData.save()
+  .then(item => {
+    res.send("Items saved successfully");
+})
+.catch(err => {
+  res.status(400).send("unable to save to database");
+  });
+});
+//vendor
+app.post("/vendor", (req, res) => {
+  var myData1 = new vendor(req.body);
+  myData1.save()
   .then(item => {
     res.send("Items saved successfully");
 })
