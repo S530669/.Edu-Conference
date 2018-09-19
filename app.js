@@ -74,6 +74,17 @@ app.post("/Graduatestudent", (req, res) => {
 });
 
 
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
+
+app.get('/view', function(req, res){
+  Attendee.find({}, function(err, docs){
+    if(err) res.json(err);
+    else res.render('example', {mayData:docs});
+  });
+});
+
+
 
 
 
