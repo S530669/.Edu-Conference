@@ -34,7 +34,7 @@ app.post("/attendee", (req, res) => {
   myData1.save()
   .then(item => {
     var query = {name: req.get.name};
-    console.log( req.body.name1)
+    //console.log( req.body.name1)
     db.collection('attendees').find(query).toArray(function(err, result){
       
       if (err) throw err;
@@ -69,11 +69,16 @@ app.post("/faculty", (req, res) => {
   });
 });
 
-app.post("/Graduatestudent", (req, res) => {
-  var myData = new Graduatestudent(req.body);
-  myData.save()
+//Graduate Student
+app.post("/graduatestudent", (req, res) => {
+  var myData1 = new Graduatestudent(req.body);
+  myData1.save()
   .then(item => {
-    res.send("Items saved successfully");
+    db.collection('graduatestudents').find().toArray(function(err, result){
+      
+      if (err) throw err;
+      res.render('cart.ejs',{list : req.body.name, list1 : req.body.email});
+    })
 })
 .catch(err => {
   res.status(400).send("unable to save to database");
