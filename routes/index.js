@@ -31,7 +31,7 @@ router.get('/', function(request, response) {
   });
   
   router.get("/cart", function(request, response) {
-    response.render('cart.ejs');
+      response.render('cart.ejs'); 
   });
 
   router.get("/contact", function(request, response) {

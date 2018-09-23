@@ -7,7 +7,7 @@ var nodemailer = require('nodemailer');
 var couponCode = require('coupon-code');
 var Promise = require('bluebird');
 var mongoose = require('mongoose');
-
+var db = mongoose.connection;
 var routes = require('./routes/index');
 
 mongoose.connect('mongodb://localhost:27017/conference');
@@ -33,7 +33,13 @@ app.post("/attendee", (req, res) => {
   var myData1 = new Attendee(req.body);
   myData1.save()
   .then(item => {
-    res.send("Items saved successfully");
+    var query = {name: req.get.name};
+    console.log( req.body.name1)
+    db.collection('attendees').find(query).toArray(function(err, result){
+      
+      if (err) throw err;
+      res.render('cart.ejs',{list : req.body.name1, list1 : req.body.email});
+    })
 })
 .catch(err => {
   res.status(400).send("unable to save to database");

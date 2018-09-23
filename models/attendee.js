@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var Attendee = new Schema({
-    "name": {type:String, required:true},
+    "name1": {type:String, required:true},
     "email": {type: String, required: true},
     "contact": {type: String, required: true},
     "school": {type: String, required: false},
