@@ -18,6 +18,7 @@ var faculty = require('./models/faculty.js');
 var vendor = require('./models/vendor.js');
 
 
+
 app.set("views", path.resolve(__dirname, "views")) 
 app.set('view engine', 'html') 
 
@@ -28,6 +29,8 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json());
 app.use('/', routes);
 app.use(express.static(path.join(__dirname, 'Assets')));
+app.use(express.static('./'));
+
 
 app.post("/attendee", (req, res) => {
   var myData1 = new Attendee(req.body);
