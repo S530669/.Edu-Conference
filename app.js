@@ -98,7 +98,8 @@ app.post("/vendor", (req, res) => {
   var myData1 = new vendor(req.body);
   myData1.save()
   .then(item => {
-    res.send("Items saved successfully");
+    res.render('cart.ejs', {list : null , list1 : null});
+    //res.send("Items saved successfully");
 })
 .catch(err => {
   res.status(400).send("unable to save to database");
