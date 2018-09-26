@@ -98,7 +98,10 @@ app.post("/vendor", (req, res) => {
   var myData1 = new vendor(req.body);
   myData1.save()
   .then(item => {
-    res.render('cart.ejs', {list : null , list1 : null});
+    db.collection('vendors').find().toArray(function(err, result){
+      if (err) throw err;
+    res.render('cart.ejs', {list : req.body.name , list1 : req.body.email});
+  })
     //res.send("Items saved successfully");
 })
 .catch(err => {
