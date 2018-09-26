@@ -83,14 +83,26 @@ res.send('Email is already registered')
 app.post("/faculty", (req, res) => {
   
   var myData = new faculty(req.body);
+  var count1 =  db.collection('faculties').find({'email':req.body.email}).count();
+  count1.then(function(result){
+    if(result == 0) {
   myData.save()
   .then(item => {
+    var query = {name: req.get.name};
+    //console.log( req.body.name1)
+    db.collection('faculties').find(query).toArray(function(err, result){
+      
+      if (err) throw err;
     res.render('couponcode.ejs',{code1 : code});
    // res.send("Items saved succaxessfully");
 })
+  })
 .catch(err => {
   res.status(400).send("unable to save to database");
   });
+}else
+res.send('Email is already registered');
+  })
 });
 
 //Graduate Student
