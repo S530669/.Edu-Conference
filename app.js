@@ -31,9 +31,12 @@ app.use('/', routes);
 app.use(express.static(path.join(__dirname, 'Assets')));
 app.use(express.static('./'));
 
-
+//Attendee
 app.post("/attendee", (req, res) => {
   var myData1 = new Attendee(req.body);
+  var count1 =  db.collection('attendees').find({'email':req.body.email}).count();
+  count1.then(function(result){
+    if(result == 0) {
   myData1.save()
   .then(item => {
     var query = {name: req.get.name};
@@ -47,10 +50,17 @@ app.post("/attendee", (req, res) => {
 .catch(err => {
   res.status(400).send("unable to save to database");
   });
+}else
+res.send('Email is already registered')
+ })
 });
 
+//Presenter
 app.post("/presenter", (req, res) => {
   var myData = new Presenter(req.body);
+  var count1 =  db.collection('presenters').find({'email':req.body.email}).count();
+  count1.then(function(result){
+    if(result == 0) {
   myData.save()
   .then(item => {
     var query = {name: req.get.name};
@@ -64,7 +74,12 @@ app.post("/presenter", (req, res) => {
 .catch(err => {
   res.status(400).send("unable to save to database");
   });
+}else
+res.send('Email is already registered')
+ })
 });
+
+//Faculty
 app.post("/faculty", (req, res) => {
   
   var myData = new faculty(req.body);
@@ -81,21 +96,31 @@ app.post("/faculty", (req, res) => {
 //Graduate Student
 app.post("/graduatestudent", (req, res) => {
   var myData1 = new Graduatestudent(req.body);
-  myData1.save()
-  .then(item => {
-    db.collection('graduatestudents').find().toArray(function(err, result){
-      
-      if (err) throw err;
-      res.render('cart.ejs',{list : req.body.name, list1 : req.body.email});
+  var count1 =  db.collection('graduatestudents').find({'email':req.body.email}).count();
+  count1.then(function(result){
+    if(result == 0) {
+      myData1.save()
+      .then(item => {
+        db.collection('graduatestudents').find().toArray(function(err, result){
+          
+          if (err) throw err;
+          res.render('cart.ejs',{list : req.body.name, list1 : req.body.email});
+        })
     })
-})
-.catch(err => {
-  res.status(400).send("unable to save to database");
+    .catch(err => {
+      res.status(400).send("unable to save to database");
+      });
+    }else
+  res.send('Email is already registered')
+   })
   });
-});
+
 //vendor
 app.post("/vendor", (req, res) => {
   var myData1 = new vendor(req.body);
+  var count1 =  db.collection('vendors').find({'email':req.body.email}).count();
+  count1.then(function(result){
+    if(result == 0) {
   myData1.save()
   .then(item => {
     db.collection('vendors').find().toArray(function(err, result){
@@ -106,6 +131,9 @@ app.post("/vendor", (req, res) => {
 })
 .catch(err => {
   res.status(400).send("unable to save to database");
+  });
+}else
+res.send('Email is already registered')
   });
 });
 
