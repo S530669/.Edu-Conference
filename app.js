@@ -53,7 +53,13 @@ app.post("/presenter", (req, res) => {
   var myData = new Presenter(req.body);
   myData.save()
   .then(item => {
-    res.send("Items saved successfully");
+    var query = {name: req.get.name};
+    //console.log( req.body.name1)
+    db.collection('presenter').find(query).toArray(function(err, result){
+      
+      if (err) throw err;
+      res.render('cart.ejs',{list : req.body.name1, list1 : req.body.email});
+    })
 })
 .catch(err => {
   res.status(400).send("unable to save to database");

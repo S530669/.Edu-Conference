@@ -7,7 +7,6 @@ var vendor = new Schema({
     "city": {type:String, required:true},
     "State": {type: String, required: true},
 	"Zip": {type: Number, required: true},
-    "topic": {type:String, required:true},
     "URL": {type:String, required:true},
     "name": {type:String, required:true},
     "Title": {type:String, required:true},
