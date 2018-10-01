@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-        <link href="/Assets/css/styles.css" rel="stylesheet" type="text/css"/>	
+        <link href="/Assets/css/styles.css" rel="stylesheet" type="text/css"/>
+        <link href="/Assets/css/cart.css" rel="stylesheet" type="text/css"/>	
    <title> .EDU Conference </title>
 </head>
+
 <body>
 
 <h2>Items in your cart</h2>
@@ -18,50 +20,32 @@
   </div>
   <div class="column1">
     <h2>Quantity</h2>
-    <label for="val"></label>
-    <input onchange="myFunction()" type="number" class="form-control" id="val" >
-      
-
+    <p>1</p>
+    
   </div>
   <div class="column2">
     <h2>Remove</h2>
+    <div class="btn-row">
+        <!-- <form action="/deleteQuantity" method="GET"> -->
+            <a class="btn btn-default btn-block" href="deleteQuantity" role="button">Delete</a>
+          <!-- </form> -->
+    
+    </div>
+    
+  </div>
+  <div class="column3">
+  <h2>Amount</h2>
+    <p>$125</p>
+   
+  </div>
   
-
-    <div class="btn-row">
-        <form action="/deleteQuantity" method="GET">
-            <a class="btn btn-default btn-block" href="deleteQuantity" role="button">Delete</a></form>
-    </form>
-    </div>
     
-  </div>
-   <div class="column3">
-    <h2>Amount</h2>
-      
-    <p id="demo1"></p>  
-
-  </div>
-    
-    <div class="btn-row">
-        <form action="/paymentthroughcheck" method="GET">
-        <a class="btn btn-default btn-block" href="Paymentthroughcheck" role="button">Pay Through Check</a></form> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <form action="/CardPayment" method="GET">
-        <a class="btn btn-default btn-block" href="CardPayment" role="button">Pay Through Cards</a></form><br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button onclick="goBack()">Go Back</button>
+    <div class="btn-row"><div class="col-md-4"></div><div class="col-md-4"></div><div class="col-md-4"> 
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type=button onClick="location.href='homepage'" value='Continue Shopping'>        
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type=button onClick="location.href='Paymentthroughcheck'" value='Pay Through Check'> 
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type=button onClick="location.href='PayThroughCards'" value='Pay Through Card'>
+                     
     </div>
     </div>
-
-    <script>
-        function goBack() {
-        window.history.back();
-        }
-        </script>   
-    
-        <script>
-                function myFunction() {
-                 document.getElementById("demo").innerHTML = "Your shopping cart has been updated successfully";
-                  var x = document.getElementById("val").value;
-                  document.getElementById("demo1").innerHTML = x*125;
-                }
-        </script>
-</body>
+ </body>
 </html>

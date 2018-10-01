@@ -36,7 +36,7 @@
 				<div class="col-md-4">
 				<div class="form-group">
 					<label for="name">Name</label>
-					<input type="text" class="form-control" id="name" name="name">
+					<input type="text" class="form-control" id="name" name="name"required>
 				</div>
 				</div>
 				<div class="col-md-4"></div>
@@ -46,7 +46,7 @@
 				<div class="col-md-4">
 				<div class="form-group">
 					<label for="check number">Check Number</label>
-					<input type="text" class="form-control" id="check number" name="check number"></div></div>
+					<input type="text" class="form-control" id="check number" name="check number"required></div></div>
 				<div class="col-md-4"></div>
 			 </div>
 			 <div class="row">
@@ -54,7 +54,7 @@
 				<div class="col-md-4">
 				<div class="form-group">
 					<label for="name of the bank">Name of the bank</label>
-					<input type="text" class="form-control" id="name of the bank" name="name of the bank"></div></div>
+					<input type="text" class="form-control" id="name of the bank" name="name of the bank"required></div></div>
 					<div class="col-md-4"></div>
 			</div>
 			<div class="row">
@@ -62,17 +62,15 @@
 				<div class="col-md-4">
 				<div class="form-group">
 					<label for="Date">Date</label>
-					<input type="Date" class="form-control" id="Date" name="Date"></div></div>
+					<input type="Date" class="form-control" id="Date" name="Date"required></div></div>
 					<div class="col-md-4"></div>
 			</div>
-			<div class="row"><div class="col-md-4"></div><div class="col-md-4">
-				<button type="submit" class="btn" value="Submit">Submit</button>&nbsp;&nbsp;&nbsp;
-				<button onclick="goBack()">Go Back</button></div></div>
-				<div class="col-md-4"></div>
-		<!--</form>-->
-	</div>
-	
-	
+			<div class="row"><div class="col-md-4"></div><div class="col-md-2">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type=button onClick="location.href='homepage'" value='Submit'>
+			</div>
+			<div class="col-md-4"> <button onclick="goBack()">Go Back</button></div></div>
+				
+			</div>		
 	<script>
 	function goBack() {
 		window.history.back();

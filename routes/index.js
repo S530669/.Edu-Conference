@@ -45,8 +45,8 @@ router.get('/', function(request, response) {
   router.get("/Paymentthroughcheck", function(request, response){
     response.render('Paymentthroughcheck.ejs');
   });
-  router.get("/CardPayment", function(request, response){
-    response.render('CardPayment.ejs');
+  router.get("/PayThroughCards", function(request, response){
+    response.render('PayThroughCards.ejs');
   });
   router.get("/edupay", function(request, response){
     response.render('edupay.ejs');
