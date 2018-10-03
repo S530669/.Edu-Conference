@@ -110,9 +110,9 @@ passport.deserializeUser(function (id, done) {
 });
 
 router.post('/login',
-	passport.authenticate('local', { successRedirect: '/', failureRedirect: '/users/login', failureFlash: true }),
+	passport.authenticate('local', { successRedirect: '/adminhomepage', failureRedirect: '/users/login', failureFlash: true }),
 	function (req, res) {
-		res.render('/');
+		res.render('/adminhomepage');
 	});
 
 router.get('/logout', function (req, res) {
