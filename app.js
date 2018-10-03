@@ -166,7 +166,22 @@ app.post("/vendor", (req, res) => {
 res.send('Email is already registered')
   });
 });
-
+//adminhomepage
+app.post("/adminhomepage", (req, res) => {
+  var myData1 = new adminhomepage(req.body);
+  var count1 =  db.collection('adminhomepage').find({'email':req.body.email}).count();
+  count1.then(function(result){
+    if(result == 0) {
+  myData1.save()
+  .then(item => {
+    var query = {name: req.get.name};
+    //console.log( req.body.name1)
+    db.collection('adminhomepage').find(query).toArray(function(err, result){
+      
+      if (err) throw err;
+      res.render('cart.ejs',{list : req.body.name1, list1 : req.body.email});
+    })
+})
 
 // app.engine('html', require('ejs').renderFile);
 // app.set('view engine', 'html');

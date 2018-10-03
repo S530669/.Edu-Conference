@@ -1,14 +1,25 @@
-<h2 class="page-header">Account Login</h2>
+<div class="col-md-3"></div>
+<div class="col-md-8"><h2>Account Login</h2></div>
 <form method="post" action="/users/login">
+<div class="col-md-4"></div>
+<div class="col-md-4">
   <div class="form-group">
     <label>Username</label>
-    <input type="text" class="form-control" name="username" placeholder="Username">
+    <input type="text" class="form-control" name="username" placeholder="Username" required>
   </div>
   <div class="form-group">
     <label>Password</label>
-    <input type="password" class="form-control" name="password" placeholder="Password">
+    <input type="password" class="form-control" name="password" placeholder="Password" required>
   </div>
-  <button type="submit" class="btn btn-default">Submit</button> 
+
+ <div class="row">
+		<div class="col-md-4"></div>
+		<div class="col-md-4">
+		<button type="submit" class="btn btn-primary">Submit</button></div>
+		<div class="col-md-4"></div>
+
+
   <input type=button onClick="location.href='/users/register'" value='SignUp'>
 
+</div>
 </form>
