@@ -70,7 +70,14 @@ router.get("/adminhomepage", function(request, response) {
 })
 })
 
-
+router.get("/AdminPresenter", function(request, response) {
+  db.collection('presenters').find().toArray(function(err,result){
+    if (err) throw err;
+    console.log(result);
+    response.render('AdminPresenter.ejs',{list : result});
+  response.render('AdminPresenter.ejs');
+});
+});
 
 function ensureAuthenticated(req, res, next){
 	if(req.isAuthenticated()){

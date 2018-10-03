@@ -1,0 +1,42 @@
+<head>
+	<link href="/css/AdminPresenter.css" type="text/css" rel="stylesheet" />
+	</head>
+	
+<div class="container">
+			<div class="row">
+					<div class="col-md-2"></div>
+					<div class="col-md-8">
+						<h2>Presenter Fetch Form</h2>
+					</div>
+					<body>
+                        <h2> Presenters Detail List</h2>
+                        <br>
+                        <br>
+                           <div class="w3-container">
+                           <table class="w3-table-all w3-card-4"id="rent"  align="center">
+                             <tr>
+                               <th>Name</th>
+                               <th>Email</th>
+                               <th>Contact</th>
+                               <th>Level</th>
+                               <th>Topic</th>
+                               <th>Attach</th>
+                               <th>Food</th>
+                               <th>Restrict</th>
+                             </tr>
+                       <% for(let i = 0; i < list.length; i++) { %>
+                       <tr>
+                         <td><%= list[i].name %></td>
+                         <td><%= list[i].email %></td>
+                         <td><%= list[i].contact %></td>
+                         <td><%= list[i].level %></td>
+                         <td><%= list[i].topic %></td>
+                         <td><%= list[i].attach %></td>
+                         <td><%= list[i].food %></td>
+                         <td><%= list[i].restrict %></td>
+                       </tr>
+                       <% } %>
+                     </table>
+                     
+                   </div>
+                   
