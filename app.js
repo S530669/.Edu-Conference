@@ -168,8 +168,8 @@ res.send('Email is already registered')
 });
 
 
-app.engine('html', require('ejs').renderFile);
-app.set('view engine', 'html');
+// app.engine('html', require('ejs').renderFile);
+// app.set('view engine', 'html');
 
 app.get('/view', function(req, res){
   Attendee.find({}, function(err, docs){

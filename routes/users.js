@@ -2,8 +2,16 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
-
+var expressValidator = require('express-validator');
+var flash = require('connect-flash');
+var session = require('express-session');
+router.use(expressValidator());
 var User = require('../models/user');
+router.use(flash());
+
+
+// Passport init
+router.use(passport.initialize());
 
 // Register
 router.get('/register', function (req, res) {
@@ -63,7 +71,7 @@ router.post('/register', function (req, res) {
 						if (err) throw err;
 						console.log(user);
 					});
-         	req.flash('success_msg', 'You are registered and can now login');
+         	// req.flash('success_msg', 'You are registered and can now login');
 					res.redirect('/users/login');
 				}
 			});
@@ -103,7 +111,7 @@ passport.deserializeUser(function (id, done) {
 router.post('/login',
 	passport.authenticate('local', { successRedirect: '/', failureRedirect: '/users/login', failureFlash: true }),
 	function (req, res) {
-		res.redirect('/admin');
+		res.render('/');
 	});
 
 router.get('/logout', function (req, res) {
