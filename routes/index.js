@@ -56,6 +56,7 @@ router.get('/', function(request, response) {
 router.get('/admin', ensureAuthenticated,  function(req, res){ 
 	res.render('/');
 });
+
 router.get("/adminhomepage", function(request, response) {
 	response.render('adminhomepage.ejs');
   });
@@ -68,6 +69,8 @@ router.get("/adminhomepage", function(request, response) {
         response.render('adminvendor.ejs',{list : result});
 })
 })
+
+
 
 function ensureAuthenticated(req, res, next){
 	if(req.isAuthenticated()){

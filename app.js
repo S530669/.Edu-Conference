@@ -289,6 +289,13 @@ app.use(function (req, res, next) {
   next();
 });
 
+app.get('/adminattendee', function(request, response){ 
+var count1 = db.collection('attendees').count();
+count1.then(function(result){
+  response.render('adminattendee.ejs', {result: result});
+});
+});
+
 
 
 
