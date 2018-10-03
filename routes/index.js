@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var path = require ('path');
-
+var mongoose = require('mongoose');
+var db = mongoose.connection;
 router.get('/', function(request, response) {
     response.render('homepage.ejs');
   });
@@ -58,6 +59,15 @@ router.get('/admin', ensureAuthenticated,  function(req, res){
 router.get("/adminhomepage", function(request, response) {
 	response.render('adminhomepage.ejs');
   });
+  //admin vendor
+
+  router.get('/adminvendor', (request, response, next) => {
+    db.collection('adminvendor').find().toArray(function(err,result){
+        if (err) throw err;
+        console.log(result);
+        response.render('adminvendor.ejs',{list : result});
+})
+})
 
 function ensureAuthenticated(req, res, next){
 	if(req.isAuthenticated()){
