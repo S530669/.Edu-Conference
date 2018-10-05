@@ -25,8 +25,6 @@ var users = require('./routes/users');
 mongoose.connect('mongodb://localhost:27017/conference');
 var Attendee = require('./models/attendee.js');
 var Presenter = require('./models/presenter.js');
-var Graduatestudent = require('./models/Graduatestudent.js');
-var faculty = require('./models/faculty.js');
 var vendor = require('./models/vendor.js');
 
 
@@ -100,15 +98,15 @@ res.send('Email is already registered')
 //Faculty
 app.post("/faculty", (req, res) => {
   
-  var myData = new faculty(req.body);
-  var count1 =  db.collection('faculties').find({'email':req.body.email}).count();
+  var myData = new Attendee(req.body);
+  var count1 =  db.collection('attendees').find({'email':req.body.email}).count();
   count1.then(function(result){
     if(result == 0) {
   myData.save()
   .then(item => {
     var query = {name: req.get.name};
     //console.log( req.body.name1)
-    db.collection('faculties').find(query).toArray(function(err, result){
+    db.collection('attendees').find(query).toArray(function(err, result){
       
       if (err) throw err;
     res.render('couponcode.ejs',{code1 : code});
@@ -125,13 +123,13 @@ res.send('Email is already registered');
 
 //Graduate Student
 app.post("/graduatestudent", (req, res) => {
-  var myData1 = new Graduatestudent(req.body);
-  var count1 =  db.collection('graduatestudents').find({'email':req.body.email}).count();
+  var myData1 = new Attendee(req.body);
+  var count1 =  db.collection('attendees').find({'email':req.body.email}).count();
   count1.then(function(result){
     if(result == 0) {
       myData1.save()
       .then(item => {
-        db.collection('graduatestudents').find().toArray(function(err, result){
+        db.collection('attendees').find().toArray(function(err, result){
           
           if (err) throw err;
           res.render('cart.ejs',{list : req.body.name, list1 : req.body.email});
