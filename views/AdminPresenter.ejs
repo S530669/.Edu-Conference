@@ -1,3 +1,4 @@
+<% include adminheader %>
 <head>
 	<link href="/css/AdminPresenter.css" type="text/css" rel="stylesheet" />
 	</head>
@@ -5,15 +6,15 @@
 <div class="container">
 			<div class="row">
 					<div class="col-md-2"></div>
-					<div class="col-md-8">
-						<h2>Presenter Fetch Form</h2>
-					</div>
 					<body>
-                        <h2> Presenters Detail List</h2>
+              <div class="col-md-8">
+                        <h2 align="center"> Presenters Detail List</h2>
+                        <br>
+                      </div>
                         <br>
                         <br>
                            <div class="w3-container">
-                           <table class="w3-table-all w3-card-4"id="rent"  align="center">
+                           <table class="w3-table-all w3-card-4" id="Details"  align="center">
                              <tr>
                                <th>Name</th>
                                <th>Email</th>
@@ -23,10 +24,13 @@
                                <th>Attach</th>
                                <th>Food</th>
                                <th>Restrict</th>
+                               <th>Select</th>
+                               <th>Reject</th>
+
                              </tr>
                        <% for(let i = 0; i < list.length; i++) { %>
                        <tr>
-                         <td><%= list[i].name %></td>
+                         <td><%= list[i].name %></td>     
                          <td><%= list[i].email %></td>
                          <td><%= list[i].contact %></td>
                          <td><%= list[i].level %></td>
@@ -34,6 +38,8 @@
                          <td><%= list[i].attach %></td>
                          <td><%= list[i].food %></td>
                          <td><%= list[i].restrict %></td>
+                         <td><button type="button" class="btn btn-success">Confirm</button></td>
+                         <td><button type="button" class="btn btn-danger">Delete</button></td>
                        </tr>
                        <% } %>
                      </table>

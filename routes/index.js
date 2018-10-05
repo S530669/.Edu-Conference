@@ -60,9 +60,17 @@ router.get('/admin', ensureAuthenticated,  function(req, res){
 router.get("/adminhomepage", function(request, response) {
 	response.render('adminhomepage.ejs');
   });
-  //admin vendor
 
-  router.get('/adminvendor', (request, response, next) => {
+function ensureAuthenticated(req, res, next){
+	if(req.isAuthenticated()){
+		return next();
+	} else {
+		//req.flash('error_msg','You are not logged in');
+		res.redirect('/users/login');
+  }
+   //admin vendor
+
+   router.get('/adminvendor', (request, response, next) => {
     db.collection('adminvendor').find().toArray(function(err,result){
         if (err) throw err;
         console.log(result);
@@ -75,17 +83,9 @@ router.get("/AdminPresenter", function(request, response) {
     if (err) throw err;
     console.log(result);
     response.render('AdminPresenter.ejs',{list : result});
-  response.render('AdminPresenter.ejs');
+  
 });
 });
-
-function ensureAuthenticated(req, res, next){
-	if(req.isAuthenticated()){
-		return next();
-	} else {
-		//req.flash('error_msg','You are not logged in');
-		res.redirect('/users/login');
-  }
 }
 
   module.exports = router;

@@ -1,0 +1,22 @@
+#Details {
+    font-family: cursive;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#Details td, #Details th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#Details tr:nth-child(even){background-color: #f2f2f2;}
+
+#Details tr:hover {background-color: #ddd;}
+
+#Details th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: black;
+    color: white;
+}
