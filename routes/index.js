@@ -78,7 +78,7 @@ function ensureAuthenticated(req, res, next){
       });
 
      router.get('/adminvendor', (request, response, next) => {
-    db.collection('adminvendor').find().toArray(function(err,result){
+    db.collection('vendors').find().toArray(function(err,result){
         if (err) throw err;
         console.log(result);
         response.render('adminvendor.ejs',{list : result});

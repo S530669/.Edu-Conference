@@ -115,7 +115,7 @@ router.post('/login',
 	});
 
 router.get('/logout', function (req, res) {
-	res.redirect('/');
+	res.redirect('/users/login');
 });
 
 module.exports = router;
