@@ -57,9 +57,6 @@ router.get('/admin', ensureAuthenticated,  function(req, res){
 	res.render('/');
 });
 
-router.get("/adminhomepage", function(request, response) {
-	response.render('adminhomepage.ejs');
-  });
 
 function ensureAuthenticated(req, res, next){
 	if(req.isAuthenticated()){
@@ -68,15 +65,25 @@ function ensureAuthenticated(req, res, next){
 		//req.flash('error_msg','You are not logged in');
 		res.redirect('/users/login');
   }
-   //admin vendor
 
-   router.get('/adminvendor', (request, response, next) => {
+  router.get("/adminhomepage", function(request, response) {
+    response.render('adminhomepage.ejs');
+    });
+
+    router.get('/adminattendee', function(request, response){ 
+      var count1 = db.collection('attendees').count();
+      count1.then(function(result){
+        response.render('adminattendee.ejs', {result: result});
+      });
+      });
+
+     router.get('/adminvendor', (request, response, next) => {
     db.collection('adminvendor').find().toArray(function(err,result){
         if (err) throw err;
         console.log(result);
         response.render('adminvendor.ejs',{list : result});
-})
-})
+      })
+      })
 
 router.get("/AdminPresenter", function(request, response) {
   db.collection('presenters').find().toArray(function(err,result){
