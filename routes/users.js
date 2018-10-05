@@ -22,15 +22,6 @@ router.get('/register', function (req, res) {
 router.get('/login', function (req, res) {
 	res.render('login');
 });
-//logout
-router.get('/logout', function (req, res) {
-	req.logout();
-
-	// req.flash('success_msg', 'You are logged out');
-
-	res.redirect('/users/login');
-});
-
 
 // Register User
 router.post('/register', function (req, res) {
@@ -124,10 +115,6 @@ router.post('/login',
 	});
 
 router.get('/logout', function (req, res) {
-	req.logout();
-
-	req.flash('success_msg', 'You are logged out');
-
 	res.redirect('/users/login');
 });
 
