@@ -78,11 +78,14 @@ function ensureAuthenticated(req, res, next){
         router.get("/ProgramDetails", function(request, response) {
           response.render('UpdateProgramDetails.ejs');
           });
+
+          
     router.get('/adminattendee', function(request, response){ 
-      var count1 = db.collection('attendees').count();
-      count1.then(function(result){
-        response.render('adminattendee.ejs', {result: result});
-      });
+      db.collection('attendees').find().toArray(function(err,result){
+        if (err) throw err;
+        console.log(result);
+        response.render('adminattendee.ejs',{list : result});
+      })
       });
 
      router.get('/adminvendor', (request, response, next) => {

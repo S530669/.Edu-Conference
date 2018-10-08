@@ -1,13 +1,46 @@
 <% include adminheader %>
-<div class="container-fluid">
-<p id="demo"></p>
+<head>
+	<link href="/css/AdminStyling.css" type="text/css" rel="stylesheet" />
+	</head>
+	
+<div class="container">
+			<div class="row">
+					<div class="col-md-2"></div>
+					<body>
+              <div class="col-md-8">
+                        <h2 align="center"> Attendee Detail List </h2>
+                        <br>
+                      </div>
+                        <br>
+                        <br>
+                           <div class="w3-container">
+                           <table class="w3-table-all w3-card-4" id="Details"  align="center">
+                             <tr>
+                               <th>Number</th>
+                               <th>Name</th>
+                               <th>Email</th>
+                               <th>Program</th>
+                               <th>Food</th>
+                               <th>Restrict</th>
 
-<div class="row">
-  <div class="column">
-    <h2>Total number of Attendees</h2>
-   <p> Total : <%= result %></p>
-  </div>
-</div>
+                             </tr>
+                       <% for(let i = 0 ; i < list.length; i++) { %>
+                       <tr>
+                         <td><%= i+1 %></td>
+                         <td><%= list[i].name %></td>     
+                         <td><%= list[i].email %></td>
+                         <td><%= list[i].program %></td>
+                         <td><%= list[i].food %></td>
+                         <td><%= list[i].restrict %></td>
+                       </tr>
+                       <% } %>
+                     </table>
+                     
+                   </div>
+                   
+
+
+
 
 
 
