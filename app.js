@@ -4,7 +4,7 @@ var logger = require('morgan');
 var bodyParser = require('body-parser'); 
 var app = express();   
 var nodemailer = require('nodemailer');
-var couponCode = require('coupon-code');
+var randomstring = require('randomstring');
 var Promise = require('bluebird');
 var mongoose = require('mongoose');
 var db = mongoose.connection;
@@ -38,7 +38,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-var code = couponCode.generate();
+var code = randomstring.generate(8);
 var count = 0;
 
 
@@ -176,41 +176,6 @@ app.get('/view', function(req, res){
   });
 });
 
-// coupon code
-
-
-// this is code that checks uniqueness and returns a promise
-function check(code) {
-  return new Promise(function(resolve, reject) {
-    setTimeout(function() {
-      count++;
-      // first resolve with false, on second try resolve with true
-      if (count === 1) {
-        console.log(code + ' is not unique');
-        resolve(false);
-      } else {
-        console.log(code + ' is unique');
-        resolve(true);
-      }
-    }, 1000);
-  });
-}
-
-var generateUniqueCode = Promise.method(function() {
-  // var code = couponCode.generate();
-  return check(code)
-    .then(function(result) {
-      if (result) {
-        return code;
-      } else {
-        return generateUniqueCode();
-      }
-    });
-});
-
-generateUniqueCode().then(function(code) {
-  console.log(code);
-});
 
 //mail
 
@@ -226,17 +191,17 @@ var transporter = nodemailer.createTransport({
 
 var mailOptions = {
   from: 'gdp2.fastrack@gmail.com',
-  to: request.body.email,
-  subject: 'Coupon code for code regestration',
+  to: request.body.email1,
+  subject: 'Coupon code for code registration',
   html: '<p>Hello,</p><p>Here is the coupon code that you need enter:</p>'+ code +'<p>Thanks&Regards</p><p>.edu team</p> ',
 };
-
+console.log(request.body.email1);
 transporter.sendMail(mailOptions, function(error, info){
   if (error) {
     console.log(error);
   } else {
     console.log('Email sent: ' + info.response);
-    response.sendFile(path.join(__dirname,'/views','couponcode.html'));
+    response.render('faculty.ejs');
   }
 });
 });

@@ -103,4 +103,16 @@ router.get("/AdminPresenter", function(request, response) {
 });
 }
 
+
+
+//Attendees count
+
+router.get("/veg", function(request, response) {
+  var query = {$or: [{"food":"Non veg"}, {"food":"Non Veg"}]}
+  var count1 = db.collection('attendees').find(query).count();
+  count1.then(function(result){
+    response.render('adminattendee.ejs', {veg: result});
+  });
+});
+
   module.exports = router;

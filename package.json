@@ -21,7 +21,8 @@
         "nodemailer": "latest",
         "nodemon": "^1.18.4",
         "passport": "^0.4.0",
-        "passport-local": "^1.0.0"
+        "passport-local": "^1.0.0",
+        "randomstring": "^1.1.5"
     },
     "license": "Apache-2.0"
 }

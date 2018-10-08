@@ -1,6 +1,7 @@
 <% include home %>
 <head>
 	<link href="/css/home.css" type="text/css" rel="stylesheet" />
+	
 	</head>
 	<div class="container">
 			<div class="row">
@@ -17,6 +18,46 @@
 					</div>
 					<div class="col-md-2"></div>
 				</div>
+				<div class="row">
+					
+				<form method="POST" action="/mail">
+				
+				<div class="container">
+											  
+						<!-- Button to Open the Modal -->
+						<div class="col">
+						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+						  Generate Coupon
+						</button></div>
+					  
+						<!-- The Modal -->
+						<div class="modal fade" id="myModal">
+						  <div class="modal-dialog">
+							<div class="modal-content">
+							
+							  <!-- Modal Header -->
+							  <div class="modal-header">
+								<h3 class="modal-title">Enter email for coupon code</h3>
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+							  </div>
+							  
+							  <!-- Modal body -->
+							  <div class="modal-body">
+								  <label for="email1">Email:</label>
+								<input type="email"class="form-control" name="email1" id="email1" required>
+							  </div>
+							  <div class="ven">
+								<button type="submit"  class="btn btn-primary">Submit</button></div>
+								<div class="modal-footer">
+									  </div>				  
+							</div>
+						  </div>
+						</div>
+						
+					  </div>
+					</form>
+				</div>
+					
 	<form action="/faculty" method="POST"  >
 			<div class="row">
 				<div class="col-md-4"></div>
@@ -56,18 +97,12 @@
 					<div class="col-md-4"></div>
 					<div class="col-md-4">
 						<div class="form-group">
-							<label for="cheque">Presenter</label>
-							<input type="cheque" class="form-control" id="presenter" name="presenter" required></div></div>
-					<div class="col-md-4"></div>
-				</div>
-				    
-				<div class="row">
-					<div class="col-md-4"></div>
-					<div class="col-md-4">
-						<div class="form-group">
 							<label for="Food">Food(Specify Veg or Non-Veg)</label><br>
-							<input type="food" class="form-control" id="food" name="food"></div></div>
+							<input type="radio" name="food" value="Veg">Veg<br>
+							<input type="radio" name="food" value="Non-Veg">Non-Veg<br>
 			<div class="col-md-4"></div>
+			</div>
+			</div>
 			</div>
 			<div class="row">
 					<div class="col-md-4"></div>
