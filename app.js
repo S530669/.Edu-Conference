@@ -60,7 +60,7 @@ app.post("/attendee", (req, res) => {
     db.collection('attendees').find(query).toArray(function(err, result){
       
       if (err) throw err;
-      res.render('cart.ejs',{list : req.body.name1, list1 : req.body.email});
+      res.render('cart.ejs',{list : req.body.name, list1 : req.body.email});
     })
 })
 .catch(err => {
@@ -84,7 +84,7 @@ app.post("/presenter", (req, res) => {
     db.collection('presenter').find(query).toArray(function(err, result){
       
       if (err) throw err;
-      res.render('cart.ejs',{list : req.body.name1, list1 : req.body.email});
+      res.render('cart.ejs',{list : req.body.name, list1 : req.body.email});
     })
 })
 .catch(err => {

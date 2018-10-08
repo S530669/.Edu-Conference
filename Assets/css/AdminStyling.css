@@ -20,3 +20,27 @@
     background-color: black;
     color: white;
 }
+
+
+#update {
+    font-family: cursive;
+    border-collapse: collapse;
+    width: 40%;
+}
+
+#update td, #update th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#update tr:nth-child(even){background-color: #f2f2f2;}
+
+#update tr:hover {background-color: #ddd;}
+
+#update th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #211E1E;
+    color: white;
+}

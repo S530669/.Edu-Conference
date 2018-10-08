@@ -69,7 +69,15 @@ function ensureAuthenticated(req, res, next){
   router.get("/adminhomepage", function(request, response) {
     response.render('adminhomepage.ejs');
     });
-
+    router.get("/Deadlines", function(request, response) {
+      response.render('UpdateDeadlines.ejs');
+      });
+      router.get("/FeeDetails", function(request, response) {
+        response.render('UpdateFeeDetails.ejs');
+        });
+        router.get("/ProgramDetails", function(request, response) {
+          response.render('UpdateProgramDetails.ejs');
+          });
     router.get('/adminattendee', function(request, response){ 
       var count1 = db.collection('attendees').count();
       count1.then(function(result){
