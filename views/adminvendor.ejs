@@ -9,6 +9,7 @@
         <div class="w3-container">
         <table class="w3-table-all w3-card-4"id="Details"  align="center">
           <tr>
+            <th>Number</th>
             <th>Company Name</th>
             <th>city</th>
             <th>State</th>
@@ -18,9 +19,13 @@
             <th>Contact Title</th>
             <th>Email</th>
             <th>Contact Number</th>
+            <th>Food</th>
+            <th>Restrict</th>
+            <th>Select</th>
           </tr>
     <% for(let i = 0; i < list.length; i++) { %>
     <tr>
+      <td><%= i+1 %></td>
       <td><%= list[i].cname %></td>
       <td><%= list[i].city %></td>
       <td><%= list[i].State %></td>
@@ -30,6 +35,9 @@
       <td><%= list[i].Title %></td>
       <td><%= list[i].email %></td>
       <td><%= list[i].contact %></td>
+      <td><%= list[i].food %></td>
+      <td><%= list[i].restrict %></td>
+      <td><button type="button" class="btn btn-success">Confirm</button></td>
     </tr>
     <% } %>
   </table>

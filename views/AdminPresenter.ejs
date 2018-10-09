@@ -16,6 +16,7 @@
                            <div class="w3-container">
                            <table class="w3-table-all w3-card-4" id="Details"  align="center">
                              <tr>
+                               <th>Number</th>
                                <th>Name</th>
                                <th>Email</th>
                                <th>Contact</th>
@@ -30,6 +31,7 @@
                              </tr>
                        <% for(let i = 0; i < list.length; i++) { %>
                        <tr>
+                         <td><%= i+1 %></td>
                          <td><%= list[i].name %></td>     
                          <td><%= list[i].email %></td>
                          <td><%= list[i].contact %></td>

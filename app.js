@@ -60,7 +60,13 @@ app.post("/attendee", (req, res) => {
     db.collection('attendees').find(query).toArray(function(err, result){
       
       if (err) throw err;
-      res.render('cart.ejs',{list : req.body.name1, list1 : req.body.email});
+      if(req.body.food == null){
+        var amount = '$'+(125);
+      }
+      else{
+        var amount = '$'+(125+20);
+      }
+      res.render('cart.ejs',{list : req.body.name, list1 : req.body.email, amount });
     })
 })
 .catch(err => {
@@ -84,7 +90,13 @@ app.post("/presenter", (req, res) => {
     db.collection('presenter').find(query).toArray(function(err, result){
       
       if (err) throw err;
-      res.render('cart.ejs',{list : req.body.name1, list1 : req.body.email});
+      if(req.body.food == null){
+        var amount = '$'+(125);
+      }
+      else{
+        var amount = '$'+(125+20);
+      }
+      res.render('cart.ejs',{list : req.body.name, list1 : req.body.email, amount });
     })
 })
 .catch(err => {
@@ -132,7 +144,13 @@ app.post("/graduatestudent", (req, res) => {
         db.collection('attendees').find().toArray(function(err, result){
           
           if (err) throw err;
-          res.render('cart.ejs',{list : req.body.name, list1 : req.body.email});
+          if(req.body.food == null){
+            var amount = '$'+(125);
+          }
+          else{
+            var amount = '$'+(125+20);
+          }
+          res.render('cart.ejs',{list : req.body.name, list1 : req.body.email, amount });
         })
     })
     .catch(err => {
@@ -153,8 +171,14 @@ app.post("/vendor", (req, res) => {
   .then(item => {
     db.collection('vendors').find().toArray(function(err, result){
       if (err) throw err;
-    res.render('cart.ejs', {list : req.body.name , list1 : req.body.email});
-  })
+      if(req.body.food == null){
+        var amount = '$'+(125);
+      }
+      else{
+        var amount = '$'+(125+20);
+      }
+      res.render('cart.ejs',{list : req.body.name, list1 : req.body.email, amount });
+    })
     //res.send("Items saved successfully");
 })
 .catch(err => {
