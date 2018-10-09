@@ -7,7 +7,7 @@ var Attendee = new Schema({
     "contact": {type: String, required: true},
     "school": {type: String, required: false},
 	"program": {type: String, required: true},
-    "food": {type:String, required:true},
+    "food": {type:String, required:false},
     "restrict": {type:String, required:false}
     });
 

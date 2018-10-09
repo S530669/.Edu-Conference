@@ -11,9 +11,7 @@ var vendor = new Schema({
     "name": {type:String, required:true},
     "Title": {type:String, required:true},
     "email": {type:String, required:true},
-    "contact": {type:String, required:true},
-    "food": {type:String, required:false},
-    "restrict": {type:String, required:false}
+    "contact": {type:String, required:true}
     });
 
 module.exports =  mongoose.model('vendor', vendor);
