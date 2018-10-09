@@ -253,7 +253,36 @@ app.use(function (req, res, next) {
 });
 
 
-
+app.post("/send",function(request,response){
+   db.collection('presenters').update({'email' : request.body.email1},{$set:{'confirm':"confirmed"}});
+  var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'gdp2.fastrack@gmail.com',
+      pass: 'gdp21234'
+    }
+  });
+  
+  var mailOptions = {
+    from: 'gdp2.fastrack@gmail.com',
+    to: request.body.email1,
+    subject: 'Acceptance from .EDU Conference.',
+    html: '<p>Hello,</p><p>Your application as a vendor to .EDU Conference is successfully accepted.</p><p>Thanks&Regards</p><p>.edu team</p> ',
+  };
+  console.log(request.body.email1);
+  transporter.sendMail(mailOptions, function(error, info){
+    if (error) {
+      console.log(error);
+    } else {
+      console.log('Email sent: ' + info.response);
+      db.collection('presenters').find().toArray(function(err,result){
+        if (err) throw err;
+        response.render('AdminPresenter.ejs',{list : result});
+      
+    });
+    }
+  });
+  });
 
 
 

@@ -1,6 +1,6 @@
 <% include adminheader %>
 <head>
-	<link href="/css/AdminStyling.css" type="text/css" rel="stylesheet" />
+  <link href="/css/AdminStyling.css" type="text/css" rel="stylesheet" />
 	</head>
 	
 <div class="container">
@@ -38,7 +38,17 @@
                          <td><%= list[i].attach %></td>
                          <td><%= list[i].food %></td>
                          <td><%= list[i].restrict %></td>
-                         <td><button type="button" class="btn btn-success">Confirm</button></td>
+                         
+                         <form action="/send" method="POST">
+                          <input type="text" name="confirm" value="<%= list[i].confirm %>"hidden>
+                          <input type="text" value="<%= list[i].email %>" name="email1" hidden>
+                          <%if(list[i].confirm.length ==0){%>
+                         <td><button type="submit" class="btn btn-success" >Confirm</button></td>
+                         <%}%>
+                         <%if(list[i].confirm.length !=0){%>
+                          <td><button disabled class="btn btn-success" >Confirmed</button></td>
+                          <%}%>
+                        </form>
                          <td><button type="button" class="btn btn-danger">Delete</button></td>
                        </tr>
                        <% } %>
