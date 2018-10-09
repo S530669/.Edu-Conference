@@ -16,7 +16,7 @@ var session = require('express-session');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var mongo = require('mongodb');
-
+var ObjectId =require('mongodb').ObjectID;
 
 
 var routes = require('./routes/index');
@@ -308,7 +308,38 @@ app.post("/send",function(request,response){
   });
   });
 
-
+  app.post("/sende",function(request,response){
+    var query = {"_id" : ObjectId(request.body.presId)};
+    db.collection('presenters').deleteOne(query,function(err, result){
+   var transporter = nodemailer.createTransport({
+     service: 'gmail',
+     auth: {
+       user: 'gdp2.fastrack@gmail.com',
+       pass: 'gdp21234'
+     }
+   });
+   
+   var mailOptions = {
+     from: 'gdp2.fastrack@gmail.com',
+     to: request.body.email1,
+     subject: 'Decline from .EDU Conference.',
+     html: '<p>Hello,</p><p>We are sorry to inform you that, your application as a vendor to .EDU Conference is rejected.</p><p>Thanks&Regards</p><p>.edu team</p> ',
+   };
+   console.log(request.body.email1);
+   transporter.sendMail(mailOptions, function(error, info){
+     if (error) {
+       console.log(error);
+     } else {
+       console.log('Email sent: ' + info.response);
+       db.collection('presenters').find().toArray(function(err,result){
+         if (err) throw err;
+         response.render('AdminPresenter.ejs',{list : result});
+       
+     });
+     }
+   });
+   });
+  });
 
 app.set('port',(process.env.PORT || 8082));
 
