@@ -95,6 +95,13 @@ function ensureAuthenticated(req, res, next){
         response.render('adminvendor.ejs',{list : result});
       })
       })
+      router.get('/admincontact', (request, response, next) => {
+        db.collection('contacts').find().toArray(function(err,result){
+            if (err) throw err;
+            console.log(result);
+            response.render('admincontact.ejs',{list : result});
+          })
+          })
 
 router.get("/AdminPresenter", function(request, response) {
   db.collection('presenters').find().toArray(function(err,result){

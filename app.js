@@ -196,7 +196,6 @@ app.post("/contact", (req, res) => {
   var myData = new Contact(req.body);
   myData.save()
   .then(item => {
-   console.log("my name")
    res.send("Items saved successfully");
 
  })
