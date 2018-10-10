@@ -16,7 +16,7 @@ var session = require('express-session');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var mongo = require('mongodb');
-var ObjectId =require('mongodb').ObjectID;
+
 
 
 var routes = require('./routes/index');
@@ -26,6 +26,7 @@ mongoose.connect('mongodb://localhost:27017/conference');
 var Attendee = require('./models/attendee.js');
 var Presenter = require('./models/presenter.js');
 var vendor = require('./models/vendor.js');
+var Contact = require('./models/contact.js');
 
 
 
@@ -189,6 +190,23 @@ res.send('Email is already registered')
   });
 });
 
+//contact
+app.post("/contact", (req, res) => {
+  
+  var myData = new Contact(req.body);
+  myData.save()
+  .then(item => {
+   console.log("my name")
+   res.send("Items saved successfully");
+
+ })
+
+.catch(err => {
+ res.status(400).send("unable to save to database");
+ });
+
+});
+
 
 // app.engine('html', require('ejs').renderFile);
 // app.set('view engine', 'html');
@@ -308,38 +326,7 @@ app.post("/send",function(request,response){
   });
   });
 
-  app.post("/sende",function(request,response){
-    var query = {"_id" : ObjectId(request.body.presId)};
-    db.collection('presenters').deleteOne(query,function(err, result){
-   var transporter = nodemailer.createTransport({
-     service: 'gmail',
-     auth: {
-       user: 'gdp2.fastrack@gmail.com',
-       pass: 'gdp21234'
-     }
-   });
-   
-   var mailOptions = {
-     from: 'gdp2.fastrack@gmail.com',
-     to: request.body.email1,
-     subject: 'Decline from .EDU Conference.',
-     html: '<p>Hello,</p><p>We are sorry to inform you that, your application as a vendor to .EDU Conference is rejected.</p><p>Thanks&Regards</p><p>.edu team</p> ',
-   };
-   console.log(request.body.email1);
-   transporter.sendMail(mailOptions, function(error, info){
-     if (error) {
-       console.log(error);
-     } else {
-       console.log('Email sent: ' + info.response);
-       db.collection('presenters').find().toArray(function(err,result){
-         if (err) throw err;
-         response.render('AdminPresenter.ejs',{list : result});
-       
-     });
-     }
-   });
-   });
-  });
+
 
 app.set('port',(process.env.PORT || 8082));
 

@@ -7,7 +7,7 @@
 <h3 class= "r">Contact Form</h3>
 
 <div class="container">
-  <form>
+  <form action = "/contact" method="POST" >
 <div class="row">
     <label for="fname">First Name</label>
     <div class="form-group">
@@ -35,8 +35,15 @@
 </div>
   <br>
 <div class="row">
-  <input type="submit" value="Submit" class="btn btn-primary">
+
+  <input type="submit" value="Submit" onclick="myFunction()" class="btn btn-primary">
 </div>
 </form>
 </div>
+<script>
+        function myFunction() {
+            alert("Your feedback is stored. Will contact you shortly!!!");
+        }
+        </script>
+        
 </body>
