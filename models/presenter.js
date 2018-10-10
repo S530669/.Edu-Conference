@@ -8,7 +8,7 @@ var Presenter = new Schema({
     "level": {type:String, required:true},
 	"topic": {type:String, required:true},
     "attach": {type:String, required:false},
-    "food": {type:String, required:false},
+    "food": {type:String, required:true},
     "restrict": {type:String, required:false},
     "confirm": {type:String, required:false}
     });
