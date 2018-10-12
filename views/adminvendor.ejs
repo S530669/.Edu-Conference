@@ -19,8 +19,6 @@
             <th>Contact Title</th>
             <th>Email</th>
             <th>Contact Number</th>
-            <th>Food</th>
-            <th>Restrict</th>
             <th>Select</th>
           </tr>
     <% for(let i = 0; i < list.length; i++) { %>
@@ -35,12 +33,47 @@
       <td><%= list[i].Title %></td>
       <td><%= list[i].email %></td>
       <td><%= list[i].contact %></td>
-      <td><%= list[i].food %></td>
-      <td><%= list[i].restrict %></td>
       <td><button type="button" class="btn btn-success">Confirm</button></td>
     </tr>
     <% } %>
   </table>
+  <button id="btnExport" onclick="fnExcelReport();"> Create Export </button>
   <div>
     </div> 
 </div>
+<script>
+  function fnExcelReport()
+           {
+             var tab_text="<table border='2px'><tr bgcolor='#87AFC6'>";
+             var textRange; var j=0;
+             tab = document.getElementById('Details'); // id of table
+
+             for(j = 0 ; j < tab.rows.length ; j++) 
+             {     
+                 tab_text=tab_text+tab.rows[j].innerHTML+"</tr>";
+
+             }
+
+             tab_text=tab_text+"</table>";
+             tab_text= tab_text.replace(/<A[^>]*>|<\/A>/g, "");
+             tab_text= tab_text.replace(/<img[^>]*>/gi,""); 
+             tab_text= tab_text.replace(/<input[^>]*>|<\/input>/gi, ""); 
+
+             var ua = window.navigator.userAgent;
+             var msie = ua.indexOf("MSIE "); 
+
+             if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))    
+             {
+               txtArea1.document.open("txt/html","replace");
+               txtArea1.document.write(tab_text);
+               txtArea1.document.close();
+               txtArea1.focus(); 
+               sa=txtArea1.document.execCommand("SaveAs",true,"Say Thanks to Conference.xls");
+             }  
+               else                
+             sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text));  
+
+             return (sa);
+             }
+             </script>
+ 
