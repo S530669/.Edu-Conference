@@ -3,7 +3,8 @@ var Schema = mongoose.Schema;
 
 var vendor = new Schema({
     
-    "cname": {type:String, required:true},
+    "Vendor": {type:String, required:true},
+    "cname": {type:String, required:true},       
     "city": {type:String, required:true},
     "State": {type: String, required: true},
 	"Zip": {type: Number, required: true},
