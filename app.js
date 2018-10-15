@@ -91,13 +91,7 @@ app.post("/presenter", (req, res) => {
     db.collection('presenter').find(query).toArray(function(err, result){
       
       if (err) throw err;
-      if(req.body.food == null){
-        var amount = '$'+(125);
-      }
-      else{
-        var amount = '$'+(125+20);
-      }
-      res.render('cart.ejs',{list : req.body.name, list1 : req.body.email, amount });
+      res.send('cart.ejs',{list : req.body.name, list1 : req.body.email, amount });
     })
 })
 .catch(err => {
