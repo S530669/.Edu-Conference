@@ -82,6 +82,7 @@ res.send('Email is already registered')
 app.post("/presenter", (req, res) => {
   var myData = new Presenter(req.body);
   var count1 =  db.collection('presenters').find({'email':req.body.email}).count();
+  var amount='130';
   count1.then(function(result){
     if(result == 0) {
   myData.save()
@@ -91,7 +92,7 @@ app.post("/presenter", (req, res) => {
     db.collection('presenter').find(query).toArray(function(err, result){
       
       if (err) throw err;
-      res.send('cart.ejs',{list : req.body.name, list1 : req.body.email, amount });
+      res.render('cart.ejs',{list : req.body.name, list1 : req.body.email, amount});
     })
 })
 .catch(err => {
