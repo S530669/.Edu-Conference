@@ -92,7 +92,7 @@ app.post("/presenter", (req, res) => {
     db.collection('presenter').find(query).toArray(function(err, result){
       
       if (err) throw err;
-      res.render('cart.ejs',{list : req.body.name, list1 : req.body.email, amount});
+      res.render('presenterconf.ejs');
     })
 })
 .catch(err => {
@@ -303,7 +303,7 @@ app.post("/send",function(request,response){
     from: 'gdp2.fastrack@gmail.com',
     to: request.body.email1,
     subject: 'Acceptance from .EDU Conference.',
-    html: '<p>Hello,</p><p>Your application as a vendor to .EDU Conference is successfully accepted.</p><p>Thanks&Regards</p><p>.edu team</p> ',
+    html: '<p>Hello,</p><p>Your application as a presenter to .EDU Conference is successfully accepted.</p><p>Thanks&Regards</p><p>.edu team</p> ',
   };
   console.log(request.body.email1);
   transporter.sendMail(mailOptions, function(error, info){

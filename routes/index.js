@@ -52,6 +52,9 @@ router.get('/', function(request, response) {
   router.get("/edupay", function(request, response){
     response.render('edupay.ejs');
   });
+  router.get("/presenterconf", function(request, response){
+    response.render('presenterconf');
+  });
 
 router.get('/admin', ensureAuthenticated,  function(req, res){ 
 	res.render('/');
