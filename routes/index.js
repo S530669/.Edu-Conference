@@ -35,6 +35,21 @@ router.get('/', function(request, response) {
       response.render('cart.ejs'); 
   });
 
+  router.get("/travel", function(request, response) {
+    response.render('travel.ejs');
+  });
+
+  router.get("/schedule", function(request, response) {
+    response.render('schedule.ejs');
+  });
+
+  router.get("/program", function(request, response) {
+    response.render('program.ejs');
+  });
+  
+  router.get("/deadlines", function(request, response) {
+    response.render('deadlines.ejs');
+  });
   router.get("/contact", function(request, response) {
     response.render('contact.ejs');
   });
