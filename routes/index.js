@@ -53,9 +53,15 @@ router.get('/', function(request, response) {
     response.render('edupay.ejs');
   });
 
+  router.get('/forgotE',  function(req, res){ 
+    res.render('forgotE.ejs');
+  });
+  
+
 router.get('/admin', ensureAuthenticated,  function(req, res){ 
 	res.render('/');
 });
+
 
 
 function ensureAuthenticated(req, res, next){
@@ -115,14 +121,14 @@ router.get("/AdminPresenter", function(request, response) {
 
 
 
-//Attendees count
+// //Attendees count
 
-router.get("/veg", function(request, response) {
-  var query = {$or: [{"food":"Non veg"}, {"food":"Non Veg"}]}
-  var count1 = db.collection('attendees').find(query).count();
-  count1.then(function(result){
-    response.render('adminattendee.ejs', {veg: result});
-  });
-});
+// router.get("/veg", function(request, response) {
+//   var query = {$or: [{"food":"Non veg"}, {"food":"Non Veg"}]}
+//   var count1 = db.collection('attendees').find(query).count();
+//   count1.then(function(result){
+//     response.render('adminattendee.ejs', {veg: result});
+//   });
+// });
 
   module.exports = router;
