@@ -321,8 +321,8 @@ app.post("/send",function(request,response){
   });
 
   app.post("/sende",function(request,response){
-    var query = {"_id" : ObjectId(request.body.presId)};
-    db.collection('presenters').deleteOne(query,function(err, result){
+    db.collection('presenters').update({'email' : request.body.email1},{$set:{'delete':"deleted"}});
+    
    var transporter = nodemailer.createTransport({
      service: 'gmail',
      auth: {
@@ -350,7 +350,7 @@ app.post("/send",function(request,response){
      }
    });
    });
-  });
+  
 
 app.set('port',(process.env.PORT || 8082));
 
