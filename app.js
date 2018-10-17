@@ -27,6 +27,7 @@ var Attendee = require('./models/attendee.js');
 var Presenter = require('./models/presenter.js');
 var vendor = require('./models/vendor.js');
 var Contact = require('./models/contact.js');
+var User = require('./models/user.js');
 
 
 
@@ -199,6 +200,33 @@ app.post("/contact", (req, res) => {
  res.status(400).send("unable to save to database");
  });
 
+});
+
+//Forgot Password
+
+app.post("/forgotP", (req, res) => {
+  var myData1 = new User(req.body);
+  var count1 =  db.collection('users').find({'email':req.body.email}).count();
+  count1.then(function(result){
+    if(result == 0) {
+      res.send('This email is not registered');
+  } else {
+    res.render('forgotP.ejs')
+  }
+  });
+});
+
+//Reset
+
+app.post("/reset", (req, res) => {
+  var myData1 = new User(req.body);
+var newP = req.body.npassword
+var confirmP = req.body.cpassword;
+if(newP != confirmP){
+  res.send('Passwords donot match')
+} else{
+ 
+}
 });
 
 

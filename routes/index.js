@@ -35,6 +35,21 @@ router.get('/', function(request, response) {
       response.render('cart.ejs'); 
   });
 
+  router.get("/travel", function(request, response) {
+    response.render('travel.ejs');
+  });
+
+  router.get("/schedule", function(request, response) {
+    response.render('schedule.ejs');
+  });
+
+  router.get("/program", function(request, response) {
+    response.render('program.ejs');
+  });
+  
+  router.get("/deadlines", function(request, response) {
+    response.render('deadlines.ejs');
+  });
   router.get("/contact", function(request, response) {
     response.render('contact.ejs');
   });
@@ -56,9 +71,15 @@ router.get('/', function(request, response) {
     response.render('presenterconf');
   });
 
+  router.get('/forgotE',  function(req, res){ 
+    res.render('forgotE.ejs');
+  });
+  
+
 router.get('/admin', ensureAuthenticated,  function(req, res){ 
 	res.render('/');
 });
+
 
 
 function ensureAuthenticated(req, res, next){
@@ -118,14 +139,14 @@ router.get("/AdminPresenter", function(request, response) {
 
 
 
-//Attendees count
+// //Attendees count
 
-router.get("/veg", function(request, response) {
-  var query = {$or: [{"food":"Non veg"}, {"food":"Non Veg"}]}
-  var count1 = db.collection('attendees').find(query).count();
-  count1.then(function(result){
-    response.render('adminattendee.ejs', {veg: result});
-  });
-});
+// router.get("/veg", function(request, response) {
+//   var query = {$or: [{"food":"Non veg"}, {"food":"Non Veg"}]}
+//   var count1 = db.collection('attendees').find(query).count();
+//   count1.then(function(result){
+//     response.render('adminattendee.ejs', {veg: result});
+//   });
+// });
 
   module.exports = router;
