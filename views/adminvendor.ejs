@@ -23,51 +23,33 @@
           <th>Contact Number</th>
           <th>Select</th>
         </tr>
-        <% for(let i = 0; i < list.length; i++) { %>
-          <tr>
-            <td>
-              <%= i+1 %>
-            </td>
-            <td>
-              <%= list[i].cname %>
-            </td>
-            <td>
-              <%= list[i].city %>
-            </td>
-            <td>
-              <%= list[i].State %>
-            </td>
-            <td>
-              <%= list[i].Zip %>
-            </td>
-            <td>
-              <%= list[i].URL %>
-            </td>
-            <td>
-              <%= list[i].name %>
-            </td>
-            <td>
-              <%= list[i].Title %>
-            </td>
-            <td>
-              <%= list[i].email %>
-            </td>
-            <td>
-              <%= list[i].contact %>
-            </td>
-            <td><button type="button" class="btn btn-success">Confirm</button></td>
-          </tr>
-          <% } %>
-      </table>
-      <button id="btnExport" onclick="fnExcelReport();"> Create Export </button>
-      <div>
-      </div>
-    </div>
-    <script>
-      function fnExcelReport() {
-        var tab_text = "<table border='2px'><tr bgcolor='#87AFC6'>";
-        var textRange; var j = 0;
-        tab = document.getElementById('Details'); // id of table
+        
+    <% for(let i = 0; i < list.length; i++) { %>
+    <tr>
+      <td><%= i+1 %></td>
+      <td><%= list[i].cname %></td>
+      <td><%= list[i].city %></td>
+      <td><%= list[i].State %></td>
+      <td><%= list[i].Zip %></td>
+      <td><%= list[i].URL %></td>
+      <td><%= list[i].name %></td>
+      <td><%= list[i].Title %></td>
+      <td><%= list[i].email %></td>
+      <td><%= list[i].contact %></td>
+     
+    </tr>
+    <% } %>
+  </table>
+  <button id="btnExport" onclick="fnExcelReport();"> Create Export </button>
+  <div>
+    </div> 
+</div>
+<script>
+  function fnExcelReport()
+           {
+             var tab_text="<table border='2px'><tr bgcolor='#87AFC6'>";
+             var textRange; var j=0;
+             tab = document.getElementById('Details'); // id of table
 
         for (j = 0; j < tab.rows.length; j++) {
           tab_text = tab_text + tab.rows[j].innerHTML + "</tr>";

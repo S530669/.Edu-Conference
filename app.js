@@ -29,6 +29,10 @@ var Presenter = require('./models/presenter.js');
 var vendor = require('./models/vendor.js');
 var Contact = require('./models/contact.js');
 var User = require('./models/user.js');
+var Deadlines = require('./models/Deadlines.js');
+var FeeDetails = require('./models/FeeDetails.js');
+var ProgramDetails = require('./models/ProgramDetails.js');
+var addprograms = require('./models/add drop program.js');
 
 
 
@@ -362,40 +366,140 @@ app.post("/send", function (request, response) {
   });
 });
 
-app.post("/sende", function (request, response) {
-  db.collection('presenters').update({ 'email': request.body.email1 }, { $set: { 'delete': "deleted" } });
+  app.post("/sende",function(request,response){
+    db.collection('presenters').update({'email' : request.body.email1},{$set:{'delete':"deleted"}});
+    
+   var transporter = nodemailer.createTransport({
+     service: 'gmail',
+     auth: {
+       user: 'gdp2.fastrack@gmail.com',
+       pass: 'gdp21234'
+     }
+   });
+   
+   var mailOptions = {
+     from: 'gdp2.fastrack@gmail.com',
+     to: request.body.email1,
+     subject: 'Decline from .EDU Conference.',
+     html: '<p>Hello,</p><p>We are sorry to inform you that, your application as a Presenter to .EDU Conference is rejected.</p><p>Thanks&Regards</p><p>.edu team</p> ',
+   };
+   transporter.sendMail(mailOptions, function(error, info){
+     if (error) {
+       console.log(error);
+     } else {
+       console.log('Email sent: ' + info.response);
+       db.collection('presenters').find().toArray(function(err,result){
+         if (err) throw err;
+         response.render('AdminPresenter.ejs',{list : result});
+       
+     });
+     }
+   });
+   });
+  
 
-  var transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: 'gdp2.fastrack@gmail.com',
-      pass: 'gdp21234'
-    }
+
+  //  Delete Deadlines Info from Database
+ 
+  app.post("/deletedeadlines",function(request,response){
+    var query = {"_id" : ObjectId(request.body.presId)};
+    db.collection('deadlines').deleteOne(query,function(err, result){
+      response.redirect('/Deadlines')
+   });
   });
+  
+ //  Delete Programs Info from Database
 
-  var mailOptions = {
-    from: 'gdp2.fastrack@gmail.com',
-    to: request.body.email1,
-    subject: 'Decline from .EDU Conference.',
-    html: '<p>Hello,</p><p>We are sorry to inform you that, your application as a Presenter to .EDU Conference is rejected.</p><p>Thanks&Regards</p><p>.edu team</p> ',
-  };
-  transporter.sendMail(mailOptions, function (error, info) {
-    if (error) {
-      console.log(error);
-    } else {
-      console.log('Email sent: ' + info.response);
-      db.collection('presenters').find().toArray(function (err, result) {
-        if (err) throw err;
-        response.render('AdminPresenter.ejs', { list: result });
-
-      });
-    }
+ app.post("/deletepgm",function(request,response){
+   var query = {"_id" : ObjectId(request.body.presId)};
+   db.collection('programdetails').deleteOne(query,function(err, result){
+     response.redirect('/programdetails')
   });
+ });
+ 
+ //  Delete Fee Details Info from Database
+
+ app.post("/deletefee",function(request,response){
+   var query = {"_id" : ObjectId(request.body.presId)};
+   db.collection('feedetails').deleteOne(query,function(err, result){
+     response.redirect('/feedetails')
+  });
+ });
+
+ //  Add Deadlines Info to Database
+
+app.post("/new", (req, res) => {
+ 
+ var myData = new Deadlines(req.body);
+ myData.save()
+ .then(item => {
+   console.log(req.body)
+   res.redirect('/Deadlines');
+
+})
+
+.catch(err => {
+ res.status(400).send("unable to save to database");
+ });
+
+});
+  //  Add Fee Details Info to Database
+
+app.post("/fee", (req, res) => {
+ 
+ var myData = new FeeDetails(req.body);
+ myData.save()
+ .then(item => {
+   res.redirect('/feedetails')
+})
+.catch(err => {
+res.status(400).send("unable to save to database");
+});
 });
 
+//  Add Program Details Info to Database
 
-app.set('port', (process.env.PORT || 8082));
+app.post("/pgm", (req, res) => {
+ 
+ var myData = new ProgramDetails(req.body);
+ myData.save()
+ .then(item => {
+   res.redirect('/programdetails')
+})
+
+.catch(err => {
+res.status(400).send("unable to save to database");
+});
+
+});
+
+//  Add or Drop Program Info to Database
+// Add
+app.post("/add", (req, res) => {
+  
+  var myData = new addprograms(req.body);
+  myData.save()
+  .then(item => {
+    console.log(req.body)
+    res.redirect('/Add');
+ 
+ })
+ 
+ .catch(err => {
+  res.status(400).send("unable to save to database");
+  });
+ 
+ });
+//  Drop
+app.post("/addpgm",function(request,response){
+  var query = {"_id" : ObjectId(request.body.presId)};
+  db.collection('addprograms').deleteOne(query,function(err, result){
+    response.redirect('/Add')
+ });
+});
+
+app.set('port',(process.env.PORT || 8082));
 
 app.listen(app.get('port'), function () {
-  console.log('App listening on http://127.0.0.1:8082/')
+ console.log('App listening on http://127.0.0.1:8082/') 
 })

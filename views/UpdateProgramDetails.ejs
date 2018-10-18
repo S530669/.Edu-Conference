@@ -1,62 +1,60 @@
-<% include adminheader %>
+<%include adminheader%>
 
-        <div class="container">
+<div class="container">
+    <link href="/css/AdminStyling.css" type="text/css" rel="stylesheet" />
+       
 
-                <link href="/css/AdminStyling.css" type="text/css" rel="stylesheet" />
-                <h3 style="text-align:center">Update Program Details</h3>
+<div class="col-md-4"></div>
+<div class="col-md-8">
 
-                <table class="w3-table-all w3-card-4" id="update" align="center">
-                        <thead>
-                                <tr>
-                                        <th> Time </th>
-                                        <th> Activity </th>
-                                        <th> Location </th>
-                                </tr>
-                        </thead>
-                        <tr>
-                                <td contenteditable="true"> 7:30-8:30 a.m. </td>
-                                <td contenteditable="true"> Registration/Shuttle </td>
-                                <td contenteditable="true"> TBD </td>
-                        </tr>
-                        <tr>
-                                <td contenteditable="true">8:30-9:00 a.m.</td>
-                                <td contenteditable="true">Welcome/Light Breakfast</td>
-                                <td contenteditable="true"> TBD </td>
-                        </tr>
-                        <tr>
-                                <td contenteditable="true">9:00-9:55 a.m.</td>
-                                <td contenteditable="true">Breakout Session #1:</td>
-                                <td contenteditable="true"> TBD </td>
-                        </tr>
-                        <tr>
-                                <td contenteditable="true">10:00-10:55 a.m.</td>
-                                <td contenteditable="true">Breakout Session #2:</td>
-                                <td contenteditable="true"> TBD </td>
-                        </tr>
-                        <tr>
-                                <td contenteditable="true">11:00-11:55 a.m.</td>
-                                <td contenteditable="true">Breakout Session #3:</td>
-                                <td contenteditable="true"> TBD </td>
-                        </tr>
-                        <tr>
-                                <td contenteditable="true">Noon-2:00 p.m.</td>
-                                <td contenteditable="true">Innovation Exhibition/Lunch</td>
-                                <td contenteditable="true"> TBD </td>
-                        </tr>
-                        <tr>
-                                <td contenteditable="true">2:00-2:55 p.m.</td>
-                                <td contenteditable="true">Breakout Session #4:</td>
-                                <td contenteditable="true"> TBD </td>
-                        </tr>
-                        <tr>
-                                <td contenteditable="true">3:00-3:55 p.m.</td>
-                                <td contenteditable="true">Breakout Session #5:</td>
-                                <td contenteditable="true"> TBD </td>
-                        </tr>
-                        <tr>
-                                <td contenteditable="true">4:00 p.m.</td>
-                                <td contenteditable="true">Door Prizes and Closing</td>
-                                <td contenteditable="true"> TBD </td>
-                        </tr>
-        </div>
-        </table>
+<form method="POST" action="/pgm" >
+    <div class="form-group">
+            <div class="col-md-2">
+    <label for = "Time">Time:</label></div>
+            <div class="col-md-1">
+    <input type="text" name="Time"/></div></div><br><br>
+    <div class="form-group">
+            <div class="col-md-2">
+    <label for = "Activity">Activity:</label></div>
+            <div class="col-md-1">
+    <input type="text" name="Activity"/></div></div><br>
+    <div class="form-group">
+            <div class="col-md-2">
+    <label for = "Location">Location</label></div>
+    <div class="col-md-1">
+    <input type="text" name="Location"/></div></div><br>
+    <div align="center"class="form-group">
+            <div class="col-md-6">
+    <input type="submit" class="btn btn-primary"/></div><br><br>
+    </div>
+</div>
+</form>
+<h3 style="text-align:center">Update Program Details</h3>
+        <table class="w3-table-all w3-card-4" id="update" align="center">
+            <thead>
+                <tr>
+                    <th>Time</th>
+                    <th>Activity</th> 
+                    <th>Location</th>
+                    <th>Delete</th>
+                  </tr>
+            </thead>
+          
+            <% for(let i = 0 ; i < list.length; i++) { %>
+              <tr>
+                  
+                  <td ><%= list[i].Time %></td>
+                  <td ><%= list[i].Activity %></td>
+                  <td ><%= list[i].Location %></td>
+             
+                  <form action="/deletepgm" method="POST">
+                    <input type="text" name="presId" value="<%= list[i]._id %>" hidden>
+                    <td><button type="submit" class="btn btn-danger">Delete</button></td>
+                    </form>
+                </tr>
+                <% } %>
+                
+                
+    </div>
+
+    </table>
