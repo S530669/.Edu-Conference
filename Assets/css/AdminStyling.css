@@ -32,12 +32,29 @@
     border: 1px solid #ddd;
     padding: 7px;
 }
-
-
-
 #update tr:hover {background-color: #ddd;}
 
 #update th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #313030;;
+    color: white;
+}
+#add {
+    font-family: cursive;
+    border-collapse: collapse;
+    width: 30%;
+}
+
+#add td, #add th {
+    border: 1px solid #ddd;
+    padding: 7px;
+}
+
+#add tr:hover {background-color: #ddd;}
+
+#add th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;

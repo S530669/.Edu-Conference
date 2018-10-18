@@ -55,10 +55,10 @@
                           <input type="text" name="delete" value="<%= list[i].delete %>"hidden>
                           <input type="text" value="<%= list[i].email %>" name="email1" hidden>
                           <%if(list[i].delete ==0){%>
-                         <td><button type="submit" class="btn btn-success" >Delete</button></td>
+                         <td><button type="submit" class="btn btn-danger" >Delete</button></td>
                          <%}%>
                          <%if(list[i].delete !=0){%>
-                          <td><button disabled class="btn btn-success" >Deleted</button></td>
+                          <td><button disabled class="btn btn-danger" >Deleted</button></td>
                           <%}%>
                          
                         </form>

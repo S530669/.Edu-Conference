@@ -31,6 +31,7 @@ var User = require('./models/user.js');
 var Deadlines = require('./models/Deadlines.js');
 var FeeDetails = require('./models/FeeDetails.js');
 var ProgramDetails = require('./models/ProgramDetails.js');
+var addprograms = require('./models/add drop program.js');
 
 
 
@@ -456,6 +457,31 @@ app.post("/pgm", (req, res) => {
 res.status(400).send("unable to save to database");
 });
 
+});
+
+//  Add or Drop Program Info to Database
+// Add
+app.post("/add", (req, res) => {
+  
+  var myData = new addprograms(req.body);
+  myData.save()
+  .then(item => {
+    console.log(req.body)
+    res.redirect('/Add');
+ 
+ })
+ 
+ .catch(err => {
+  res.status(400).send("unable to save to database");
+  });
+ 
+ });
+//  Drop
+app.post("/addpgm",function(request,response){
+  var query = {"_id" : ObjectId(request.body.presId)};
+  db.collection('addprograms').deleteOne(query,function(err, result){
+    response.redirect('/Add')
+ });
 });
 
 app.set('port',(process.env.PORT || 8082));

@@ -15,21 +15,37 @@ router.get('/homepage', function (request, response) {
 });
 
 router.get('/attendee', function (request, response) {
-  response.render('attendee.ejs');
+  db.collection('addprograms').find().toArray(function (err, result) {
+    if (err) throw err;
+    console.log(result);
+    response.render('attendee.ejs', { list: result });
+  })
 });
+ 
 
 router.get("/presenter", function (request, response) {
-  response.render('presenter.ejs');
+  db.collection('addprograms').find().toArray(function (err, result) {
+    if (err) throw err;
+    console.log(result);
+    response.render('presenter.ejs', { list: result });
+  })
 });
-
+ 
 router.get("/Graduatestudent", function (request, response) {
-  response.render('Graduatestudent.ejs');
+  db.collection('addprograms').find().toArray(function (err, result) {
+    if (err) throw err;
+    console.log(result);
+    response.render('Graduatestudent.ejs', { list: result });
+  })
 });
-
+ 
 router.get("/faculty", function (request, response) {
-  response.render('faculty.ejs');
+  db.collection('addprograms').find().toArray(function (err, result) {
+    if (err) throw err;
+    console.log(result);
+    response.render('faculty.ejs', { list: result });
+  })
 });
-
 router.get("/vendor", function (request, response) {
   response.render('vendor.ejs');
 });
@@ -156,6 +172,13 @@ function ensureAuthenticated(req, res, next) {
       response.render('admincontact.ejs', { list: result });
     })
   })
+  router.get("/Add", function (request, response) {
+    db.collection('addprograms').find().toArray(function (err, result) {
+      if (err) throw err;
+      console.log(result);
+      response.render('add drop programs.ejs', { list: result });
+    })
+  });
 
   router.get("/AdminPresenter", function (request, response) {
     db.collection('presenters').find().toArray(function (err, result) {
