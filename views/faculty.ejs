@@ -1,130 +1,135 @@
 <% include home %>
-<head>
-	<link href="/css/home.css" type="text/css" rel="stylesheet" />
-	
+
+	<head>
+		<link href="/css/home.css" type="text/css" rel="stylesheet" />
+
 	</head>
 	<div class="container">
-			<div class="row">
-					<div class="col-md-2"></div>
-					<div class="col-md-8">
-						<h2>Faculty Registration Form</h2>
-					</div>
-					<div class="col-md-2"></div>
-                </div>
-                <div class="row">
-					<div class="col-md-2"></div>
-					<div class="col-md-8">
-						<p>Please fill the below details</p>
-					</div>
-					<div class="col-md-2"></div>
-				</div>
-				<div class="row">
-					
-				<form method="POST" action="/mail">
-				
-				<div class="container">
-											  
-						<!-- Button to Open the Modal -->
-						<div class="col">
-						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-						  Generate Coupon
-						</button></div>
-					  
-						<!-- The Modal -->
-						<div class="modal fade" id="myModal">
-						  <div class="modal-dialog">
-							<div class="modal-content">
-							
-							  <!-- Modal Header -->
-							  <div class="modal-header">
-								<h3 class="modal-title">Enter email for coupon code</h3>
-								<button type="button" class="close" data-dismiss="modal">&times;</button>
-							  </div>
-							  
-							  <!-- Modal body -->
-							  <div class="modal-body">
-								  <label for="email1">Email:</label>
-								<input type="email"class="form-control" name="email1" id="email1" required>
-							  </div>
-							  <div class="ven">
-								<button type="submit"  class="btn btn-primary">Submit</button></div>
-								<div class="modal-footer">
-									  </div>				  
-							</div>
-						  </div>
-						</div>
-						
-					  </div>
-					</form>
-				</div>
-					
-	<form action="/faculty" method="POST"  >
-			<div class="row">
-				<div class="col-md-4"></div>
-				<div class="col-md-4">
-				<div class="form-group">
-					<label for="name">Name</label>
-					<input type="text" class="form-control" id="name" name="name" required>
-				</div>
-				</div>
-				<div class="col-md-4"></div>
-			 </div>
-			 <div class="row">
-				<div class="col-md-4"></div>
-				<div class="col-md-4">
-				<div class="form-group">
-					<label for="email">Email</label>
-					<input type="email" class="form-control" id="email" name="email" required></div></div>
-				<div class="col-md-4"></div>
-			 </div>
-			 <div class="row">
-				<div class="col-md-4"></div>
-				<div class="col-md-4">
-				<div class="form-group">
-					<label for="contact">Contact Number</label>
-					<input type="text" class="form-control" id="contact" name="contact" required></div></div>
-                    <div class="col-md-4"></div>
-				</div>
-				<div class="row">
-					<div class="col-md-4"></div>
-					<div class="col-md-4">
-						<div class="form-group">
-							<label for="topic">Program</label>
-							<select multiple name="program" id="program" class="form-control">
-									<option value="3D printing">3D printing</option>
-									<option value="IT">IT</option>
-									<option value="Information Systems">Information Systems</option>
-									<option value="Early childhood education">Early childhood education</option>
-									<option value="Database and Data Mining">Database and Data Mining</option>
-									<option value="Algorithms and Bioinformatics">Algorithms and Bioinformatics</option>
-									</select>
-								</div></div>
-					<div class="col-md-4"></div>
-				</div>
-				<div class="row">
-					<div class="col-md-4"></div>
-					<div class="col-md-4">
-						<div class="form-group">
-							<label for="Food">Food(Specify Veg or Non-Veg)</label><br>
-							<input type="radio" name="food" value="Veg">Veg<br>
-							<input type="radio" name="food" value="Non-Veg">Non-Veg<br>
-			<div class="col-md-4"></div>
+		<div class="row">
+			<div class="col-md-2"></div>
+			<div class="col-md-8">
+				<h2>Faculty Registration Form</h2>
 			</div>
-			</div>
-			</div>
-			<div class="row">
-					<div class="col-md-4"></div>
-					<div class="col-md-4">
-						<div class="form-group">
-							<label for="restrict">Do you have any dietary restrictions for the provided breakfast or lunch?</label>
-							<input type="restrict" class="form-control" id="restrict" name="restrict"></div></div>
-						
-			<div class="col-md-4"></div>
+			<div class="col-md-2"></div>
 		</div>
+		<div class="row">
+			<div class="col-md-2"></div>
+			<div class="col-md-8">
+				<p>Please fill the below details</p>
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+		<div class="row">
+
+			<form method="POST" action="/mail">
+
+				<div class="container">
+
+					<!-- Button to Open the Modal -->
+					<div class="col">
+						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+							Generate Coupon
+						</button></div>
+
+					<!-- The Modal -->
+					<div class="modal fade" id="myModal">
+						<div class="modal-dialog">
+							<div class="modal-content">
+
+								<!-- Modal Header -->
+								<div class="modal-header">
+									<h3 class="modal-title">Enter email for coupon code</h3>
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+								</div>
+
+								<!-- Modal body -->
+								<div class="modal-body">
+									<label for="email1">Email:</label>
+									<input type="email" class="form-control" name="email1" id="email1" required>
+								</div>
+								<div class="ven">
+									<button type="submit" class="btn btn-primary">Submit</button></div>
+								<div class="modal-footer">
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</form>
+		</div>
+
+		<form action="/faculty" method="POST">
 			<div class="row">
 				<div class="col-md-4"></div>
 				<div class="col-md-4">
-				<button type="submit" class="btn btn-primary" id="coupon1" >Add to cart</button></div>	
+					<div class="form-group">
+						<label for="name">Name</label>
+						<input type="text" class="form-control" id="name" name="name" required>
+					</div>
+				</div>
+				<div class="col-md-4"></div>
+			</div>
+			<div class="row">
+				<div class="col-md-4"></div>
+				<div class="col-md-4">
+					<div class="form-group">
+						<label for="email">Email</label>
+						<input type="email" class="form-control" id="email" name="email" required></div>
+				</div>
+				<div class="col-md-4"></div>
+			</div>
+			<div class="row">
+				<div class="col-md-4"></div>
+				<div class="col-md-4">
+					<div class="form-group">
+						<label for="contact">Contact Number</label>
+						<input type="text" class="form-control" id="contact" name="contact" required></div>
+				</div>
+				<div class="col-md-4"></div>
+			</div>
+			<div class="row">
+				<div class="col-md-4"></div>
+				<div class="col-md-4">
+					<div class="form-group">
+						<label for="topic">Program</label>
+						<select multiple name="program" id="program" class="form-control">
+							<option value="3D printing">3D printing</option>
+							<option value="IT">IT</option>
+							<option value="Information Systems">Information Systems</option>
+							<option value="Early childhood education">Early childhood education</option>
+							<option value="Database and Data Mining">Database and Data Mining</option>
+							<option value="Algorithms and Bioinformatics">Algorithms and Bioinformatics</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-md-4"></div>
+			</div>
+			<div class="row">
+				<div class="col-md-4"></div>
+				<div class="col-md-4">
+					<div class="form-group">
+						<label for="Food">Food(Specify Veg or Non-Veg)</label><br>
+						<input type="radio" name="food" value="Veg">Veg<br>
+						<input type="radio" name="food" value="Non-Veg">Non-Veg<br>
+						<div class="col-md-4"></div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4"></div>
+				<div class="col-md-4">
+					<div class="form-group">
+						<label for="restrict">Do you have any dietary restrictions for the provided breakfast or lunch?</label>
+						<input type="restrict" class="form-control" id="restrict" name="restrict"></div>
+				</div>
+
+				<div class="col-md-4"></div>
+			</div>
+			<div class="row">
+				<div class="col-md-4"></div>
+				<div class="col-md-4">
+					<button type="submit" class="btn btn-primary" id="coupon1">Add to cart</button></div>
 				<div class="col-md-4"></div>
 		</form>
-	</div>
+		</div>

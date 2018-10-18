@@ -1,53 +1,64 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-        <link href="/Assets/css/styles.css" rel="stylesheet" type="text/css"/>
-        <link href="/Assets/css/cart.css" rel="stylesheet" type="text/css"/>	
-   <title> .EDU Conference </title>
+  <link href="/Assets/css/styles.css" rel="stylesheet" type="text/css" />
+  <link href="/Assets/css/cart.css" rel="stylesheet" type="text/css" />
+  <title> .EDU Conference </title>
 </head>
 
 <body>
 
-<h2>Items in your cart</h2>
+  <h2>Items in your cart</h2>
 
-<p id="demo"></p>
+  <p id="demo"></p>
 
-<div class="row">
-  <div class="column">
-    <h2>Item Name</h2>
-   <p> Name : <%= list %></p>
-   <p> Email : <%= list1 %></p>
-  </div>
-  <div class="column1">
-    <h2>Quantity</h2>
-    <p>1</p>
-    
-  </div>
-  <div class="column2">
-    <h2>Remove</h2>
-    <div class="btn-row">
+  <div class="row">
+    <div class="column">
+      <h2>Item Name</h2>
+      <p> Name :
+        <%= list %>
+      </p>
+      <p> Email :
+        <%= list1 %>
+      </p>
+    </div>
+    <div class="column1">
+      <h2>Quantity</h2>
+      <p>1</p>
+
+    </div>
+    <div class="column2">
+      <h2>Remove</h2>
+      <div class="btn-row">
         <!-- <form action="/deleteQuantity" method="GET"> -->
-            <a class="btn btn-default btn-block" href="deleteQuantity" role="button">Delete</a>
-          <!-- </form> -->
-    
+        <a class="btn btn-default btn-block" href="deleteQuantity" role="button">Delete</a>
+        <!-- </form> -->
+
+      </div>
+
     </div>
-    
-  </div>
-  <div class="column3">
-  <h2>Amount</h2>
-  <p> <%= amount %></p>
-   
-   
-  </div>
-  
-    
-    <div class="btn-row"><div class="col-md-4"></div><div class="col-md-4"></div><div class="col-md-4"> 
-         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type=button onClick="location.href='homepage'" value='Continue Shopping'>        
-         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type=button onClick="location.href='Paymentthroughcheck'" value='Pay Through Check'> 
-         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type=button onClick="location.href='PayThroughCards'" value='Pay Through Card'>
-                     
+    <div class="column3">
+      <h2>Amount</h2>
+      <p>
+        <%= amount %>
+      </p>
+
+
     </div>
+
+
+    <div class="btn-row">
+      <div class="col-md-4"></div>
+      <div class="col-md-4"></div>
+      <div class="col-md-4">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type=button onClick="location.href='homepage'" value='Continue Shopping'>        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type=button onClick="location.href='Paymentthroughcheck'" value='Pay Through Check'> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type=button onClick="location.href='PayThroughCards'" value='Pay Through Card'>
+
+      </div>
     </div>
-    
- </body>
+
+</body>
+
 </html>
