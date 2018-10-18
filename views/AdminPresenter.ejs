@@ -52,9 +52,15 @@
                           <%}%>
                         </form>
                         <form action="/sende" method="POST">
-                          <input type="text" name="presId" value="<%= list[i]._id %>" hidden>
+                          <input type="text" name="delete" value="<%= list[i].delete %>"hidden>
                           <input type="text" value="<%= list[i].email %>" name="email1" hidden>
-                         <td><button type="submit" class="btn btn-danger">Delete</button></td>
+                          <%if(list[i].delete ==0){%>
+                         <td><button type="submit" class="btn btn-success" >Delete</button></td>
+                         <%}%>
+                         <%if(list[i].delete !=0){%>
+                          <td><button disabled class="btn btn-success" >Deleted</button></td>
+                          <%}%>
+                         
                         </form>
                        </tr>
                        <% } %>
