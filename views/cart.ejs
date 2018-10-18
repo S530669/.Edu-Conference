@@ -42,12 +42,16 @@
   
     
     <div class="btn-row"><div class="col-md-4"></div><div class="col-md-4"></div><div class="col-md-4"> 
-         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type=button onClick="location.href='homepage'" value='Continue Shopping'>        
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type=button onClick="back()" value='Continue Shopping'>        
          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type=button onClick="location.href='Paymentthroughcheck'" value='Pay Through Check'> 
          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type=button onClick="location.href='PayThroughCards'" value='Pay Through Card'>
                      
     </div>
     </div>
-    
+    <script>
+      function back(){
+        location.replace('http://127.0.0.1:8082/');
+      }
+      </script>
  </body>
 </html>

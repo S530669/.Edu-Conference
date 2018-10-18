@@ -28,6 +28,9 @@ var Presenter = require('./models/presenter.js');
 var vendor = require('./models/vendor.js');
 var Contact = require('./models/contact.js');
 var User = require('./models/user.js');
+var Deadlines = require('./models/Deadlines.js');
+var FeeDetails = require('./models/FeeDetails.js');
+var ProgramDetails = require('./models/ProgramDetails.js');
 
 
 
@@ -380,11 +383,87 @@ app.post("/send",function(request,response){
    });
   });
 
+
+  //  Delete Deadlines Info from Database
+ 
+  app.post("/deletedeadlines",function(request,response){
+    var query = {"_id" : ObjectId(request.body.presId)};
+    db.collection('deadlines').deleteOne(query,function(err, result){
+      response.redirect('/Deadlines')
+   });
+  });
+  
+ //  Delete Programs Info from Database
+
+ app.post("/deletepgm",function(request,response){
+   var query = {"_id" : ObjectId(request.body.presId)};
+   db.collection('programdetails').deleteOne(query,function(err, result){
+     response.redirect('/programdetails')
+  });
+ });
+ 
+ //  Delete Fee Details Info from Database
+
+ app.post("/deletefee",function(request,response){
+   var query = {"_id" : ObjectId(request.body.presId)};
+   db.collection('feedetails').deleteOne(query,function(err, result){
+     response.redirect('/feedetails')
+  });
+ });
+
+ //  Add Deadlines Info to Database
+
+app.post("/new", (req, res) => {
+ 
+ var myData = new Deadlines(req.body);
+ myData.save()
+ .then(item => {
+   console.log(req.body)
+   res.redirect('/Deadlines');
+
+})
+
+.catch(err => {
+ res.status(400).send("unable to save to database");
+ });
+
+});
+  //  Add Fee Details Info to Database
+
+app.post("/fee", (req, res) => {
+ 
+ var myData = new FeeDetails(req.body);
+ myData.save()
+ .then(item => {
+   res.redirect('/feedetails')
+})
+.catch(err => {
+res.status(400).send("unable to save to database");
+});
+});
+
+//  Add Program Details Info to Database
+
+app.post("/pgm", (req, res) => {
+ 
+ var myData = new ProgramDetails(req.body);
+ myData.save()
+ .then(item => {
+   res.redirect('/programdetails')
+})
+
+.catch(err => {
+res.status(400).send("unable to save to database");
+});
+
+});
+
 app.set('port',(process.env.PORT || 8082));
 
 app.listen(app.get('port'), function () {
-  console.log('App listening on http://127.0.0.1:8082/') 
+ console.log('App listening on http://127.0.0.1:8082/') 
 })
+
 
 
 
