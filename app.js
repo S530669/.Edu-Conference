@@ -429,7 +429,7 @@ app.post("/mail", function (request, response) {
       console.log(error);
     } else {
       console.log('Email sent: ' + info.response);
-      response.render('faculty.ejs');
+      response.redirect('/faculty');
     }
   });
 });
