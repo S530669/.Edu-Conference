@@ -27,8 +27,8 @@
                                                 <input type="text" name="Location" /></div>
                                 </div><br>
                                 <div align="center" class="form-group">
-                                        <div class="col-md-6">
-                                                <input type="submit" class="btn btn-primary" /></div><br><br>
+                                        <div class="col-md-7">
+                                                <input type="submit" class="btn btn-primary" value="ADD" /></div><br><br>
                                 </div>
                 </div>
                 </form>
@@ -62,15 +62,13 @@
                                 </tr>
                                 <% } %>
         </div>
-        </table>
-        <form action="/pgmmail" method="POST">
-                <!-- <input type="text" value=' -->
+        </table><br>
+        <form action="/pgmmail" method="POST" align="center">  
+                
                 <button type="submit" onclick="myFunction()" class="btn btn-success">Submit</button>
-
         </form>
         <script>
                 function myFunction() {
-
-                        alert("Email has been sent");
+                alert("Email has been sent");
                 }
         </script>

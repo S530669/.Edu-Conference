@@ -33,6 +33,7 @@ var Deadlines = require('./models/Deadlines.js');
 var FeeDetails = require('./models/FeeDetails.js');
 var ProgramDetails = require('./models/ProgramDetails.js');
 var addprograms = require('./models/add drop program.js');
+var checkpayments = require('./models/check.js');
 
 
 
@@ -249,6 +250,24 @@ app.post("/vendor", (req, res) => {
       res.send('Email is already registered')
   });
 });
+
+ //  Pay through Check Info to Database
+
+ app.post("/views", (req, res) => {
+  
+  var myData = new checkpayments(req.body);
+  myData.save()
+  .then(item => {
+    console.log(req.body)
+    res.redirect('/Paymentthroughcheck');
+ 
+ })
+ 
+ .catch(err => {
+  res.status(400).send("unable to save to database");
+  });
+ 
+ });
 
 //contact
 app.post("/contact", (req, res) => {
