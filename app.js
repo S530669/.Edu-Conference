@@ -383,7 +383,7 @@ app.post('/reset', function(req, res) {
       });
     }
   ], function(err) {
-    res.redirect('/users/login');
+    res.redirect('/login');
   });
 });
 
