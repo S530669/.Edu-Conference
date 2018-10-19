@@ -105,9 +105,12 @@ router.get('/forgotE', function (req, res) {
   res.render('forgotE.ejs');
 });
 
+router.get("/travel", function (request, response) {
+  response.render('travel.ejs');
+});
 
 router.get('/admin', ensureAuthenticated, function (req, res) {
-  res.render('/');
+  res.redirect('/users/login');
 });
 
 
@@ -116,7 +119,7 @@ function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
   } else {
-    //req.flash('error_msg','You are not logged in');
+    req.flash('error_msg', 'You are not logged in');
     res.redirect('/users/login');
   }
 

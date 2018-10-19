@@ -1,105 +1,121 @@
 <% include adminheader %>
-<head>
-  <link href="/css/AdminStyling.css" type="text/css" rel="stylesheet" />
-	</head>
-	
-<div class="container">
-			<div class="row">
-					<div class="col-md-2"></div>
-					<body>
-              <div class="col-md-8">
-                        <h2 align="center"> Presenters Detail List</h2>
-                        <br>
-                      </div>
-                        <br>
-                        <br>
-                           <div class="w3-container">
-                           <table class="w3-table-all w3-card-4" id="Details"  align="center">
-                             <tr>
-                               <th>Number</th>
-                               <th>Name</th>
-                               <th>Email</th>
-                               <th>Contact</th>
-                               <th>Level</th>
-                               <th>Topic</th>
-                               <th>Attach</th>
-                               <th>Food</th>
-                               <th>Restrict</th>
-                               <th>Select</th>
-                               <th>Reject</th>
 
-                             </tr>
-                       <% for(let i = 0; i < list.length; i++) { %>
-                       <tr>
-                         <td><%= i+1 %></td>
-                         <td><%= list[i].name %></td>     
-                         <td><%= list[i].email %></td>
-                         <td><%= list[i].contact %></td>
-                         <td><%= list[i].level %></td>
-                         <td><%= list[i].topic %></td>
-                         <td><%= list[i].attach %></td>
-                         <td><%= list[i].food %></td>
-                         <td><%= list[i].restrict %></td>
-                         
-                         <form action="/send" method="POST">
-                          <input type="text" name="confirm" value="<%= list[i].confirm %>"hidden>
-                          <input type="text" value="<%= list[i].email %>" name="email1" hidden>
-                          <%if(list[i].confirm == 0){%>
-                         <td><button type="submit" class="btn btn-success" >Confirm</button></td>
-                         <%}%>
-                         <%if(list[i].confirm !=0){%>
-                          <td><button disabled class="btn btn-success" >Confirmed</button></td>
-                          <%}%>
-                        </form>
-                        <form action="/sende" method="POST">
-                          <input type="text" name="delete" value="<%= list[i].delete %>"hidden>
-                          <input type="text" value="<%= list[i].email %>" name="email1" hidden>
-                          <%if(list[i].delete ==0){%>
-                         <td><button type="submit" class="btn btn-danger" >Delete</button></td>
-                         <%}%>
-                         <%if(list[i].delete !=0){%>
-                          <td><button disabled class="btn btn-danger" >Deleted</button></td>
-                          <%}%>
-                         
-                        </form>
-                       </tr>
-                       <% } %>
-                     </table>
-                     <button id="btnExport" onclick="fnExcelReport();"> Create Export </button>
-                   </div>
-                   <script>
-                    function fnExcelReport()
-                             {
-                               var tab_text="<table border='2px'><tr bgcolor='#87AFC6'>";
-                               var textRange; var j=0;
-                               tab = document.getElementById('Details'); // id of table
-         
-                               for(j = 0 ; j < tab.rows.length ; j++) 
-                               {     
-                                   tab_text=tab_text+tab.rows[j].innerHTML+"</tr>";
-                 
-                               }
-         
-                               tab_text=tab_text+"</table>";
-                               tab_text= tab_text.replace(/<A[^>]*>|<\/A>/g, "");
-                               tab_text= tab_text.replace(/<img[^>]*>/gi,""); 
-                               tab_text= tab_text.replace(/<input[^>]*>|<\/input>/gi, ""); 
-         
-                               var ua = window.navigator.userAgent;
-                               var msie = ua.indexOf("MSIE "); 
-         
-                               if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))    
-                               {
-                                 txtArea1.document.open("txt/html","replace");
-                                 txtArea1.document.write(tab_text);
-                                 txtArea1.document.close();
-                                 txtArea1.focus(); 
-                                 sa=txtArea1.document.execCommand("SaveAs",true,"Say Thanks to Conference.xls");
-                               }  
-                                 else                
-                               sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text));  
-         
-                               return (sa);
-                               }
-                               </script>
-                   
+  <head>
+    <link href="/css/AdminStyling.css" type="text/css" rel="stylesheet" />
+  </head>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-2"></div>
+
+      <body>
+        <div class="col-md-8">
+          <h2 align="center"> Presenters Detail List</h2>
+          <br>
+        </div>
+        <br>
+        <br>
+        <div class="w3-container">
+          <table class="w3-table-all w3-card-4" id="Details" align="center">
+            <tr>
+              <th>Number</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Contact</th>
+              <th>Level</th>
+              <th>Topic</th>
+              <th>Attach</th>
+              <th>Food</th>
+              <th>Restrict</th>
+              <th>Select</th>
+              <th>Reject</th>
+
+            </tr>
+            <% for(let i = 0; i < list.length; i++) { %>
+              <tr>
+                <td>
+                  <%= i+1 %>
+                </td>
+                <td>
+                  <%= list[i].name %>
+                </td>
+                <td>
+                  <%= list[i].email %>
+                </td>
+                <td>
+                  <%= list[i].contact %>
+                </td>
+                <td>
+                  <%= list[i].level %>
+                </td>
+                <td>
+                  <%= list[i].topic %>
+                </td>
+                <td>
+                  <%= list[i].attach %>
+                </td>
+                <td>
+                  <%= list[i].food %>
+                </td>
+                <td>
+                  <%= list[i].restrict %>
+                </td>
+
+                <form action="/send" method="POST">
+                  <input type="text" name="confirm" value="<%= list[i].confirm %>" hidden>
+                  <input type="text" value="<%= list[i].email %>" name="email1" hidden>
+                  <%if(list[i].confirm ==0){%>
+                    <td><button type="submit" class="btn btn-success">Confirm</button></td>
+                    <%}%>
+                      <%if(list[i].confirm !=0){%>
+                        <td><button disabled class="btn btn-success">Confirmed</button></td>
+                        <%}%>
+                </form>
+                <form action="/sende" method="POST">
+                  <input type="text" name="delete" value="<%= list[i].delete %>" hidden>
+                  <input type="text" value="<%= list[i].email %>" name="email1" hidden>
+                  <%if(list[i].delete ==0){%>
+                    <td><button type="submit" class="btn btn-danger">Delete</button></td>
+                    <%}%>
+                      <%if(list[i].delete !=0){%>
+                        <td><button disabled class="btn btn-danger">Deleted</button></td>
+                        <%}%>
+
+                </form>
+              </tr>
+              <% } %>
+          </table>
+          <button id="btnExport" onclick="fnExcelReport();"> Create Export </button>
+        </div>
+        <script>
+          function fnExcelReport() {
+            var tab_text = "<table border='2px'><tr bgcolor='#87AFC6'>";
+            var textRange; var j = 0;
+            tab = document.getElementById('Details'); // id of table
+
+            for (j = 0; j < tab.rows.length; j++) {
+              tab_text = tab_text + tab.rows[j].innerHTML + "</tr>";
+
+            }
+
+            tab_text = tab_text + "</table>";
+            tab_text = tab_text.replace(/<A[^>]*>|<\/A>/g, "");
+            tab_text = tab_text.replace(/<img[^>]*>/gi, "");
+            tab_text = tab_text.replace(/<input[^>]*>|<\/input>/gi, "");
+
+            var ua = window.navigator.userAgent;
+            var msie = ua.indexOf("MSIE ");
+
+            if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) {
+              txtArea1.document.open("txt/html", "replace");
+              txtArea1.document.write(tab_text);
+              txtArea1.document.close();
+              txtArea1.focus();
+              sa = txtArea1.document.execCommand("SaveAs", true, "Say Thanks to Conference.xls");
+            }
+            else
+              sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text));
+
+            return (sa);
+          }
+        </script>

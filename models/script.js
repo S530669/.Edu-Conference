@@ -1,4 +1,4 @@
-$(function() {
+$(function () {
 
     var owner = $('#owner');
     var cardNumber = $('#cardNumber');
@@ -16,7 +16,7 @@ $(function() {
     CVV.payform('formatCardCVC');
 
 
-    cardNumber.keyup(function() {
+    cardNumber.keyup(function () {
 
         amex.removeClass('transparent');
         visa.removeClass('transparent');
@@ -41,14 +41,14 @@ $(function() {
         }
     });
 
-    confirmButton.click(function(e) {
+    confirmButton.click(function (e) {
 
         e.preventDefault();
 
         var isCardValid = $.payform.validateCardNumber(cardNumber.val());
         var isCvvValid = $.payform.validateCardCVC(CVV.val());
 
-        if(owner.val().length < 5){
+        if (owner.val().length < 5) {
             alert("Wrong owner name");
         } else if (!isCardValid) {
             alert("Wrong card number");

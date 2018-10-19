@@ -1,9 +1,10 @@
 <% include home %>
-<head>
-	<link href="/css/home.css" type="text/css" rel="stylesheet" />
+
+	<head>
+		<link href="/css/home.css" type="text/css" rel="stylesheet" />
 	</head>
-<div class="container">
-	<div class="row">
+	<div class="container">
+		<div class="row">
 			<div class="col-md-2"></div>
 			<div class="col-md-8">
 				<h2>Presenter Registration Form</h2>
@@ -17,6 +18,95 @@
 			</div>
 			<div class="col-md-2"></div>
 		</div>
+		<form id="uploadForm" enctype="multipart/form-data" action="upload" method="post">
+			<input type="file" name="userPhoto" />
+			<input type="submit" value="Upload Image" name="submit">
+		</form>
+		<form method="POST" action="/presenter">
+			<div class="row">
+				<div class="col-md-4"></div>
+				<div class="col-md-4">
+					<div class="form-group">
+						<label for="name">Name</label>
+						<input type="text" class="form-control" id="name" name="name" required>
+					</div>
+				</div>
+				<div class="col-md-4"></div>
+			</div>
+			<div class="row">
+				<div class="col-md-4"></div>
+				<div class="col-md-4">
+					<div class="form-group">
+						<label for="email">Email</label>
+						<input type="email" class="form-control" id="email" name="email" required></div>
+				</div>
+				<div class="col-md-4"></div>
+			</div>
+			<div class="row">
+				<div class="col-md-4"></div>
+				<div class="col-md-4">
+					<div class="form-group">
+						<label for="contact">Contact Number</label>
+						<input type="text" class="form-control" id="contact" name="contact" required></div>
+				</div>
+				<div class="col-md-4"></div>
+			</div>
+			<div class="row">
+				<div class="col-md-4"></div>
+				<div class="col-md-4">
+					<div class="form-group">
+						<label for="level">Level of Education</label>
+						<input type="" class="form-control" id="level" name="level" required></div>
+				</div>
+				<div class="col-md-4"></div>
+			</div>
+			<div class="row">
+				<div class="col-md-4"></div>
+				<div class="col-md-4">
+					<div class="form-group">
+						<label for="topic">Topics to present</label>
+						<select multiple name="topic" id="topic" class="form-control">
+							<option value="3D printing">3D printing</option>
+							<option value="IT">IT</option>
+							<option value="Information Systems">Information Systems</option>
+							<option value="Early childhood education">Early childhood education</option>
+							<option value="Database and Data Mining">Database and Data Mining</option>
+							<option value="Algorithms and Bioinformatics">Algorithms and Bioinformatics</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-md-4"></div>
+			</div>
+			<div class="row">
+				<div class="col-md-4"></div>
+				<div class="col-md-4">
+					<div class="form-group">
+						<label for="attach">If document is not ready, Please email to @nwmissouri once registered.</label>
+						<form action="index.php" method="post" enctype="multipart/form-data">
+							<input type="file" name="attach"></div>
+				</div>
+				<div class="col-md-4"></div>
+			</div>
+			<div class="row">
+				<div class="col-md-4"></div>
+				<div class="col-md-4">
+					<div class="form-group">
+						<label for="Food">Food(Specify Veg or Non-Veg)</label><br>
+						<input type="radio" name="food" value="Veg">Veg<br>
+						<input type="radio" name="food" value="Non-Veg">Non-Veg<br>
+						<div class="col-md-4"></div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4"></div>
+				<div class="col-md-4">
+					<div class="form-group">
+						<label for="restrict">Do you have any dietary restrictions for the provided breakfast or lunch?</label>
+						<input type="restrict" class="form-control" id="restrict" name="restrict"></div>
+				</div>
+				<div class="col-md-4"></div>
+			</div>
 <form method="POST" action="/presenter">
 	<div class="row">
 		<div class="col-md-4"></div>
@@ -93,13 +183,12 @@
 					<input type="restrict" class="form-control" id="restrict" name="restrict"></div></div>
 	<div class="col-md-4"></div>
 	</div>
-</div>
 	<div class="row">
 		<div class="col-md-4"></div>
 		<div class="col-md-4">
-		<button type="submit" class="btn btn-primary">Submit</button></div>
+			<button type="submit" class="btn btn-primary">Submit</button></div>
 		<div class="col-md-4"></div>
 		<input type="text" name="confirm" hidden>
 		<input type="text" name="delete" hidden>
-</form>
-</div>  
+		</form>
+	</div>
