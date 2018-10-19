@@ -261,7 +261,7 @@ app.post("/vendor", (req, res) => {
   myData.save()
   .then(item => {
     console.log(req.body)
-    res.redirect('/Paymentthroughcheck');
+    res.redirect('/');
  
  })
  
