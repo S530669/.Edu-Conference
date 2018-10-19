@@ -340,7 +340,7 @@ app.post('/forgot', function(req, res, next) {
     if (err) return next(err);
     res.redirect('/forgotE');
   });
-});
+}); 
 
 //Reset
 app.get('/reset/:token', function(req, res) {
@@ -362,8 +362,8 @@ app.post('/reset/token', function(req, res) {
       User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
         if (!user) {
           console.log(req.params.token)
-          req.flash('error_msg', 'Password reset token is invalid or has expired.');
-          return res.redirect('back');
+          req.flash('success_msg', 'Password is changed.');
+          return res.redirect('/users/login');
         }
 
         user.password = req.body.password;
