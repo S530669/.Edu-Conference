@@ -13,6 +13,8 @@ var exphbs = require('express-handlebars');
 var expressValidator = require('express-validator');
 var flash = require('connect-flash');
 var multer = require('multer');
+var async = require('async');
+var crypto = require('crypto');
 var session = require('express-session');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
@@ -285,31 +287,112 @@ app.post("/contact", (req, res) => {
 
 });
 
-//Forgot Password
 
-app.post("/forgotP", (req, res) => {
-  var myData1 = new User(req.body);
-  var count1 = db.collection('users').find({ 'email': req.body.email }).count();
-  count1.then(function (result) {
-    if (result == 0) {
-      res.send('This email is not registered');
-    } else {
-      res.render('forgotP.ejs')
+
+//Forgot
+
+app.post('/forgot', function(req, res, next) {
+  async.waterfall([
+    function(done) {
+      crypto.randomBytes(20, function(err, buf) {
+        var token = buf.toString('hex');
+        done(err, token);
+      });
+    },
+    function(token, done) {
+      User.findOne({ email: req.body.email }, function(err, user) {
+        if (!user) {
+          req.flash('error_msg', 'No account with that email address exists.');
+          return res.redirect('back');
+        }
+
+        user.resetPasswordToken = token;
+        user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
+
+        user.save(function(err) {
+          done(err, token, user);
+        });
+      });
+    },
+    function(token, user, done) {
+      var smtpTransport = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: 'gdp2.fastrack@gmail.com',
+          pass: 'gdp21234'
+        }
+      });
+      var mailOptions = {
+        to: req.body.email,
+        from: 'passwordreset@demo.com',
+        subject: 'Node.js Password Reset',
+        text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
+          'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
+          'http://' + req.headers.host + '/reset/' + token + '\n\n' +
+          'If you did not request this, please ignore this email and your password will remain unchanged.\n'
+      };
+      smtpTransport.sendMail(mailOptions, function(err) {
+        req.flash('success_msg', 'An e-mail has been sent to ' + req.body.email + ' with further instructions.');
+        done(err, 'done');
+      });
     }
+  ], function(err) {
+    if (err) return next(err);
+    res.redirect('/forgotE');
   });
 });
 
 //Reset
+app.get('/reset/:token', function(req, res) {
+  User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
+    if (!user) {
+      req.flash('error_msg', 'Password reset token is invalid or has expired.');
+      return res.redirect('/forgotE');
+    }
+    res.render('forgotP', {
+      user: req.user
+    });
+  });
+});
 
-app.post("/reset", (req, res) => {
-  var myData1 = new User(req.body);
-  var newP = req.body.npassword
-  var confirmP = req.body.cpassword;
-  if (newP != confirmP) {
-    res.send('Passwords donot match')
-  } else {
+//Reset
+app.post('/reset/token', function(req, res) {
+  async.waterfall([
+    function(done) {
+      User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
+        if (!user) {
+          console.log(req.params.token)
+          req.flash('error_msg', 'Password reset token is invalid or has expired.');
+          return res.redirect('back');
+        }
 
-  }
+        user.password = req.body.password;
+        user.resetPasswordToken = undefined;
+        user.resetPasswordExpires = undefined;
+
+        user.save(function(err) {
+          req.logIn(user, function(err) {
+            done(err, user);
+          });
+        });
+      });
+    },
+    function(user, done) {
+      var smtpTransport = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: 'gdp2.fastrack@gmail.com',
+          pass: 'gdp21234'
+        }
+      });
+      smtpTransport.sendMail(mailOptions, function(err) {
+        req.flash('success_msg', 'Success! Your password has been changed.');
+        done(err);
+      });
+    }
+  ], function(err) {
+    res.redirect('/users/login');
+  });
 });
 
 
