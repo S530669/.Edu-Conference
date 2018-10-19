@@ -102,7 +102,7 @@ router.get("/presenterconf", function (request, response) {
 });
 
 router.get('/forgotE', function (req, res) {
-  res.render('forgotE.ejs');
+  res.render('forgotE');
 });
 
 router.get("/travel", function (request, response) {

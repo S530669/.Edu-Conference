@@ -268,19 +268,7 @@ app.post("/contact", (req, res) => {
 
 });
 
-//Forgot Password
 
-app.post("/forgotP", (req, res) => {
-  var myData1 = new User(req.body);
-  var count1 = db.collection('users').find({ 'email': req.body.email }).count();
-  count1.then(function (result) {
-    if (result == 0) {
-      res.send('This email is not registered');
-    } else {
-      res.render('forgotP.ejs')
-    }
-  });
-});
 
 //Forgot
 
@@ -295,8 +283,8 @@ app.post('/forgot', function(req, res, next) {
     function(token, done) {
       User.findOne({ email: req.body.email }, function(err, user) {
         if (!user) {
-          req.flash('error', 'No account with that email address exists.');
-          return res.redirect('/forgotE');
+          req.flash('error_msg', 'No account with that email address exists.');
+          return res.redirect('back');
         }
 
         user.resetPasswordToken = token;
@@ -325,7 +313,7 @@ app.post('/forgot', function(req, res, next) {
           'If you did not request this, please ignore this email and your password will remain unchanged.\n'
       };
       smtpTransport.sendMail(mailOptions, function(err) {
-        req.flash('info', 'An e-mail has been sent to ' + user.email + ' with further instructions.');
+        req.flash('success_msg', 'An e-mail has been sent to ' + req.body.email + ' with further instructions.');
         done(err, 'done');
       });
     }
@@ -339,22 +327,23 @@ app.post('/forgot', function(req, res, next) {
 app.get('/reset/:token', function(req, res) {
   User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
     if (!user) {
-      req.flash('error', 'Password reset token is invalid or has expired.');
+      req.flash('error_msg', 'Password reset token is invalid or has expired.');
       return res.redirect('/forgotE');
     }
-    res.render('forgotP.ejs', {
+    res.render('forgotP', {
       user: req.user
     });
   });
 });
 
 //Reset
-app.post('/reset', function(req, res) {
+app.post('/reset/token', function(req, res) {
   async.waterfall([
     function(done) {
       User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
         if (!user) {
-          req.flash('error', 'Password reset token is invalid or has expired.');
+          console.log(req.params.token)
+          req.flash('error_msg', 'Password reset token is invalid or has expired.');
           return res.redirect('back');
         }
 
@@ -378,12 +367,12 @@ app.post('/reset', function(req, res) {
         }
       });
       smtpTransport.sendMail(mailOptions, function(err) {
-        req.flash('success', 'Success! Your password has been changed.');
+        req.flash('success_msg', 'Success! Your password has been changed.');
         done(err);
       });
     }
   ], function(err) {
-    res.redirect('/login');
+    res.redirect('/users/login');
   });
 });
 
