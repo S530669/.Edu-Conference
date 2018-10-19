@@ -390,7 +390,7 @@ app.post("/send",function(request,response){
   app.post("/deletedeadlines",function(request,response){
     var query = {"_id" : ObjectId(request.body.presId)};
     db.collection('deadlines').deleteOne(query,function(err, result){
-      response.redirect('/Deadlines')
+      response.redirect('/Deadline')
    });
   });
   
@@ -420,7 +420,7 @@ app.post("/new", (req, res) => {
  myData.save()
  .then(item => {
    console.log(req.body)
-   res.redirect('/Deadlines');
+   res.redirect('/Deadline');
 
 })
 
@@ -484,8 +484,52 @@ app.post("/addpgm",function(request,response){
  });
 });
 
-app.set('port',(process.env.PORT || 8082));
+//  Program Details (Room and all) mail option
+app.post("/pgmmail",function(request,response){
+  db.collection('programdetails').find().toArray(function(err,result){    
+    if (err) throw err;
+    db.collection('attendees').find().toArray(function(err,result1){  
+      // console.log( result1)  
+      if (err) throw err;
+ var transporter = nodemailer.createTransport({
+   service: 'gmail',
+   auth: {
+     user: 'gdp2.fastrack@gmail.com',
+     pass: 'gdp21234'
+   }
+ });
+ let z=[];
+ for (let i=0; i< result.length; i++){
+  z.push("Time:"+result[i].Time,"Activity:"+result[i].Activity,"Location:"+result[i].Location+"<br><br>")
+     }
+     let mail=[];
+     for (let i=0; i< result1.length; i++){
+      console.log(result1[i].email)     
+     mail.push(result1[i].email)
+    }
+     console.log(mail)
+     
+ var mailOptions = {
 
+   from: 'gdp2.fastrack@gmail.com',
+   to: mail,
+   subject: 'Details Regarding the Conference',   
+   html: '<p>Hello,</p>'+z+'<p>Here is the detailed schedule regarding conference </p> ',
+ 
+  };
+ transporter.sendMail(mailOptions, function(error, info){
+   if (error) {
+     console.log(error);
+   } else {
+     console.log('Email sent: ' + info.response);     
+     response.render('UpdateProgramDetails.ejs',{list : result});
+    }   
+   });
+  })
+ });
+ }); 
+
+app.set('port',(process.env.PORT || 8082));
 app.listen(app.get('port'), function () {
  console.log('App listening on http://127.0.0.1:8082/') 
 })

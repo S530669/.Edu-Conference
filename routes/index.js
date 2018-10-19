@@ -136,7 +136,7 @@ function ensureAuthenticated(req, res, next) {
   router.get("/ProgramDetails", function (request, response) {
     db.collection('programdetails').find().toArray(function (err, result) {
       if (err) throw err;
-      console.log(result);
+      // console.log(result);
       response.render('UpdateProgramDetails.ejs', { list: result });
     })
   });
@@ -153,7 +153,7 @@ function ensureAuthenticated(req, res, next) {
   router.get('/adminattendee', function (request, response) {
     db.collection('attendees').find().toArray(function (err, result) {
       if (err) throw err;
-      console.log(result);
+      // console.log(result);
       response.render('adminattendee.ejs', { list: result });
     })
   });
