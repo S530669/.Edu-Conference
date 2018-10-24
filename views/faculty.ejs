@@ -64,8 +64,8 @@
 				<div class="col-md-4"></div>
 				<div class="col-md-4">
 					<div class="form-group">
-						<label for="name">Name</label>
-						<input type="text" class="form-control" id="name" name="name" required>
+						<label for="name">First Name</label>
+						<input type="text" class="form-control" id="fname" name="fname" required>
 					</div>
 				</div>
 				<div class="col-md-4"></div>
@@ -74,7 +74,17 @@
 				<div class="col-md-4"></div>
 				<div class="col-md-4">
 					<div class="form-group">
-						<label for="email">Email</label>
+						<label for="name">First Name</label>
+						<input type="text" class="form-control" id="lname" name="lname" required>
+					</div>
+				</div>
+				<div class="col-md-4"></div>
+			</div>
+			<div class="row">
+				<div class="col-md-4"></div>
+				<div class="col-md-4">
+					<div class="form-group">
+						<label for="email">Email Address</label>
 						<input type="email" class="form-control" id="email" name="email" required></div>
 				</div>
 				<div class="col-md-4"></div>
@@ -87,21 +97,10 @@
 					<input type="text" class="form-control" id="contact" name="contact" required></div></div>
                     <div class="col-md-4"></div>
 				</div>
-				<div class="row">
-					<div class="col-md-4"></div>
-					
-						<div class="form-group">
-							
-								
-					<div class="col-md-4"></div>
-				</div>
-				<div class="col-md-4"></div>
-			</div>
 			<div class="row">
 				<div class="col-md-4"></div>
 				<div class="col-md-4">
 					<div class="form-group">
-						<label for="topic">Program</label>
 						<label for="topic">Program</label>
 							<select  name="program" id="program" class="form-control">
 								<% for(let i = 0 ; i < list.length; i++) { %>
@@ -116,9 +115,10 @@
 				<div class="col-md-4"></div>
 				<div class="col-md-4">
 					<div class="form-group">
-						<label for="Food">Food(Specify Veg or Non-Veg)</label><br>
-						<input type="radio" name="food" value="Veg">Veg<br>
-						<input type="radio" name="food" value="Non-Veg">Non-Veg<br>
+						<label for="Food">Food</label><br>
+						<input type="radio" name="food" value="Vegetarian">Vegetarian<br>
+						<input type="radio" name="food" value="Regular">Regular<br>
+						<input type="radio" name="food" value="Gluten Free">Gluten Free<br>
 						<div class="col-md-4"></div>
 					</div>
 				</div>
@@ -126,17 +126,7 @@
 			<div class="row">
 				<div class="col-md-4"></div>
 				<div class="col-md-4">
-					<div class="form-group">
-						<label for="restrict">Do you have any dietary restrictions for the provided breakfast or lunch?</label>
-						<input type="restrict" class="form-control" id="restrict" name="restrict"></div>
-				</div>
-
-				<div class="col-md-4"></div>
-			</div>
-			<div class="row">
-				<div class="col-md-4"></div>
-				<div class="col-md-4">
-					<button type="submit" class="btn btn-primary" id="coupon1">Add to cart</button></div>
+					<button type="submit" class="btn btn-primary" id="coupon1">Submit</button></div>
 				<div class="col-md-4"></div>
 		</form>
 		</div>
