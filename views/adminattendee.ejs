@@ -19,12 +19,16 @@
           <table class="w3-table-all w3-card-4" id="Details" align="center">
             <tr>
               <th>Number</th>
-              <th>Name</th>
-              <th>Email</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Email Address</th>
+              <th>Contact Phone</th>
+              <th>Institution</th>
+              <th>Institution City</th>
+              <th>Institution State</th>
+              <th>Zip Code</th>
+              <th>Country</th>
               <th>Program</th>
-              <th>Food</th>
-              <th>Restrict</th>
-
             </tr>
             <% for(let i = 0 ; i < list.length; i++) { %>
               <tr>
@@ -32,19 +36,34 @@
                   <%= i+1 %>
                 </td>
                 <td>
-                  <%= list[i].name %>
+                  <%= list[i].fname %>
+                </td>
+                <td>
+                  <%= list[i].lname %>
                 </td>
                 <td>
                   <%= list[i].email %>
                 </td>
                 <td>
+                  <%= list[i].contact %>
+                </td>
+                <td>
+                  <%= list[i].institution %>
+                </td>
+                <td>
+                  <%= list[i].institutionc %>
+                </td>
+                <td>
+                  <%= list[i].institutions %>
+                </td>
+                <td>
+                  <%= list[i].zipcode %>
+                </td>
+                <td>
+                  <%= list[i].country %>
+                </td>
+                <td>
                   <%= list[i].program %>
-                </td>
-                <td>
-                  <%= list[i].food %>
-                </td>
-                <td>
-                  <%= list[i].restrict %>
                 </td>
               </tr>
               <% } %>
