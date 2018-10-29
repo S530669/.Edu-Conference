@@ -278,7 +278,7 @@ app.post("/contact", (req, res) => {
   var myData = new Contact(req.body);
   myData.save()
     .then(item => {
-      res.send("Items saved successfully");
+      res.render("contact.ejs");
 
     })
 
@@ -513,6 +513,19 @@ app.post("/send", function (request, response) {
    });
    });
   
+// Reply in admin contact
+
+app.post("/reply", function (request, response) {
+  db.collection('contacts').update({ 'reply': request.body.reply }, { $set: { 'reply': "replied" } });
+ 
+      db.collection('contacts').find().toArray(function (err, result) {
+        if (err) throw err;
+        response.redirect('/admincontact')
+
+      });
+    
+  });
+
 
 
   //  Delete Deadlines Info from Database
