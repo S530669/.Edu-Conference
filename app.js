@@ -20,6 +20,7 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var mongo = require('mongodb');
 var ObjectId = require('mongodb').ObjectID;
+var bcrypt = require('bcryptjs');
 
 
 var routes = require('./routes/index');
@@ -342,51 +343,64 @@ app.post('/forgot', function(req, res, next) {
   });
 }); 
 
-//Reset
+//Reset Get
 app.get('/reset/:token', function(req, res) {
   User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
     if (!user) {
-      req.flash('error_msg', 'Password reset token is invalid or has expired.');
-      return res.redirect('/forgotE');
+      req.flash('error', 'Password reset token is invalid or has expired.');
+      return res.redirect('/forgot');
     }
-    res.render('forgotP', {
-      user: req.user
+    res.render('forgotP.ejs', {
+      token: req.params.token
     });
   });
 });
 
 //Reset
-app.post('/reset/token', function(req, res) {
+app.post('/reset/:token', function(req, res) {
   async.waterfall([
     function(done) {
-      User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
+      User.findOne({ resetPasswordToken: req.body.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
         if (!user) {
-          console.log(req.params.token)
-          req.flash('success_msg', 'Password is changed.');
+          req.flash('error', 'Password reset token is invalid or has expired.');
           return res.redirect('/users/login');
         }
 
-        user.password = req.body.password;
-        user.resetPasswordToken = undefined;
-        user.resetPasswordExpires = undefined;
-
-        user.save(function(err) {
-          req.logIn(user, function(err) {
-            done(err, user);
+        bcrypt.genSalt(10, function (err, salt) {
+          bcrypt.hash(req.body.password, salt, function (err, hash) {
+            user.password = hash;
+            user.resetPasswordToken = undefined;
+            user.resetPasswordExpires = undefined;
+            user.save(function(err) {
+              req.logIn(user, function(err) {
+                 done(err, user);
+              });
+             });
           });
         });
-      });
+        
+        
+
+        
+      }   );
     },
     function(user, done) {
       var smtpTransport = nodemailer.createTransport({
-        service: 'gmail',
+        service: 'SendGrid',
         auth: {
           user: 'gdp2.fastrack@gmail.com',
           pass: 'gdp21234'
         }
       });
+      var mailOptions = {
+        to: req.user.email,
+        from: 'passwordreset@demo.com',
+        subject: 'Your password has been changed',
+        text: 'Hello,\n\n' +
+          'This is a confirmation that the password for your account ' + req.user.email + ' has just been changed.\n'
+      };
       smtpTransport.sendMail(mailOptions, function(err) {
-        req.flash('success_msg', 'Success! Your password has been changed.');
+        req.flash('success', 'Success! Your password has been changed.');
         done(err);
       });
     }
