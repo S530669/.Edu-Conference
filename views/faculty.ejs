@@ -65,7 +65,7 @@
 				<div class="col-md-4">
 					<div class="form-group">
 						<label for="name">First Name</label>
-						<input type="text" class="form-control" id="fname" name="fname" required>
+						<input type="text" class="form-control" id="fname" name="fname" pattern="[a-zA-Z]+" required>
 					</div>
 				</div>
 				<div class="col-md-4"></div>
@@ -74,8 +74,8 @@
 				<div class="col-md-4"></div>
 				<div class="col-md-4">
 					<div class="form-group">
-						<label for="name">First Name</label>
-						<input type="text" class="form-control" id="lname" name="lname" required>
+						<label for="name">Last Name</label>
+						<input type="text" class="form-control" id="lname" name="lname" pattern="[a-zA-Z]+" required>
 					</div>
 				</div>
 				<div class="col-md-4"></div>
@@ -85,7 +85,7 @@
 				<div class="col-md-4">
 					<div class="form-group">
 						<label for="email">Email Address</label>
-						<input type="email" class="form-control" id="email" name="email" required></div>
+						<input type="email" class="form-control" id="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$+" required></div>
 				</div>
 				<div class="col-md-4"></div>
 			</div>
@@ -94,7 +94,7 @@
 				<div class="col-md-4">
 				<div class="form-group">
 					<label for="contact">Contact Number</label>
-					<input type="text" class="form-control" id="contact" name="contact" required></div></div>
+					<input type="text" class="form-control" id="contact" name="contact" pattern="[0-9]{10}" required></div></div>
                     <div class="col-md-4"></div>
 				</div>
 			<div class="row">
