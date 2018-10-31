@@ -19,13 +19,14 @@
           <table class="w3-table-all w3-card-4" id="Details" align="center">
             <tr>
               <th>Number</th>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Contact</th>
-              <th>Level</th>
-              <th>Topic</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Email Address</th>
+              <th>Contact Phone</th>
+              <th>Target Audience</th>
+              <th>Title</th>
               <th>Attach</th>
-              <th>Food</th>
+              <th>Brief Description</th>
               <th>Select</th>
               <th>Reject</th>
 
@@ -36,8 +37,11 @@
                   <%= i+1 %>
                 </td>
                 <td>
-                  <%= list[i].name %>
+                  <%= list[i].fname %>
                 </td>
+                <td>
+                    <%= list[i].lname %>
+                  </td>
                 <td>
                   <%= list[i].email %>
                 </td>
@@ -45,7 +49,7 @@
                   <%= list[i].contact %>
                 </td>
                 <td>
-                  <%= list[i].level %>
+                  <%= list[i].target %>
                 </td>
                 <td>
                   <%= list[i].topic %>
@@ -54,7 +58,7 @@
                  <a href="<%= list[i].attach %>"><%= list[i].attach %></a>
                 </td>
                 <td>
-                  <%= list[i].food %>
+                  <%= list[i].subject %>
                 </td>
 
                 <form action="/send" method="POST">
