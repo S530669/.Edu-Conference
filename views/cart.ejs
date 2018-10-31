@@ -17,10 +17,10 @@
     <div class="column">
       <h2>Item Name</h2>
       <p> Name :
-        <%= list %>
+        <%= list+","+list1 %>
       </p>
       <p> Email :
-        <%= list1 %>
+        <%= list2 %>
       </p>
     </div>
     <div class="column1">
@@ -31,9 +31,10 @@
     <div class="column2">
       <h2>Remove</h2>
       <div class="btn-row">
-        <!-- <form action="/deleteQuantity" method="GET"> -->
-        <a class="btn btn-default btn-block" href="deleteQuantity" role="button">Delete</a>
-        <!-- </form> -->
+        <form action="/del" method="POST">
+          <input value="<%= list2 %>" name="email2" hidden>
+          <button type="submit" class="btn btn-primary">Delete</button>
+        </form>
 
       </div>
 
