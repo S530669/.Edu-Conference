@@ -23,8 +23,8 @@
 				<div class="col-md-4"></div>
 				<div class="col-md-4">
 					<div class="form-group">
-						<label for="name">Name</label>
-						<input type="text" class="form-control" id="name" name="name" required>
+						<label for="name">First Name</label>
+						<input type="text" class="form-control" id="fname" name="fname" required>
 					</div>
 				</div>
 				<div class="col-md-4"></div>
@@ -33,7 +33,17 @@
 				<div class="col-md-4"></div>
 				<div class="col-md-4">
 					<div class="form-group">
-						<label for="email">Email</label>
+						<label for="name">Last Name</label>
+						<input type="text" class="form-control" id="lname" name="lname" required>
+					</div>
+				</div>
+				<div class="col-md-4"></div>
+			</div>
+			<div class="row">
+				<div class="col-md-4"></div>
+				<div class="col-md-4">
+					<div class="form-group">
+						<label for="email">Email Address</label>
 						<input type="email" class="form-control" id="email" name="email" required></div>
 				</div>
 				<div class="col-md-4"></div>
@@ -51,8 +61,8 @@
 				<div class="col-md-4"></div>
 				<div class="col-md-4">
 					<div class="form-group">
-						<label for="level">Level of Education</label>
-						<input type="" class="form-control" id="level" name="level" required></div>
+						<label for="level">Target Audience</label>
+						<input type="" class="form-control" id="target" name="target" required></div>
 				</div>
 				<div class="col-md-4"></div>
 			</div>
@@ -60,7 +70,7 @@
 				<div class="col-md-4"></div>
 				<div class="col-md-4">
 					<div class="form-group">
-						<label for="topic">Topics to present</label>
+						<label for="topic">Title</label>
 						<select name="topic" id="topic" class="form-control">
 							<% for(let i = 0 ; i < list.length; i++) { %>
 								<option value= '<%= list[i].add %>'><%= list[i].add %></option>							
@@ -75,11 +85,19 @@
 				<div class="col-md-4">
 					<div class="form-group">
 						<label for="attach">If document is not ready, Please email to @nwmissouri once registered.</label>
-						<form action="index.php" method="post" enctype="multipart/form-data">
-							<input type="file" name="attach"></div>
+						<!-- <form action="index.php" method="post" enctype="multipart/form-data"></form> -->
+							<input type="" name="attach"></div>
 				</div>
 				<div class="col-md-4"></div>
 			</div>
+			<div class="row">
+					<div class="col-md-4"></div>
+					<div class="col-md-4">
+				<label for="subject">Brief Description of the topic</label>
+				<div class="form-group">
+					<textarea id="subject" class="form-control" name="subject" ></textarea>
+				</div>
+				<div class="col-md-4"></div>
 			<div class="row">
 				<div class="col-md-4"></div>
 				<div class="col-md-4">
