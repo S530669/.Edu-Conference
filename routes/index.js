@@ -119,11 +119,9 @@ function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
   } else {
-<<<<<<< HEAD
+
    req.flash('error_msg', ' password error');
-=======
-  //  req.flash('error_msg', 'You are not logged in');
->>>>>>> 4c17bed75f69fc7fcc91b36958f2632b0c3ab189
+
     res.redirect('/users/login');
   }
 
