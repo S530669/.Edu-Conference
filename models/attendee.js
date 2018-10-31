@@ -2,13 +2,17 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var Attendee = new Schema({
-    "name": { type: String, required: true },
+    "fname": { type: String, required: true },
+    "lname": { type: String, required: true },
     "email": { type: String, required: true },
     "contact": { type: String, required: true },
-    "school": { type: String, required: false },
+    "institution": { type: String, required: false },
+    "institutionc": { type: String, required: false },
+    "institutions": { type: String, required: false },
+    "zipcode": { type: String, required: false },
+    "country": { type: String, required: false },
     "program": { type: String, required: true },
-    "food": { type: String, required: false },
-    "restrict": { type: String, required: false }
+    "food": { type: String, required: false }
 });
 
 module.exports = mongoose.model('Attendee', Attendee);

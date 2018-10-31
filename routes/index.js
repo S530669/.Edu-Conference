@@ -119,7 +119,11 @@ function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
   } else {
+<<<<<<< HEAD
    req.flash('error_msg', ' password error');
+=======
+  //  req.flash('error_msg', 'You are not logged in');
+>>>>>>> 4c17bed75f69fc7fcc91b36958f2632b0c3ab189
     res.redirect('/users/login');
   }
 
@@ -195,14 +199,29 @@ function ensureAuthenticated(req, res, next) {
 
 
 
-// //Attendees count
+//Participants Food count
 
-// router.get("/veg", function(request, response) {
-//   var query = {$or: [{"food":"Non veg"}, {"food":"Non Veg"}]}
-//   var count1 = db.collection('attendees').find(query).count();
-//   count1.then(function(result){
-//     response.render('adminattendee.ejs', {veg: result});
-//   });
-// });
+router.get("/foodcount", function(request, response) {
+  var regular = db.collection('attendees').find({'food':'Regular'}).count()
+  var veg = db.collection('attendees').find({'food':'Vegetarian'}).count()
+  var gluten = db.collection('attendees').find({'food':'Gluten Free'}).count()
+  var regularp = db.collection('presenters').find({'food':'Regular'}).count()
+  var vegp = db.collection('presenters').find({'food':'Vegetarian'}).count()
+  var glutenp = db.collection('presenters').find({'food':'Gluten Free'}).count()
+  regular.then(function(result){
+    veg.then(function(result1){
+      gluten.then(function(result2){
+        regularp.then(function(resultp){
+          vegp.then(function(result1p){
+            glutenp.then(function(result2p){
+              response.render('foodcount.ejs',{regular: result, veg: result1, gluten: result2, regularp: resultp, vegp: result1p, glutenp: result2p })
+            })
+          })
+         })
+      })
+    })
+   })
+ 
+});
 
 module.exports = router;

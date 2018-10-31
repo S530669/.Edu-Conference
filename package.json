@@ -2,7 +2,7 @@
     "name": "Registration",
     "version": "0.0.1",
     "description": "Registration",
-    "main": "server.js",
+    "main": "app.js",
     "dependencies": {
         "async": "^2.6.1",
         "bcryptjs": "^2.4.3",
