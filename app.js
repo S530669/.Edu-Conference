@@ -120,7 +120,7 @@ app.post("/attendee", (req, res) => {
             else {
               var amount = '$' + (125 + 20);
             }
-            res.render('cart.ejs', { list: req.body.name, list1: req.body.email, amount });
+            res.render('cart.ejs', { list: req.body.fname,list1: req.body.lname,list2: req.body.email, amount });
           })
         })
         .catch(err => {
@@ -289,7 +289,18 @@ app.post("/contact", (req, res) => {
 });
 
 
+//deletequantity
 
+app.post('/del', function(req,res){
+  var query = {"email" : (req.body.email2)};
+   db.collection('attendees').deleteOne(query)
+   .then(item=>{
+     res.redirect("/");
+   })
+   .catch(err =>{
+     res.status(400).send("unable to delete");
+   })
+})
 //Forgot
 
 app.post('/forgot', function(req, res, next) {
