@@ -113,6 +113,9 @@ router.get('/admin', ensureAuthenticated, function (req, res) {
   res.redirect('/users/login');
 });
 
+router.get("/adminhomepage", function (request, response) {
+  response.render('adminhomepage.ejs');
+});
 
 
 
@@ -121,7 +124,6 @@ function ensureAuthenticated(req, res, next) {
     return next();
   } else {
 
-   req.flash('error_msg', ' password error');
 
     res.redirect('/users/login');
   }
