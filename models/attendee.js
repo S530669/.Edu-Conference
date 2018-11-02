@@ -12,7 +12,8 @@ var Attendee = new Schema({
     "zipcode": { type: String, required: false },
     "country": { type: String, required: false },
     "program": { type: String, required: true },
-    "food": { type: String, required: false }
+    "food": { type: String, required: false },
+    "pay": { type: String, required: false }
 });
 
 module.exports = mongoose.model('Attendee', Attendee);

@@ -215,7 +215,7 @@ app.post("/graduatestudent", (req, res) => {
             else {
               var amount = '$' + (125 + 20);
             }
-            res.render('cart.ejs', { list: req.body.fname,list1: req.body.lname,list2: req.body.email, amount});
+            res.render('cart.ejs', { list: req.body.fname,list1: req.body.lname,list2: req.body.email, amount });
           })
         })
         .catch(err => {
@@ -242,7 +242,7 @@ app.post("/vendor", (req, res) => {
             else {
               var amount = '$' + (125 + 20);
             }
-            res.render('cart.ejs', { list: req.body.name, list1: req.body.email, amount });
+            res.render('cart.ejs', { list: req.body.cname, list1: req.body.name, list2: req.body.email, amount });
           })
           //res.send("Items saved successfully");
         })
@@ -536,8 +536,18 @@ app.post("/reply", function (request, response) {
       });
     
   });
+//payment status in adminattendee page
 
+app.post("/pay", function (request, response) {
+  db.collection('attendees').update({ 'reply': request.body.reply }, { $set: { 'pay': "paid" } });
+ 
+      db.collection('attendees').find().toArray(function (err, result) {
+        if (err) throw err;
+        response.redirect('/adminattendees')
 
+      });
+    
+  });
 
   //  Delete Deadlines Info from Database
  
