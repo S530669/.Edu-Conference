@@ -8,8 +8,8 @@ var driver = new webdriver.Builder()
 .build()
 
 driver.get('localhost:8082/users/login');
-driver.findElement(By.name('username')).sendKeys('Darshan');
-driver.findElement(By.name('password')).sendKeys('1234');
+driver.findElement(By.name('username')).sendKeys('Anusha123');
+driver.findElement(By.name('password')).sendKeys();
 driver.findElement(By.name('submit')).click();
 
 function check_title() {

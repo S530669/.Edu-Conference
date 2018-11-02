@@ -215,7 +215,7 @@ app.post("/graduatestudent", (req, res) => {
             else {
               var amount = '$' + (125 + 20);
             }
-            res.render('cart.ejs', { list: req.body.name, list1: req.body.email, amount });
+            res.render('cart.ejs', { list: req.body.fname,list1: req.body.lname,list2: req.body.email, amount});
           })
         })
         .catch(err => {
