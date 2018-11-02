@@ -29,6 +29,7 @@
               <th>Zip Code</th>
               <th>Country</th>
               <th>Program</th>
+              <th>Payment Status</th>
             </tr>
             <% for(let i = 0 ; i < list.length; i++) { %>
               <tr>
@@ -65,6 +66,16 @@
                 <td>
                   <%= list[i].program %>
                 </td>
+                <form action="/status" method="POST">
+                  <input type="text" name="pay" value="<%= list[i].pay %>" hidden>
+                  
+                  <%if(list[i].pay ==0){%>
+                    <td><button type="submit" class="btn btn-success">pay</button></td>
+                    <%}%>
+                      <%if(list[i].pay !=0){%>
+                        <td><button disabled class="btn btn-success">paid</button></td>
+                        <%}%>
+                </form>
               </tr>
               <% } %>
           </table>
