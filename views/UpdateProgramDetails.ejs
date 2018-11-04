@@ -26,6 +26,18 @@
                                         <div class="col-md-1">
                                                 <input type="text" name="Location" /></div>
                                 </div><br>
+                                <div class="form-group">
+                                        <div class="col-md-2">
+                                                <label for="Program">Program</label></div>
+                                        <div class="col-md-1">
+                                                <input type="text" name="Program" /></div>
+                                </div><br>
+                                <div class="form-group">
+                                        <div class="col-md-2">
+                                                <label for="Description">Description</label></div>
+                                        <div class="col-md-1">
+                                                <input type="text" name="Description" /></div>
+                                </div><br>
                                 <div align="center" class="form-group">
                                         <div class="col-md-7">
                                                 <input type="submit" class="btn btn-primary" value="ADD" /></div><br><br>
@@ -39,6 +51,8 @@
                                         <th>Time</th>
                                         <th>Activity</th>
                                         <th>Location</th>
+                                        <th>Program</th>
+                                        <th>Description</th>
                                         <th>Delete</th>
                                 </tr>
                         </thead>
@@ -53,6 +67,12 @@
                                         </td>
                                         <td>
                                                 <%= list[i].Location %>
+                                        </td>
+                                        <td>
+                                                <%= list[i].Program %>
+                                        </td> 
+                                        <td>
+                                                <%= list[i].Description %>
                                         </td>
 
                                         <form action="/deletepgm" method="POST">
