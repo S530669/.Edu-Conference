@@ -7,21 +7,13 @@ var driver = new webdriver.Builder()
 .forBrowser('chrome')
 .build()
 
-driver.get('localhost:8082/users/login');
-driver.findElement(By.name('username')).sendKeys('Anusha123');
-driver.findElement(By.name('password')).sendKeys();
+driver.get('localhost:8082/users/register');
+driver.findElement(By.name('name')).sendKeys('Swaroop');
+driver.findElement(By.name('username')).sendKeys('swaroop');
+driver.findElement(By.name('email')).sendKeys('swaroop@gmail.com');
+driver.findElement(By.name('password')).sendKeys('123456');
+driver.findElement(By.name('password2')).sendKeys('123456');
 driver.findElement(By.name('submit')).click();
 
-function check_title() {
-    var promise = driver.getTitle().then( function(title){
-        if(title === 'wiki - Google Search')
-        {
-            console.log('success');
-            return true
-        }
-        else{
-            console.log('fail --'+ title);
-        }
-    });
-    return promise;
-}
+
+
