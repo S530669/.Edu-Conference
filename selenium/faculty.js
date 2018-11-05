@@ -7,9 +7,14 @@ var driver = new webdriver.Builder()
 .forBrowser('chrome')
 .build()
 
-driver.get('localhost:8082/users/login');
-driver.findElement(By.name('username')).sendKeys('Anusha123');
-driver.findElement(By.name('password')).sendKeys('123');
+driver.get('localhost:8082/faculty');
+driver.findElement(By.name('email1')).sendKeys('anusha@gmail.com');
+driver.findElement(By.name('generate')).click();
+driver.findElement(By.name('fname')).sendKeys('Anusha');
+driver.findElement(By.name('lname')).sendKeys('Kollu');
+driver.findElement(By.name('email')).sendKeys('anusha@gmail.com');
+driver.findElement(By.name('contact')).sendKeys('6605280506');
+driver.findElement(By.name('program')).sendKeys('It');
 driver.findElement(By.name('submit')).click();
 
 function check_title() {
