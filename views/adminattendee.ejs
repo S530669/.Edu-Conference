@@ -66,7 +66,7 @@
                 <td>
                   <%= list[i].program %>
                 </td>
-                <form action="/status" method="POST">
+                <form action="/pay" method="POST">
                   <input type="text" name="pay" value="<%= list[i].pay %>" hidden>
                   
                   <%if(list[i].pay ==0){%>
