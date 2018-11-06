@@ -560,6 +560,16 @@ app.post("/presenterpay", function (request, response) {
       });
     
   });
+  app.post("/vendorpay", function (request, response) {
+    db.collection('vendors').update({ 'pay': request.body.pay }, { $set: { 'pay': "paid" } });
+   
+        db.collection('vendors').find().toArray(function (err, result) {
+          if (err) throw err;
+          response.redirect('/adminvendor')
+  
+        });
+      
+    });
 
   //  Delete Deadlines Info from Database
  
