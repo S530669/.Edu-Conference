@@ -548,6 +548,18 @@ app.post("/pay", function (request, response) {
       });
     
   });
+  //payment status in adminattendee page
+
+app.post("/presenterpay", function (request, response) {
+  db.collection('presenters').update({ 'pay': request.body.pay }, { $set: { 'pay': "paid" } });
+ 
+      db.collection('presenters').find().toArray(function (err, result) {
+        if (err) throw err;
+        response.redirect('/AdminPresenter')
+
+      });
+    
+  });
 
   //  Delete Deadlines Info from Database
  

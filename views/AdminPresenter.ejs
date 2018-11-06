@@ -29,6 +29,7 @@
               <th>Brief Description</th>
               <th>Select</th>
               <th>Reject</th>
+              <th>Payment Status</th>
 
             </tr>
             <% for(let i = 0; i < list.length; i++) { %>
@@ -81,6 +82,16 @@
                         <td><button disabled class="btn btn-danger">Deleted</button></td>
                         <%}%>
 
+                </form>
+                <form action="/presenterpay" method="POST">
+                  <input type="text" name="pay" value="<%= list[i].pay %>" hidden>
+                  
+                  <%if(list[i].pay ==0){%>
+                    <td><button type="submit" class="btn btn-success">pay</button></td>
+                    <%}%>
+                      <%if(list[i].pay !=0){%>
+                        <td><button disabled class="btn btn-success">paid</button></td>
+                        <%}%>
                 </form>
               </tr>
               <% } %>
