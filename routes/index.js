@@ -225,4 +225,21 @@ router.get("/foodcount", function(request, response) {
  
 });
 
+
+//Delete Database
+
+router.get("/deletedatabase", function (request, response) {
+response.render('deletedatabase.ejs')
+});
+
+router.post('/cleardb', function (request, response) {
+  mongoose.connect('mongodb://localhost/conference');
+  
+  mongoose.connection.db.dropDatabase(function (err) {
+    console.log('db dropped');
+    response.redirect('/users/login');
+  });
+
+})
+
 module.exports = router;
