@@ -13,7 +13,7 @@ var vendor = new Schema({
     "Title": { type: String, required: true },
     "email": { type: String, required: true },
     "contact": { type: String, required: true },
-    "pay": { type: String, required: true }
+    "pay": { type: String, required: false }
 });
 
 module.exports = mongoose.model('vendor', vendor);

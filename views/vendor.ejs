@@ -42,7 +42,7 @@
 				<div class="col-md-4">
 					<div class="form-group">
 						<label for="cname">Company Name</label>
-						<input type="text" class="form-control" id="cname" name="cname" required>
+						<input type="text" class="form-control" id="cname" name="cname" pattern="[a-zA-Z ]+"required>
 					</div>
 				</div>
 			</div>
@@ -51,7 +51,7 @@
 				<div class="col-md-4">
 					<div class="form-group">
 						<label for="city">City</label>
-						<input type="text" class="form-control" id="city" name="city" required>
+						<input type="text" class="form-control" id="city" name="city" pattern="[a-zA-Z]+"required>
 					</div>
 				</div>
 			</div>
@@ -60,7 +60,7 @@
 				<div class="col-md-4">
 					<div class="form-group">
 						<label for="State">State</label>
-						<input type="text" class="form-control" id="State" name="State" required>
+						<input type="text" class="form-control" id="State" name="State" pattern="[a-zA-Z]+" required>
 					</div>
 				</div>
 			</div>
@@ -69,7 +69,7 @@
 				<div class="col-md-4">
 					<div class="form-group">
 						<label for="Zip">Zip</label>
-						<input type="text" class="form-control" id="Zip" name="Zip" required>
+						<input type="text" class="form-control" id="Zip" name="Zip" pattern="[0-9]{6}" required>
 					</div>
 				</div>
 			</div>
@@ -78,7 +78,7 @@
 				<div class="col-md-4">
 					<div class="form-group">
 						<label for="URL">Website URL</label>
-						<input type="text" class="form-control" id="URL" name="URL" required>
+						<input type="text" class="form-control" id="URL" name="URL""[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$+" required>
 					</div>
 				</div>
 			</div>
@@ -87,7 +87,7 @@
 				<div class="col-md-4">
 					<div class="form-group">
 						<label for="name">Contact Name</label>
-						<input type="text" class="form-control" id="name" name="name" required>
+						<input type="text" class="form-control" id="name" name="name" pattern="[a-zA-Z ]+"required>
 					</div>
 				</div>
 			</div>
@@ -96,7 +96,7 @@
 				<div class="col-md-4">
 					<div class="form-group">
 						<label for="Title">Contact Title</label>
-						<input type="text" class="form-control" id="Title" name="Title" required>
+						<input type="text" class="form-control" id="Title" name="Title" pattern="[a-zA-Z ]+" required>
 					</div>
 				</div>
 				<div class="col-md-4"></div>
@@ -106,7 +106,7 @@
 				<div class="col-md-4">
 					<div class="form-group">
 						<label for="email">Email Address</label>
-						<input type="email" class="form-control" id="email" name="email" required></div>
+						<input type="email" class="form-control" id="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$+"required></div>
 				</div>
 				<div class="col-md-4"></div>
 			</div>
@@ -115,7 +115,7 @@
 				<div class="col-md-4">
 					<div class="form-group">
 						<label for="contact">Contact Phone</label>
-						<input type="text" class="form-control" id="contact" name="contact" required></div>
+						<input type="text" class="form-control" id="contact" name="contact" pattern="[0-9]{10}" required></div>
 				</div>
 				<div class="col-md-4"></div>
 			</div>
