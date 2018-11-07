@@ -4,8 +4,8 @@ By = webdriver.By;
 until = webdriver.until;
 
 var driver = new webdriver.Builder()
-.forBrowser('chrome')
-.build()
+    .forBrowser('chrome')
+    .build()
 
 driver.get('localhost:8082/attendee');
 driver.findElement(By.name('fname')).sendKeys('Darshan');
@@ -23,30 +23,28 @@ driver.findElement(By.name('submit')).click();
 
 
 
-var MongoClient = require('mongodb').MongoClient;
-const db = module.exports = {
-url : "mongodb://localhost:27017/conference"
+var  MongoClient  =  require('mongodb').MongoClient;
+const  db  =  module.exports  =  {
+    url:  "mongodb://localhost:27017/conference"
 };
 
-MongoClient.connect('mongodb://localhost:27017/conference',function(err,db){
-if(err)
-{
-console.log(err);
-}
-else
-{
-console.log("Connected to db");
-const collection= db.collection("attendees");
-var cursor = collection.find({});
-cursor.each(function(err, doc) {
+MongoClient.connect('mongodb://localhost:27017/conference', function (err, db) {
+    if (err) {
+        console.log(err);
+    }
+    else {
+        console.log("Connected to db");
+        const  collection =  db.collection("attendees");
+        var  cursor  =  collection.find({});
+        cursor.each(function (err,  doc) {
 
-console.log(doc); 
+            console.log(doc);
+        });
+        console.log("Success");
+        db.close();
+    }
 });
-console.log("Success"); 
-db.close(); 
-}
-}); 
- 
+
 
 
 
