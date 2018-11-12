@@ -12,7 +12,7 @@
 
         <div align="center" class="form-group">
 
-            <input type="submit" class="btn btn-primary" /><br>
+            <input type="submit" name="submit" class="btn btn-primary" /><br>
         </div>
 
         </form>
@@ -37,7 +37,7 @@
 
                     <form action="/addpgm" method="POST">
                         <input type="text" name="presId" value="<%= list[i]._id %>" hidden>
-                        <td><button type="submit" class="btn btn-danger">Delete</button></td>
+                        <td><button type="submit" name="delete" class="btn btn-danger">Delete</button></td>
                     </form>
 
                 </tr>
