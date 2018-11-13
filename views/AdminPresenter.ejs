@@ -30,72 +30,136 @@
               <th>Select</th>
               <th>Reject</th>
               <th>Payment Status</th>
-
-            </tr>
-            <% for(let i = 0; i < list.length; i++) { %>
-              <tr>
-                <td>
-                  <%= i+1 %>
-                </td>
-                <td>
-                  <%= list[i].fname %>
-                </td>
-                <td>
-                    <%= list[i].lname %>
+              </tr>
+              <% for(let i = 0 ; i < list.length; i++) { %>
+                <%  var proj = list[i].topic.split(",")
+                  console.log(proj)
+                    if(proj.length > 1){ 
+                    for(let j = 0 ; j < proj.length; j++) { %>
+                    <tr>
+                      <td>
+                        <%= i+1 %>
+                      </td>`  
+                      <td>
+                        <%= list[i].fname %>
+                      </td>
+                      <td>
+                        <%= list[i].lname %>
+                        </td>
+                      <td>
+                        <%= list[i].email %>
+                      </td>
+                      <td>
+                        <%= list[i].contact %>
+                      </td>
+                      <td>
+                        <%= list[i].target %>
+                      </td>
+                      <td>
+                        <%= proj[j] %>
+                      </td>
+                      <td>
+                       <a href="<%= list[i].attach %>"><%= list[i].attach %></a>
+                      </td>
+                      <td>
+                        <%= list[i].subject %>
+                      </td>
+                      <form action="/send" method="POST">
+                        <input type="text" name="confirm" value="<%= list[i].confirm %>" hidden>
+                        <input type="text" value="<%= list[i].email %>" name="email1" hidden>
+                        <%if(list[i].confirm ==0){%>
+                          <td><button type="submit" class="btn btn-success">Confirm</button></td>
+                          <%}%>
+                            <%if(list[i].confirm !=0){%>
+                              <td><button disabled class="btn btn-success">Confirmed</button></td>
+                              <%}%>
+                      </form>
+                      <form action="/sende" method="POST">
+                        <input type="text" name="delete" value="<%= list[i].delete %>" hidden>
+                        <input type="text" value="<%= list[i].email %>" name="email1" hidden>
+                        <%if(list[i].delete ==0){%>
+                          <td><button type="submit" class="btn btn-danger">Delete</button></td>
+                          <%}%>
+                            <%if(list[i].delete !=0){%>
+                              <td><button disabled class="btn btn-danger">Deleted</button></td>
+                              <%}%>
+      
+                      </form>
+                      <form action="/presenterpay" method="POST">
+                        <input type="text" name="pay" value="<%= list[i].pay %>" hidden>
+                        
+                        <%if(list[i].pay ==0){%>
+                          <td><button type="submit" class="btn btn-success">pay</button></td>
+                          <%}%>
+                          <%if(list[i].pay !=0){%>
+                            <td><button disabled class="btn btn-success">paid</button></td>
+                            <%}%>
+                          </form>
+                    </tr>
+                    <%}%>
+                <%} else {%>
+                <tr>
+                  <td>
+                    <%= i+1 %>
                   </td>
-                <td>
-                  <%= list[i].email %>
-                </td>
-                <td>
-                  <%= list[i].contact %>
-                </td>
-                <td>
-                  <%= list[i].target %>
-                </td>
-                <td>
-                  <%= list[i].topic %>
-                </td>
-                <td>
-                 <a href="<%= list[i].attach %>"><%= list[i].attach %></a>
-                </td>
-                <td>
-                  <%= list[i].subject %>
-                </td>
-
-                <form action="/send" method="POST">
-                  <input type="text" name="confirm" value="<%= list[i].confirm %>" hidden>
-                  <input type="text" value="<%= list[i].email %>" name="email1" hidden>
-                  <%if(list[i].confirm ==0){%>
-                    <td><button type="submit" class="btn btn-success">Confirm</button></td>
-                    <%}%>
-                      <%if(list[i].confirm !=0){%>
-                        <td><button disabled class="btn btn-success">Confirmed</button></td>
-                        <%}%>
-                </form>
-                <form action="/sende" method="POST">
-                  <input type="text" name="delete" value="<%= list[i].delete %>" hidden>
-                  <input type="text" value="<%= list[i].email %>" name="email1" hidden>
-                  <%if(list[i].delete ==0){%>
-                    <td><button type="submit" class="btn btn-danger">Delete</button></td>
-                    <%}%>
-                      <%if(list[i].delete !=0){%>
-                        <td><button disabled class="btn btn-danger">Deleted</button></td>
-                        <%}%>
-
-                </form>
-                <form action="/presenterpay" method="POST">
-                  <input type="text" name="pay" value="<%= list[i].pay %>" hidden>
-                  
-                  <%if(list[i].pay ==0){%>
-                    <td><button type="submit" class="btn btn-success">pay</button></td>
-                    <%}%>
+                  <td>
+                    <%= list[i].fname %>
+                  </td>
+                  <td>
+                      <%= list[i].lname %>
+                    </td>
+                  <td>
+                    <%= list[i].email %>
+                  </td>
+                  <td>
+                    <%= list[i].contact %>
+                  </td>
+                  <td>
+                    <%= list[i].target %>
+                  </td>
+                  <td>
+                    <%= list[i].topic %>
+                  </td>
+                  <td>
+                   <a href="<%= list[i].attach %>"><%= list[i].attach %></a>
+                  </td>
+                  <td>
+                    <%= list[i].subject %>
+                  </td>
+                  <form action="/send" method="POST">
+                    <input type="text" name="confirm" value="<%= list[i].confirm %>" hidden>
+                    <input type="text" value="<%= list[i].email %>" name="email1" hidden>
+                    <%if(list[i].confirm ==0){%>
+                      <td><button type="submit" class="btn btn-success">Confirm</button></td>
+                      <%}%>
+                        <%if(list[i].confirm !=0){%>
+                          <td><button disabled class="btn btn-success">Confirmed</button></td>
+                          <%}%>
+                  </form>
+                  <form action="/sende" method="POST">
+                    <input type="text" name="delete" value="<%= list[i].delete %>" hidden>
+                    <input type="text" value="<%= list[i].email %>" name="email1" hidden>
+                    <%if(list[i].delete ==0){%>
+                      <td><button type="submit" class="btn btn-danger">Delete</button></td>
+                      <%}%>
+                        <%if(list[i].delete !=0){%>
+                          <td><button disabled class="btn btn-danger">Deleted</button></td>
+                          <%}%>
+  
+                  </form>
+                  <form action="/presenterpay" method="POST">
+                    <input type="text" name="pay" value="<%= list[i].pay %>" hidden>
+                    
+                    <%if(list[i].pay ==0){%>
+                      <td><button type="submit" class="btn btn-success">pay</button></td>
+                      <%}%>
                       <%if(list[i].pay !=0){%>
                         <td><button disabled class="btn btn-success">paid</button></td>
                         <%}%>
-                </form>
-              </tr>
-              <% } %>
-          </table>
+                  </form>
+                </tr>
+                <%}%><%}%>
+            </table>
           <button id="btnExport" onclick="fnExcelReport();"> Create Export </button>
         </div>
         <script>

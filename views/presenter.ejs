@@ -71,7 +71,7 @@
 				<div class="col-md-4">
 					<div class="form-group">
 						<label for="topic">Title</label>
-						<select name="topic" id="topic" class="form-control">
+						<select multiple name="topic" id="topic" class="form-control">
 							<% for(let i = 0 ; i < list.length; i++) { %>
 								<option value= '<%= list[i].add %>'><%= list[i].add %></option>							
 								<% } %> 
