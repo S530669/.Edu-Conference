@@ -31,7 +31,59 @@
               <th>Program</th>
               <th>Payment Status</th>
             </tr>
+
             <% for(let i = 0 ; i < list.length; i++) { %>
+              <%  var proj = list[i].program.split(",")
+              console.log(proj)
+                  if(proj.length>1){ 
+                  for(let j = 0 ; j < proj.length; j++) { %>
+                  <tr>
+                    <td>
+                      <%= i+1 %>
+                    </td>
+                    <td>
+                      <%= list[i].fname %>
+                    </td>
+                    <td>
+                      <%= list[i].lname %>
+                    </td>
+                    <td>
+                      <%= list[i].email %>
+                    </td>
+                    <td>
+                      <%= list[i].contact %>
+                    </td>
+                    <td>
+                      <%= list[i].institution %>
+                    </td>
+                    <td>
+                      <%= list[i].institutionc %>
+                    </td>
+                    <td>
+                      <%= list[i].institutions %>
+                    </td>
+                    <td>
+                      <%= list[i].zipcode %>
+                    </td>
+                    <td>
+                      <%= list[i].country %>
+                    </td>
+                    <td>
+                      <%= proj[j] %>
+                    </td>
+                    <form action="/pay" method="POST">
+                      <input type="text" name="pay" value="<%= list[i].pay %>" hidden>
+                      
+                      <%if(list[i].pay ==0){%>
+                        <td><button type="submit" class="btn btn-success">pay</button></td>
+                        <%}%>
+                          <%if(list[i].pay !=0){%>
+                            <td><button disabled class="btn btn-success">paid</button></td>
+                            <%}%>
+                    </form>
+                  </tr>
+                  <%}%>
+              <%} else {%>
               <tr>
                 <td>
                   <%= i+1 %>
@@ -77,7 +129,7 @@
                         <%}%>
                 </form>
               </tr>
-              <% } %>
+              <%}%><%}%>
           </table>
 
           <button id="btnExport" onclick="fnExcelReport();"> Create Export </button>
