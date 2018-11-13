@@ -13,20 +13,20 @@
                 <div class="row">
                     <label for="fname">First Name</label>
                     <div class="form-group">
-                        <input type="text" class="form-control" id="fname" name="firstname" placeholder="Your name..">
+                        <input type="text" class="form-control" id="fname" name="firstname" placeholder="Your name.." pattern="[a-zA-Z ]+" required>
                     </div>
                 </div>
 
                 <div class="row">
                     <label for="lname">Last Name</label>
                     <div class="form-group">
-                        <input type="text" class="form-control" id="lname" name="lastname" placeholder="Your last name..">
+                        <input type="text" class="form-control" id="lname" name="lastname" placeholder="Your last name.." pattern="[a-zA-Z ]+" required>
                     </div>
                 </div>
                 <div class="row">
                     <label for="Email address">Email address</label>
                     <div class="form-group">
-                        <input type="text" class="form-control" name="email" placeholder="Enter email address">
+                        <input type="text" class="form-control" name="email" placeholder="Enter email address" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$+" required>
                     </div>
                 </div>
                 <div class="row">
