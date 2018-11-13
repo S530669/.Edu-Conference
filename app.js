@@ -112,15 +112,22 @@ app.post("/attendee", (req, res) => {
         .then(item => {
 
           db.collection('attendees').find().toArray(function (err, result) {
-
+            var n = req.body.program.length;
             if (err) throw err;
-            if (req.body.food == null) {
-              var amount = '$' + (125);
+            if (req.body.food == null) {  
+              var amount1 = 0;
             }
             else {
-              var amount = '$' + (125 + 20);
+              var amount1 = 20;
             }
-            res.render('cart.ejs', { list: req.body.fname,list1: req.body.lname,list2: req.body.email, amount });
+            if(n == 1) {
+              var amount2 = 125;
+            }
+            else{
+              var amount2 = 125 + (125 * (n-1));
+            }
+            var amount = amount1 + amount2
+            res.render('cart.ejs', { list: req.body.fname,list1: req.body.lname,list2: req.body.email, amount, quantity: req.body.program.length });
           })
         })
         .catch(err => {
@@ -208,13 +215,21 @@ app.post("/graduatestudent", (req, res) => {
         .then(item => {
           db.collection('attendees').find().toArray(function (err, result) {
 
+            var n = req.body.program.length;
             if (err) throw err;
-            if (req.body.food == null) {
-              var amount = '$' + (125);
+            if (req.body.food == null) {  
+              var amount1 = 0;
             }
             else {
-              var amount = '$' + (125 + 20);
+              var amount1 = 20;
             }
+            if(n == 1) {
+              var amount2 = 125;
+            }
+            else{
+              var amount2 = 125 + (125 * (n-1));
+            }
+            var amount = amount1 + amount2
             res.render('cart.ejs', { list: req.body.fname,list1: req.body.lname,list2: req.body.email, amount });
           })
         })
