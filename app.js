@@ -527,6 +527,7 @@ app.post("/send", function (request, response) {
 // Reply in admin contact
 
 app.post("/reply", function (request, response) {
+  
   db.collection('contacts').update({ 'reply': request.body.reply }, { $set: { 'reply': "replied" } });
  
       db.collection('contacts').find().toArray(function (err, result) {
@@ -561,7 +562,8 @@ app.post("/presenterpay", function (request, response) {
     
   });
   app.post("/vendorpay", function (request, response) {
-    db.collection('vendors').update({ 'pay': request.body.pay }, { $set: { 'pay': "paid" } });
+    db.collection('vendors').update({ 'email': request.body.email1 }, { $set: { 'pay': "paid" } });
+    //db.collection('vendors').update({ 'pay': request.body.pay }, { $set: { 'pay': "paid" } });
    
         db.collection('vendors').find().toArray(function (err, result) {
           if (err) throw err;

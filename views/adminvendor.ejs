@@ -32,14 +32,14 @@
       <td><%= list[i].city %></td>
       <td><%= list[i].State %></td>
       <td><%= list[i].Zip %></td>
-      <td><%= list[i].URL %></td>
+      <td><%= list[i].URL %></td>,
       <td><%= list[i].name %></td>
       <td><%= list[i].Title %></td>
       <td><%= list[i].email %></td>
       <td><%= list[i].contact %></td>
       <form action="/vendorpay" method="POST">
         <input type="text" name="pay" value="<%= list[i].pay %>" hidden>
-        
+        <input type="text" value="<%= list[i].email %>" name="email1" hidden>
         <%if(list[i].pay ==0){%>
           <td><button type="submit" class="btn btn-success">pay</button></td>
           <%}%>
