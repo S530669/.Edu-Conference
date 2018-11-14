@@ -112,15 +112,22 @@ app.post("/attendee", (req, res) => {
         .then(item => {
 
           db.collection('attendees').find().toArray(function (err, result) {
-
+            var n = req.body.program.length;
             if (err) throw err;
-            if (req.body.food == null) {
-              var amount = '$' + (125);
+            if (req.body.food == null) {  
+              var amount1 = 0;
             }
             else {
-              var amount = '$' + (125 + 20);
+              var amount1 = 20;
             }
-            res.render('cart.ejs', { list: req.body.fname,list1: req.body.lname,list2: req.body.email, amount });
+            if(n == 1) {
+              var amount2 = 125;
+            }
+            else{
+              var amount2 = 125 + (125 * (n-1));
+            }
+            var amount = amount1 + amount2
+            res.render('cart.ejs', { list: req.body.fname,list1: req.body.lname,list2: req.body.email, amount, quantity: req.body.program.length });
           })
         })
         .catch(err => {
@@ -208,14 +215,22 @@ app.post("/graduatestudent", (req, res) => {
         .then(item => {
           db.collection('attendees').find().toArray(function (err, result) {
 
+            var n = req.body.program.length;
             if (err) throw err;
-            if (req.body.food == null) {
-              var amount = '$' + (125);
+            if (req.body.food == null) {  
+              var amount1 = 0;
             }
             else {
-              var amount = '$' + (125 + 20);
+              var amount1 = 20;
             }
-            res.render('cart.ejs', { list: req.body.name, list1: req.body.email, amount });
+            if(n == 1) {
+              var amount2 = 125;
+            }
+            else{
+              var amount2 = 125 + (125 * (n-1));
+            }
+            var amount = amount1 + amount2
+            res.render('cart.ejs', { list: req.body.fname,list1: req.body.lname,list2: req.body.email, amount });
           })
         })
         .catch(err => {
@@ -242,7 +257,7 @@ app.post("/vendor", (req, res) => {
             else {
               var amount = '$' + (125 + 20);
             }
-            res.render('cart.ejs', { list: req.body.name, list1: req.body.email, amount });
+            res.render('cart.ejs', { list: req.body.cname, list1: req.body.name, list2: req.body.email, amount });
           })
           //res.send("Items saved successfully");
         })
@@ -536,8 +551,42 @@ app.post("/reply", function (request, response) {
       });
     
   });
+//payment status in adminattendee page
 
+app.post("/pay", function (request, response) {
+  db.collection('attendees').update({ 'pay': request.body.pay }, { $set: { 'pay': "paid" } });
+ 
+      db.collection('attendees').find().toArray(function (err, result) {
+        if (err) throw err;
+        response.redirect('/adminattendee')
 
+      });
+    
+  });
+  //payment status in adminattendee page
+
+app.post("/presenterpay", function (request, response) {
+  db.collection('presenters').update({ 'pay': request.body.pay }, { $set: { 'pay': "paid" } });
+ 
+      db.collection('presenters').find().toArray(function (err, result) {
+        if (err) throw err;
+        response.redirect('/AdminPresenter')
+
+      });
+    
+  });
+  app.post("/vendorpay", function (request, response) {
+    db.collection('vendors').update({ 'pay': request.body.pay }, { $set: { 'pay': "paid" } });
+   
+        db.collection('vendors').find().toArray(function (err, result) {
+          if (err) throw err;
+          response.redirect('/adminvendor')
+  
+        });
+      
+    });
+
+    
 
   //  Delete Deadlines Info from Database
  

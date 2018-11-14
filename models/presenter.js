@@ -12,7 +12,9 @@ var Presenter = new Schema({
     "subject": { type: String, required: true },
     "food": { type: String, required: false },
     "confirm": { type: String, required: false },
-    "delete": { type: String, required: false }
+    "delete": { type: String, required: false },
+    "pay": { type: String, required: false }
+    
 });
 
 module.exports = mongoose.model('Presenter', Presenter);

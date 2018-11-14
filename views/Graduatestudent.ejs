@@ -24,7 +24,7 @@
 				<div class="col-md-4">
 					<div class="form-group">
 						<label for="name">First Name</label>
-						<input type="text" class="form-control" id="fname" name="fname" required>
+						<input type="text" class="form-control" id="fname" name="fname" pattern="[a-zA-Z]+" required>
 					</div>
 				</div>
 				<div class="col-md-4"></div>
@@ -34,7 +34,7 @@
 				<div class="col-md-4">
 					<div class="form-group">
 						<label for="name">Last Name</label>
-						<input type="text" class="form-control" id="lname" name="lname" required>
+						<input type="text" class="form-control" id="lname" name="lname" pattern="[a-zA-Z]+" required>
 					</div>
 				</div>
 				<div class="col-md-4"></div>
@@ -44,7 +44,7 @@
 				<div class="col-md-4">
 					<div class="form-group">
 						<label for="email">Email Adress</label>
-						<input type="email" class="form-control" id="email" name="email" required></div>
+						<input type="email" class="form-control" id="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$+" required></div>
 				</div>
 				<div class="col-md-4"></div>
 			</div>
@@ -53,7 +53,7 @@
 				<div class="col-md-4">
 					<div class="form-group">
 						<label for="contact">Contact Number</label>
-						<input type="text" class="form-control" id="contact" name="contact" required></div>
+						<input type="text" class="form-control" id="contact" name="contact"  pattern="[0-9]{10}" required></div>
 				</div>
 				<div class="col-md-4"></div>
 			</div>
@@ -62,7 +62,7 @@
 				<div class="col-md-4">
 					<div class="form-group">
 						<label for="school">Institution</label>
-						<input type="school" class="form-control" id="institution" name="institution"></div>
+						<input type="school" class="form-control" id="institution" name="institution" pattern="[a-zA-Z]+"  required ></div>
 				</div>
 				<div class="col-md-4"></div>
 			</div>
@@ -71,7 +71,7 @@
 				<div class="col-md-4">
 					<div class="form-group">
 						<label for="school">Institution City</label>
-						<input type="school" class="form-control" id="institutionc" name="institutionc"></div>
+						<input type="school" class="form-control" id="institutionc" name="institutionc"  pattern="[a-zA-Z]+"  required></div>
 				</div>
 				<div class="col-md-4"></div>
 			</div>
@@ -80,7 +80,7 @@
 				<div class="col-md-4">
 					<div class="form-group">
 						<label for="school">Institution State</label>
-						<input type="school" class="form-control" id="institutions" name="institutions"></div>
+						<input type="school" class="form-control" id="institutions" name="institutions"  pattern="[a-zA-Z]+"  required></div>
 				</div>
 				<div class="col-md-4"></div>
 			</div>
@@ -89,7 +89,7 @@
 				<div class="col-md-4">
 					<div class="form-group">
 						<label for="school">Zip Code</label>
-						<input type="school" class="form-control" id="zipcode" name="zipcode"></div>
+						<input type="school" class="form-control" id="zipcode" name="zipcode" pattern="[0-9]"  required></div>
 				</div>
 				<div class="col-md-4"></div>
 			</div>
@@ -98,7 +98,7 @@
 				<div class="col-md-4">
 					<div class="form-group">
 						<label for="school">Country</label>
-						<input type="school" class="form-control" id="country" name="country"></div>
+						<input type="school" class="form-control" id="country" name="country" pattern="[a-zA-Z ]+"  required></div>
 				</div>
 				<div class="col-md-4"></div>
 			</div>
@@ -107,7 +107,7 @@
 				<div class="col-md-4">
 					<div class="form-group">
 						<label for="topic">Program</label>
-						<select  name="program" id="program" class="form-control">
+						<select multiple name="program" id="program" class="form-control">
 							<% for(let i = 0 ; i < list.length; i++) { %>
 								<option value= '<%= list[i].add %>'><%= list[i].add %></option>							
 								<% } %> 
@@ -132,5 +132,7 @@
 				<div class="col-md-4">
 					<button type="submit" class="btn btn-primary">Sumbit</button></div>
 				<div class="col-md-4"></div>
+				<input type="text" name="reply" hidden>
+				<input type="text" name="pay" hidden>
 		</form>
 		</div>

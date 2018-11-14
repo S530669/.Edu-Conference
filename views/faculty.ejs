@@ -40,7 +40,7 @@
 								<!-- Modal Header -->
 								<div class="modal-header">
 									<h3 class="modal-title">Enter email for coupon code</h3>
-									<button type="button" class="close" data-dismiss="modal">&times;</button>
+									<button type="button" name="genterate"class="close" data-dismiss="modal">&times;</button>
 								</div>
 
 								<!-- Modal body -->
@@ -49,7 +49,7 @@
 									<input type="email" class="form-control" name="email1" id="email1" required>
 								</div>
 								<div class="ven">
-									<button type="submit" class="btn btn-primary">Submit</button></div>
+									<button type="submit" name="save" class="btn btn-primary">Submit</button></div>
 								<div class="modal-footer">
 								</div>
 							</div>
@@ -103,7 +103,7 @@
 				<div class="col-md-4">
 					<div class="form-group">
 						<label for="topic">Program</label>
-							<select  name="program" id="program" class="form-control">
+							<select multiple name="program" id="program" class="form-control">
 								<% for(let i = 0 ; i < list.length; i++) { %>
 									<option value= '<%= list[i].add %>'><%= list[i].add %></option>							
 									<% } %> 
@@ -127,7 +127,9 @@
 			<div class="row">
 				<div class="col-md-4"></div>
 				<div class="col-md-4">
-					<button type="submit" class="btn btn-primary" id="coupon1">Submit</button></div>
+					<button type="submit" name="submit" class="btn btn-primary" id="coupon1">Submit</button></div>
 				<div class="col-md-4"></div>
+				<input type="text" name="reply" hidden>
+				<input type="text" name="pay" hidden>
 		</form>
 		</div>

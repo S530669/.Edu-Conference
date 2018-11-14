@@ -26,9 +26,21 @@
                                         <div class="col-md-1">
                                                 <input type="text" name="Location" /></div>
                                 </div><br>
+                                <div class="form-group">
+                                        <div class="col-md-2">
+                                                <label for="Program">Program</label></div>
+                                        <div class="col-md-1">
+                                                <input type="text" name="Program" /></div>
+                                </div><br>
+                                <div class="form-group">
+                                        <div class="col-md-2">
+                                                <label for="Description">Description</label></div>
+                                        <div class="col-md-1">
+                                                <input type="text" name="Description" /></div>
+                                </div><br>
                                 <div align="center" class="form-group">
                                         <div class="col-md-7">
-                                                <input type="submit" class="btn btn-primary" value="ADD" /></div><br><br>
+                                                <input type="submit" name="ADD" class="btn btn-primary" value="ADD" /></div><br><br>
                                 </div>
                 </div>
                 </form>
@@ -39,6 +51,8 @@
                                         <th>Time</th>
                                         <th>Activity</th>
                                         <th>Location</th>
+                                        <th>Program</th>
+                                        <th>Description</th>
                                         <th>Delete</th>
                                 </tr>
                         </thead>
@@ -54,6 +68,12 @@
                                         <td>
                                                 <%= list[i].Location %>
                                         </td>
+                                        <td>
+                                                <%= list[i].Program %>
+                                        </td> 
+                                        <td>
+                                                <%= list[i].Description %>
+                                        </td>
 
                                         <form action="/deletepgm" method="POST">
                                                 <input type="text" name="presId" value="<%= list[i]._id %>" hidden>
@@ -65,7 +85,7 @@
         </table><br>
         <form action="/pgmmail" method="POST" align="center">  
                 
-                <button type="submit" onclick="myFunction()" class="btn btn-success">Submit</button>
+                <button type="submit" name="submit" onclick="myFunction()" class="btn btn-success">Submit</button>
         </form>
         <script>
                 function myFunction() {

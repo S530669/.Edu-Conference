@@ -108,7 +108,7 @@
 				<div class="col-md-4">
 					<div class="form-group">
 						<label for="topic">Program</label>
-						<select name="program" id="program" class="form-control">
+						<select multiple name="program" id="program" class="form-control">
 							<% for(let i = 0 ; i < list.length; i++) { %>
 								<option value= '<%= list[i].add %>'><%= list[i].add %></option>							
 								<% } %> 
@@ -131,6 +131,8 @@
 			<div class="row">
 				<div class="col-md-4"></div>
 				<div class="col-md-4">
-					<button type="submit" class="btn btn-primary">Submit</button></div>
+					<button type="submit" name="submit" nclass="btn btn-primary">Submit</button></div>
 				<div class="col-md-4"></div>
+				<input type="text" name="reply" hidden>
+				<input type="text" name="pay" hidden>
 		</form>
