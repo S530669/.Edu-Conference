@@ -257,7 +257,7 @@ app.post("/vendor", (req, res) => {
             else {
               var amount = '$' + (125 + 20);
             }
-            res.render('cart.ejs', { list: req.body.cname, list1: req.body.name, list2: req.body.email, amount });
+            res.render('cart.ejs', { list: req.body.cname, list1: req.body.name, list2: req.body.email, amount, quantity: 1 });
           })
           //res.send("Items saved successfully");
         })
