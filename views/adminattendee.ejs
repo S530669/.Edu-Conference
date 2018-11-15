@@ -73,7 +73,7 @@
                     </td>
                     <form action="/pay" method="POST">
                       <input type="text" name="pay" value="<%= list[i].pay %>" hidden>
-                      
+                      <input type="text" value="<%= list[i].email %>" name="email1" hidden>
                       <%if(list[i].pay ==0){%>
                         <td><button type="submit" class="btn btn-success">pay</button></td>
                         <%}%>
@@ -120,7 +120,7 @@
                 </td>
                 <form action="/pay" method="POST">
                   <input type="text" name="pay" value="<%= list[i].pay %>" hidden>
-                  
+                  <input type="text" value="<%= list[i].email %>" name="email1" hidden>
                   <%if(list[i].pay ==0){%>
                     <td><button type="submit" class="btn btn-success">pay</button></td>
                     <%}%>

@@ -555,7 +555,7 @@ app.post("/reply", function (request, response) {
 //payment status in adminattendee page
 
 app.post("/pay", function (request, response) {
-  db.collection('attendees').update({ 'pay': request.body.pay }, { $set: { 'pay': "paid" } });
+  db.collection('attendees').update({ 'email': request.body.email1 }, { $set: { 'pay': "paid" } });
  
       db.collection('attendees').find().toArray(function (err, result) {
         if (err) throw err;
@@ -567,7 +567,7 @@ app.post("/pay", function (request, response) {
   //payment status in adminattendee page
 
 app.post("/presenterpay", function (request, response) {
-  db.collection('presenters').update({ 'pay': request.body.pay }, { $set: { 'pay': "paid" } });
+  db.collection('presenters').update({ 'email': request.body.email1 }, { $set: { 'pay': "paid" } });
  
       db.collection('presenters').find().toArray(function (err, result) {
         if (err) throw err;
