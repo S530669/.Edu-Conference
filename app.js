@@ -112,7 +112,10 @@ app.post("/attendee", (req, res) => {
         .then(item => {
 
           db.collection('attendees').find().toArray(function (err, result) {
+            if(req.body.program instanceof Array)
             var n = req.body.program.length;
+            else
+            var n = req.body.program.split(",").length;
             if (err) throw err;
             if (req.body.food == null) {  
               var amount1 = 0;
@@ -120,14 +123,14 @@ app.post("/attendee", (req, res) => {
             else {
               var amount1 = 20;
             }
-            if(n == 1) {
-              var amount2 = 125;
+            if(n > 1) {
+              var amount2 = 125 * n
             }
             else{
-              var amount2 = 125 + (125 * (n-1));
+              var amount2 = 125;
             }
             var amount = amount1 + amount2
-            res.render('cart.ejs', { list: req.body.fname,list1: req.body.lname,list2: req.body.email, amount, quantity: req.body.program.length });
+            res.render('cart.ejs', { list: req.body.fname,list1: req.body.lname,list2: req.body.email, amount, quantity: n });
           })
         })
         .catch(err => {
@@ -215,7 +218,10 @@ app.post("/graduatestudent", (req, res) => {
         .then(item => {
           db.collection('attendees').find().toArray(function (err, result) {
 
+            if(req.body.program instanceof Array)
             var n = req.body.program.length;
+            else
+            var n = req.body.program.split(",").length;
             if (err) throw err;
             if (req.body.food == null) {  
               var amount1 = 0;
@@ -223,14 +229,14 @@ app.post("/graduatestudent", (req, res) => {
             else {
               var amount1 = 20;
             }
-            if(n == 1) {
-              var amount2 = 125;
+            if(n > 1) {
+              var amount2 = 125 * n
             }
             else{
-              var amount2 = 125 + (125 * (n-1));
+              var amount2 = 125;
             }
             var amount = amount1 + amount2
-            res.render('cart.ejs', { list: req.body.fname,list1: req.body.lname,list2: req.body.email, amount });
+            res.render('cart.ejs', { list: req.body.fname,list1: req.body.lname,list2: req.body.email, amount, quantity: next });
           })
         })
         .catch(err => {
