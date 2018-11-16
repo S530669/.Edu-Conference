@@ -37,6 +37,11 @@
                 <th>Time</th>
                 <th>Activity</th>
                 <th>Location</th>
+                <th>Program</th>
+                <th>Description</th>
+                <th>Presenter</th>
+                <th>Presentation</th>
+                
 
             </tr>
         </thead>
@@ -53,6 +58,18 @@
                 <td>
                     <%= list1[i].Location %>
                 </td>
+                <td>
+                    <%= list1[i].Program %>
+            </td> 
+            <td>
+                    <%= list1[i].Description %>
+            </td>
+            <td>
+                <%= list1[i].Presenter%>
+        </td>
+            <td>
+                <a href="<%= list1[i].Presentation %>"><%= list1[i].Presentation %>
+        </td>
 
             </tr>
             <% } %>

@@ -6,7 +6,9 @@ var ProgramDetails = new Schema({
     "Activity": {type: String, required: true},
     "Location": {type: String, required: true},
     "Program": {type: String, required: true},
-    "Description": {type: String, required: true}
+    "Description": {type: String, required: true},
+    "Presenter": {type: String, required: true},
+    "Presentation": {type: String, required: true}
     
     });
 

@@ -5,7 +5,7 @@
 
 
                 <div class="col-md-4"></div>
-                <div class="col-md-8">
+                <div class="col-md-8"><br><br><br><br>
 
                         <form method="POST" action="/pgm">
                                 <div class="form-group">
@@ -38,6 +38,18 @@
                                         <div class="col-md-1">
                                                 <input type="text" name="Description" /></div>
                                 </div><br>
+                                <div class="form-group">
+                                        <div class="col-md-2">
+                                                <label for="Presenter">Presenter</label></div>
+                                        <div class="col-md-1">
+                                                <input type="text" name="Presenter" /></div>
+                                </div><br>
+                                <div class="form-group">
+                                        <div class="col-md-2">
+                                                <label for="Presentation">Presentation</label></div>
+                                        <div class="col-md-1">
+                                                <input type="text" name="Presentation" /></div>
+                                </div><br>
                                 <div align="center" class="form-group">
                                         <div class="col-md-7">
                                                 <input type="submit" name="ADD" class="btn btn-primary" value="ADD" /></div><br><br>
@@ -53,6 +65,8 @@
                                         <th>Location</th>
                                         <th>Program</th>
                                         <th>Description</th>
+                                        <th>Presenter</th>
+                                        <th>Presentation</th>
                                         <th>Delete</th>
                                 </tr>
                         </thead>
@@ -73,6 +87,12 @@
                                         </td> 
                                         <td>
                                                 <%= list[i].Description %>
+                                        </td>
+                                        <td>
+                                                <%= list[i].Presenter%>
+                                        </td>
+                                        <td>
+                                                <a href="<%= list[i].Presentation %>"><%= list[i].Presentation %>
                                         </td>
 
                                         <form action="/deletepgm" method="POST">
