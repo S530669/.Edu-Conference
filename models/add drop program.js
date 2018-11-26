@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var addprograms = new Schema({
-    "add": {type:String, required:true},
+    "add": {type:String, required:true}
            
     });
 

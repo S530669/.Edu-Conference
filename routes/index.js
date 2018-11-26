@@ -3,15 +3,23 @@ var router = express.Router();
 var path = require('path');
 var mongoose = require('mongoose');
 var db = mongoose.connection;
+
 router.get('/', function (request, response) {
   db.collection('feedetails').find().toArray(function (err, result) {
+    db.collection('names').find().toArray(function (err, result1) {
     if (err) throw err;
-    response.render('homepage.ejs', { list: result });
+    response.render('homepage.ejs', { list: result, list1: result1});
+    })
   })
 });
 
 router.get('/homepage', function (request, response) {
-  response.render('homepage.ejs');
+  db.collection('feedetails').find().toArray(function (err, result) {
+    db.collection('names').find().toArray(function (err, result1) {
+    if (err) throw err;
+    response.render('homepage.ejs', { list: result, list1: result1});
+    })
+  })
 });
 
 router.get('/attendee', function (request, response) {
@@ -72,6 +80,8 @@ router.get("/deadlines", function (request, response) {
 router.get("/contact", function (request, response) {
   response.render('contact.ejs');
 });
+
+
 
 router.get("/Conference", function (request, response) {
   db.collection('deadlines').find().toArray(function (err, result) {
@@ -193,6 +203,15 @@ function ensureAuthenticated(req, res, next) {
       if (err) throw err;
       console.log(result);
       response.render('AdminPresenter.ejs', { list: result });
+
+    });
+  });
+
+  router.get("/Conferencename", function (request, response) {
+    db.collection('names').find().toArray(function (err, result) {
+      if (err) throw err;
+      console.log(result);
+      response.render('conferencename.ejs', { list: result });
 
     });
   });

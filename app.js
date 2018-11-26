@@ -23,6 +23,7 @@ var ObjectId = require('mongodb').ObjectID;
 var bcrypt = require('bcryptjs');
 
 
+
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
@@ -37,6 +38,8 @@ var FeeDetails = require('./models/FeeDetails.js');
 var ProgramDetails = require('./models/ProgramDetails.js');
 var addprograms = require('./models/add drop program.js');
 var checkpayments = require('./models/check.js');
+var Name = require('./models/conferencename.js');
+
 
 
 
@@ -309,6 +312,23 @@ app.post("/contact", (req, res) => {
 
 });
 
+//Store name into database
+app.post("/conferencename", (req, res) => {
+  
+    var myData = new Name(req.body);
+    myData.save()
+      .then(item => {
+        res.render("conferencename.ejs");
+  
+      })
+  
+      .catch(err => {
+        //console.log(err);
+        res.status(400).send("unable to save to database");
+      });
+  
+  });
+
 
 //deletequantity
 
@@ -467,7 +487,7 @@ app.post("/mail", function (request, response) {
     from: 'gdp2.fastrack@gmail.com',
     to: request.body.email1,
     subject: 'Coupon code for code registration',
-    html: '<p>Hello,</p><p>Here is the coupon code that you need enter:</p>' + code + '<p>Thanks&Regards</p><p>.edu team</p> ',
+    html: '<p>Hello,</p><p>Here is the coupon code that you need enter:</p>' + code + '<p>Thanks&Regards</p><p>conference team</p> ',
   };
   console.log(request.body.email1);
   transporter.sendMail(mailOptions, function (error, info) {
@@ -496,8 +516,8 @@ app.post("/send", function (request, response) {
   var mailOptions = {
     from: 'gdp2.fastrack@gmail.com',
     to: request.body.email1,
-    subject: 'Acceptance from .EDU Conference.',
-    html: '<p>Hello,</p><p>Your application as a presenter to .EDU Conference is successfully accepted.</p><p>Here is the link to pay through card : <a href="http://127.0.0.1:8082/PayThroughCards"> Click here</a></br></p><p>Here is the link to pay through check : <a href="http://127.0.0.1:8082/Paymentthroughcheck"> Click here</a></br></p><p>Thanks&Regards</p><p>.edu team</p> ',
+    subject: 'Acceptance from Conference.',
+    html: '<p>Hello,</p><p>Your application as a presenter to Conference is successfully accepted.</p><p>Here is the link to pay through card : <a href="http://127.0.0.1:8082/PayThroughCards"> Click here</a></br></p><p>Here is the link to pay through check : <a href="http://127.0.0.1:8082/Paymentthroughcheck"> Click here</a></br></p><p>Thanks&Regards</p><p>conference team</p> ',
   };
   console.log(request.body.email1);
   transporter.sendMail(mailOptions, function (error, info) {
@@ -528,8 +548,8 @@ app.post("/send", function (request, response) {
    var mailOptions = {
      from: 'gdp2.fastrack@gmail.com',
      to: request.body.email1,
-     subject: 'Decline from .EDU Conference.',
-     html: '<p>Hello,</p><p>We are sorry to inform you that, your application as a Presenter to .EDU Conference is rejected.</p><p>Thanks&Regards</p><p>.edu team</p> ',
+     subject: 'Decline from Conference.',
+     html: '<p>Hello,</p><p>We are sorry to inform you that, your application as a Presenter to the Conference is rejected.</p><p>Thanks&Regards</p><p>conference team</p> ',
    };
    transporter.sendMail(mailOptions, function(error, info){
      if (error) {
@@ -687,11 +707,21 @@ app.post("/add", (req, res) => {
   });
  
  });
+
+   // 
 //  Drop
 app.post("/addpgm",function(request,response){
   var query = {"_id" : ObjectId(request.body.presId)};
   db.collection('addprograms').deleteOne(query,function(err, result){
     response.redirect('/Add')
+ });
+});
+
+//Drop Conference name
+app.post("/deletename",function(request,response){
+  var query = {"_id" : ObjectId(request.body.presId)};
+  db.collection('names').deleteOne(query,function(err, result){
+    response.redirect('/conferencename')
  });
 });
 

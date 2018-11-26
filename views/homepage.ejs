@@ -9,7 +9,10 @@
         }
         </style>    
 </head>
-<h3 class="p1">Welcome to .EDU Conference</h3><br>
+<h3 class="p1">Welcome to  <% for(let i = 0 ; i < list1.length; i++) { %>
+    <%= list1[i].conference %>
+    <% } %>
+    </h3><br>
 
     <table class="w3-table-all w3-card-4" id="t" align="center">
         <thead>
