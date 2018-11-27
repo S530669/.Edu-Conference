@@ -114,7 +114,20 @@ app.post("/attendee", (req, res) => {
     if (result == 0) {
       myData1.save()
         .then(item => {
-
+          var attendee = 0
+          var food = 0
+          db.collection('amounts').find().toArray(function(err,result){
+           // console.log("Result:"+result)
+            if(result && result instanceof Array){
+              //console.log(result.length)
+              for(var i = 0; i< result.length; i++){
+                //console.log(result[i])
+                if(result[i]['type'] == 'Attendee')
+                  attendee = parseFloat(result[i]['amount'])
+                else if(result[i]['type'] == 'Food')
+                    food = parseFloat(result[i]['amount'])
+              }
+            }
           db.collection('attendees').find().toArray(function (err, result) {
             if(req.body.program instanceof Array)
             var n = req.body.program.length;
@@ -125,16 +138,17 @@ app.post("/attendee", (req, res) => {
               var amount1 = 0;
             }
             else {
-              var amount1 = 20;
+              var amount1 = food;
             }
             if(n > 1) {
-              var amount2 = 125 * n
+              var amount2 = attendee * n
             }
             else{
-              var amount2 = 125;
+              var amount2 = attendee;
             }
             var amount = amount1 + amount2
             res.render('cart.ejs', { list: req.body.fname,list1: req.body.lname,list2: req.body.email, amount, quantity: n });
+          })
           })
         })
         .catch(err => {
@@ -220,9 +234,21 @@ app.post("/graduatestudent", (req, res) => {
     if (result == 0) {
       myData1.save()
         .then(item => {
+          var graduate = 0
+          var food = 0
+          db.collection('amounts').find().toArray(function(err,result){
+           // console.log("Result:"+result)
+            if(result && result instanceof Array){
+             // console.log(result.length)
+              for(var i = 0; i< result.length; i++){
+                //console.log(result[i])
+                if(result[i]['type'] == 'Graduate Student')
+                  student = parseFloat(result[i]['amount'])
+                else if(result[i]['type'] == 'Food')
+                    food = parseFloat(result[i]['amount'])
+              }
+            }
           db.collection('attendees').find().toArray(function (err, result) {
-            db.collection('presenters').find().toArray(function (err, result1){
-              console.log(result1)
 
            if(req.body.program instanceof Array)
             var n = req.body.program.length;
@@ -233,16 +259,16 @@ app.post("/graduatestudent", (req, res) => {
               var amount1 = 0;
             }
             else {
-              var amount1 = 20;
+              var amount1 = food;
             }
             if(n > 1) {
-              var amount2 = 125 * n
+              var amount2 = student * n
             }
             else{
-              var amount2 = 125;
+              var amount2 = student;
             }
             var amount = amount1 + amount2
-            res.render('cart.ejs', { list: req.body.fname,list1: req.body.lname,list2: req.body.email, amount, quantity: next });
+            res.render('cart.ejs', { list: req.body.fname,list1: req.body.lname,list2: req.body.email, amount, quantity: n });
           })
         })
         })
@@ -262,10 +288,23 @@ app.post("/vendor", (req, res) => {
     if (result == 0) {
       myData1.save()
         .then(item => {
+          var graduate = 0
+          var food = 0
+          db.collection('amounts').find().toArray(function(err,result){
+           // console.log("Result:"+result)
+            if(result && result instanceof Array){
+             // console.log(result.length)
+              for(var i = 0; i< result.length; i++){
+                //console.log(result[i])
+                if(result[i]['type'] == 'Vendor')
+                  vendor = parseFloat(result[i]['amount'])
+              }
+            }
           db.collection('vendors').find().toArray(function (err, result) {
-            var amount = 100;
+            var amount = vendor;
             res.render('cart.ejs', { list: req.body.cname, list1: req.body.name, list2: req.body.email, amount, quantity: 1 });
           })
+        })
           //res.send("Items saved successfully");
         })
         .catch(err => {

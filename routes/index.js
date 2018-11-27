@@ -133,10 +133,10 @@ function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
   } else {
-
-
-    res.redirect('/users/login');
+  res.redirect('/users/login');
   }
+
+}
 
   router.get("/adminhomepage", function (request, response) {
     response.render('adminhomepage.ejs');
@@ -224,7 +224,6 @@ function ensureAuthenticated(req, res, next) {
       response.render('amount.ejs', { list: result });
     })
   });
-}
 
 
 
