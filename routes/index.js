@@ -207,13 +207,22 @@ function ensureAuthenticated(req, res, next) {
     });
   });
 
-  router.get("/Conferencename", function (request, response) {
+  router.get("/conferencename", function (request, response) {
     db.collection('names').find().toArray(function (err, result) {
       if (err) throw err;
       console.log(result);
       response.render('conferencename.ejs', { list: result });
 
     });
+  });
+
+  //Update Prices
+  router.get("/amount", function (request, response) {
+    db.collection('amounts').find().toArray(function (err, result) {
+      if (err) throw err;
+      console.log(result);
+      response.render('amount.ejs', { list: result });
+    })
   });
 }
 

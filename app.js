@@ -39,6 +39,7 @@ var ProgramDetails = require('./models/ProgramDetails.js');
 var addprograms = require('./models/add drop program.js');
 var checkpayments = require('./models/check.js');
 var Name = require('./models/conferencename.js');
+var amount = require('./models/amount.js');
 
 
 
@@ -220,8 +221,10 @@ app.post("/graduatestudent", (req, res) => {
       myData1.save()
         .then(item => {
           db.collection('attendees').find().toArray(function (err, result) {
+            db.collection('presenters').find().toArray(function (err, result1){
+              console.log(result1)
 
-            if(req.body.program instanceof Array)
+           if(req.body.program instanceof Array)
             var n = req.body.program.length;
             else
             var n = req.body.program.split(",").length;
@@ -242,6 +245,7 @@ app.post("/graduatestudent", (req, res) => {
             res.render('cart.ejs', { list: req.body.fname,list1: req.body.lname,list2: req.body.email, amount, quantity: next });
           })
         })
+        })
         .catch(err => {
           res.status(400).send("unable to save to database");
         });
@@ -259,13 +263,7 @@ app.post("/vendor", (req, res) => {
       myData1.save()
         .then(item => {
           db.collection('vendors').find().toArray(function (err, result) {
-            if (err) throw err;
-            if (req.body.food == null) {
-              var amount = '$' + (125);
-            }
-            else {
-              var amount = '$' + (125 + 20);
-            }
+            var amount = 100;
             res.render('cart.ejs', { list: req.body.cname, list1: req.body.name, list2: req.body.email, amount, quantity: 1 });
           })
           //res.send("Items saved successfully");
@@ -318,7 +316,7 @@ app.post("/conferencename", (req, res) => {
     var myData = new Name(req.body);
     myData.save()
       .then(item => {
-        res.render("conferencename.ejs");
+        res.redirect('/conferencename');
   
       })
   
@@ -517,7 +515,7 @@ app.post("/send", function (request, response) {
     from: 'gdp2.fastrack@gmail.com',
     to: request.body.email1,
     subject: 'Acceptance from Conference.',
-    html: '<p>Hello,</p><p>Your application as a presenter to Conference is successfully accepted.</p><p>Here is the link to pay through card : <a href="http://127.0.0.1:8082/PayThroughCards"> Click here</a></br></p><p>Here is the link to pay through check : <a href="http://127.0.0.1:8082/Paymentthroughcheck"> Click here</a></br></p><p>Thanks&Regards</p><p>conference team</p> ',
+    html: '<p>Hello,</p><p>Your application as a presenter to Conference is successfully accepted.</p><p>Here is the link to pay through card : <a href="http://127.0.0.1:8082/PayThroughCards"> Click here</a></br></p><p>Here is the link to pay through Cheque : <a href="http://127.0.0.1:8082/Paymentthroughcheck"> Click here</a></br></p><p>Thanks&Regards</p><p>conference team</p> ',
   };
   console.log(request.body.email1);
   transporter.sendMail(mailOptions, function (error, info) {
@@ -691,7 +689,6 @@ res.status(400).send("unable to save to database");
 });
 
 //  Add or Drop Program Info to Database
-// Add
 app.post("/add", (req, res) => {
   
   var myData = new addprograms(req.body);
@@ -708,7 +705,23 @@ app.post("/add", (req, res) => {
  
  });
 
-   // 
+ //Update Prices
+ app.post("/amount", (req, res) => {
+  
+  var myData = new amount(req.body);
+  myData.save()
+  .then(item => {
+    console.log(req.body)
+    res.redirect('/amount');
+ 
+ })
+ 
+ .catch(err => {
+  res.status(400).send("unable to save to database");
+  });
+ 
+ });
+
 //  Drop
 app.post("/addpgm",function(request,response){
   var query = {"_id" : ObjectId(request.body.presId)};
