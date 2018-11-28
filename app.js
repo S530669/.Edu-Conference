@@ -37,7 +37,6 @@ var Deadlines = require('./models/Deadlines.js');
 var FeeDetails = require('./models/FeeDetails.js');
 var ProgramDetails = require('./models/ProgramDetails.js');
 var addprograms = require('./models/add drop program.js');
-var checkpayments = require('./models/check.js');
 var Name = require('./models/conferencename.js');
 var amount = require('./models/amount.js');
 
