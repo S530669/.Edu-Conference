@@ -261,7 +261,6 @@ router.get("/foodcount", function(request, response) {
  
 });
 
-
 //Delete Database
 
 router.get("/deletedatabase", function (request, response) {
