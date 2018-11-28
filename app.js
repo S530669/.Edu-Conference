@@ -777,6 +777,20 @@ app.post("/deletename",function(request,response){
  });
 });
 
+
+//Update amount
+app.post("/updateamount/:id",function(request,response){
+  var ty = String(request.params.id);
+  var am = parseFloat(request.body.amount)
+  console.log(ty)
+  console.log(am)
+  var query = {"type" : ty};
+  var query1 = { $set: {"amount": am} };
+  db.collection('amounts').updateOne(query, query1, function(err, result){
+    response.redirect('/amount')
+ });
+});
+
 //  Program Details (Room and all) mail option
 app.post("/pgmmail",function(request,response){
   db.collection('programdetails').find().toArray(function(err,result){    

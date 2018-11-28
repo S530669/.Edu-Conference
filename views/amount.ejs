@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <%include adminheader%>
 
 <div class="container"><br>
@@ -11,7 +12,7 @@
                 <input type="text" name="type" /></div>
             <div class="form-group">
                 <label for="add">Amount:</label>
-                <input type="text" name="amount" /></div>
+                <input type="text" name="amount"/></div>
     </div><br><br>
 
     <div align="center" class="form-group">
@@ -34,22 +35,22 @@
                 </tr>
             </thead>
 
+
             <% for(let i = 0 ; i < list.length; i++) { %>
                 <tr>
-                    <td>
+                    <form action="/updateamount/<%= list[i].type %>" method="POST">
+                    <td name="type" id="type">
                         <%= list[i].type %>
                     </td>
-                    <td>
-                        <%= list[i].amount %>
+                    <td contenteditable="true" name="amount" id="amount">
+                       <input name="amount" value="<%= list[i].amount %>" ></input>
                     </td>
-
-                    <form action="/deletename" method="POST">
-                        <input type="text" name="presId" value="<%= list[i]._id %>" hidden>
-                        <td><button type="submit" name="delete" class="btn btn-danger">Delete</button></td>
+                        <td><button type="submit" name="update" class="btn btn-warning">Update</button></td>
                     </form>
 
                 </tr>
                 <% } %>
+                </script>
 
 
     </div>
