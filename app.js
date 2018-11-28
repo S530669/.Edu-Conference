@@ -37,7 +37,6 @@ var Deadlines = require('./models/Deadlines.js');
 var FeeDetails = require('./models/FeeDetails.js');
 var ProgramDetails = require('./models/ProgramDetails.js');
 var addprograms = require('./models/add drop program.js');
-//var checkpayments = require('./models/check.js');
 var Name = require('./models/conferencename.js');
 var amount = require('./models/amount.js');
 
@@ -302,7 +301,7 @@ app.post("/vendor", (req, res) => {
             }
           db.collection('vendors').find().toArray(function (err, result) {
             var amount = vendor;
-            res.render('cart.ejs', { list: req.body.cname, list1: req.body.name, list2: req.body.email, amount, quantity: 1 });
+            res.render('cart.ejs', { list: req.body.cname, list1: req.body.lname, list2: req.body.email, amount, quantity: 1 });
           })
         })
           //res.send("Items saved successfully");

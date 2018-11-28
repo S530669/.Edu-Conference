@@ -16,18 +16,23 @@
 		<p>800 University Drive, OL246<br> Maryville, MO 64468<br> http://nwmissouri.edu/dotedu/
 		</p>
 	</div>
-	<br>
-	<br>
+	
 	<div class="row">
 		<div class="col-md-1"></div>
-		<div class="col-md-2">
+		<div class="col-md-6">
 			<h4><b>Bill to: </b></h4>
-			<p> Name: <br> School Name: <br> Address: </b>
-			</p>
+			<% for(let i = 0 ; i < list.length; i++) { %>
+				
+				<p> Name:  <%= list[i].lname %> </p>
+				<p> Email:  <%= list[i].email %> </p>
+				<p> Address:  <%= list[i].institutionc %>,  <%= list[i].institutions %>,  <%= list[i].zipcode %>,  <%= list[i].country %> </p>
+					
+					
+					<% } %> 
 		</div>
 	</div>
 	<br>
-	<br>
+	
 	<table id="update" align="center">
 		<tr>
 			<th>Description</th>
@@ -37,10 +42,10 @@
 
 		</tr>
 		<tr>
-			<td>Early Bird Registration</td>
+			<td>Registration</td>
 			<td>$ 125.00</td>
-			<td>1</td>
-			<td> $ 125.00</td>
+			<td>2</td>
+			<td> $ 270.00</td>
 		</tr>
 		<tr>
 			<td></td>
@@ -54,7 +59,7 @@
 			<td></td>
 			<td></td>
 			<td>Total</td>
-			<td>$ 125.00</td>
+			<td>$ 270.00</td>
 		</tr>
 	</table>
 	<br><br>
@@ -65,7 +70,7 @@
 		<p> Please include a copy of this invoice with your payment!<br> If you have any questions regarding this invoice,<br></p>
 		<b>Please contact</b> <br> Darla Runyon
 		<br> 660-562-1532
-		<br><a href="drunyon@nwmissouri.edu">drunyon@nwmissouri.edu</a>
+		<br><a href="mailto:drunyon@nwmissouri.edu">drunyon@nwmissouri.edu</a>
 		<br>
 	</div>
 	<div align="center">

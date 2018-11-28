@@ -98,8 +98,17 @@ router.get("/couponcode", function (request, response) {
   response.render('couponcode.ejs');
 });
 
-router.get("/Paymentthroughcheck", function (request, response) {
-  response.render('Paymentthroughcheck.ejs');
+router.get("/Paymentthroughcheck/:id", function (request, response) {
+  var email = String(request.params.id)
+  var quantity = request.body.quantity  
+  var amount = request.body.quantity
+  console.log("Amount"+amount);
+//var email1 = db.collection('ca').find({'email':request.body.email})
+  db.collection('attendees').find({'email':email}).toArray(function (err, result) {
+    //console.log(result)
+    if (err) throw err;    
+    response.render('Paymentthroughcheck.ejs', { list: result });
+  })
 });
 router.get("/PayThroughCards", function (request, response) {
   response.render('PayThroughCards.ejs');
