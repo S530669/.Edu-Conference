@@ -1,5 +1,5 @@
 #Details {
-    font-family: cursive;
+    font-family: 'Times New Roman', Times, serif;
     border-collapse: collapse;
     width: 100%;
 }
@@ -23,7 +23,7 @@
 
 
 #update {
-    font-family: cursive;
+    font-family: 'Times New Roman', Times, serif;
     border-collapse: collapse;
     width: 40%;
 }
@@ -42,7 +42,7 @@
     color: white;
 }
 #add {
-    font-family: cursive;
+    font-family: 'Times New Roman', Times, serif;
     border-collapse: collapse;
     width: 30%;
 }

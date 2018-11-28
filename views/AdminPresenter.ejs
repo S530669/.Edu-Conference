@@ -25,7 +25,8 @@
               <th>Contact Phone</th>
               <th>Target Audience</th>
               <th>Title</th>
-              <th>Attach</th>
+              <th>LinkAttach</th>
+              <th>FileAttach</th>
               <th>Brief Description</th>
               <th>Select</th>
               <th>Reject</th>
@@ -59,7 +60,10 @@
                         <%= proj[j] %>
                       </td>
                       <td>
-                       <a href="<%= list[i].attach %>"><%= list[i].attach %></a>
+                       <a href="<%= list[i].attach1 %>"><%= list[i].attach1 %></a>
+                      </td>
+                      <td>
+                        <%= list[i].attach %>
                       </td>
                       <td>
                         <%= list[i].subject %>
@@ -121,7 +125,10 @@
                     <%= list[i].topic %>
                   </td>
                   <td>
-                   <a href="<%= list[i].attach %>"><%= list[i].attach %></a>
+                   <a href="<%= list[i].attach1 %>"><%= list[i].attach1 %></a>
+                  </td>
+                  <td>
+                    <%= list[i].attach %>
                   </td>
                   <td>
                     <%= list[i].subject %>

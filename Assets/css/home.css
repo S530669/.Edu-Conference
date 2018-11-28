@@ -1,5 +1,6 @@
 body{
-    font-family: cursive;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20px;
     }
     .right{
         float:right;
@@ -11,13 +12,10 @@ body{
         width: 100%;   
         color: Black;
        }
-<<<<<<< HEAD
      
-=======
        .col{
            float: right;
        }
        .ven{
            margin-left: 230px;
        }
->>>>>>> 45485ef268100b1d5d37719e424f9a2f3b4f0181
