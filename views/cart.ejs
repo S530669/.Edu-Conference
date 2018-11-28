@@ -52,10 +52,16 @@
       <div class="col-md-4"></div>
       <div class="col-md-4"></div>
       <div class="col-md-4">
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   <a href='/'><button class="btn btn-success" type="button" value="Continue Shopping" >Back</button></a>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   <a href='/Paymentthroughcheck'><button class="btn btn-success" type="button" name = "paycheck" value="Pay Through Check" >Pay Through Cheque</button></a>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   <a href='/PayThroughCards'><button class="btn btn-success" type="button" name="Pay card" value="Pay Through Card" >Pay Through Card</button></a>
-        
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   <a href='/'><button class="btn btn-success" type="button" value="Continue Shopping" >Continue Shopping</button></a><br><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   <a href='/PayThroughCards'><button class="btn btn-success" type="button" name="Pay card" value="Pay Through Card" >Pay Through Card</button></a><br><br>
+        <form action="/Paymentthroughcheck/<%= list2 %>" method="GET">
+          <input type="text" name="quantity" value="<%= quantity %>" hidden>
+          <input type="text" name="amount" value="<%= amount %>" hidden>
+
+          <button type="submit" name="pay" class="btn btn-danger">Paymet Through Cheque</button>
+      </form>
+       <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   <a href='/Paymentthroughcheck'><button class="btn btn-success" type="button" name = "paycheck" value="<%= list2 %>" >Pay Through Check</button></a>-->
+       
 
       </div>
     </div>

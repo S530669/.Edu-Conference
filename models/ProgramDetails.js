@@ -7,9 +7,8 @@ var ProgramDetails = new Schema({
     "Location": {type: String, required: true},
     "Program": {type: String, required: true},
     "Description": {type: String, required: true},
-    "Presenter": {type: String, required: true},
-    "Presentation": {type: String, required: true}
-    
+    "Presenter": {type: String, required: false},
+    "Presentation": {type: String, required: false}    
     });
 
 module.exports =  mongoose.model('ProgramDetails', ProgramDetails);

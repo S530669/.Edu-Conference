@@ -302,7 +302,7 @@ app.post("/vendor", (req, res) => {
             }
           db.collection('vendors').find().toArray(function (err, result) {
             var amount = vendor;
-            res.render('cart.ejs', { list: req.body.cname, list1: req.body.name, list2: req.body.email, amount, quantity: 1 });
+            res.render('cart.ejs', { list: req.body.cname, list1: req.body.lname, list2: req.body.email, amount, quantity: 1 });
           })
         })
           //res.send("Items saved successfully");
