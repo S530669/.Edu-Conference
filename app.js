@@ -23,6 +23,9 @@ var ObjectId = require('mongodb').ObjectID;
 var bcrypt = require('bcryptjs');
 
 
+const port = process.env.PORT || 8082;
+
+
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -499,7 +502,6 @@ app.post('/reset/:token', function(req, res) {
   });
 });
 
-app.set('port',(process.env.PORT || 8082));
-app.listen(app.get('port'), function () {
- console.log('App listening on http://127.0.0.1:8082/') 
+app.listen(port, () => {
+  console.log(`Server is up on port ${port}`)
 })
