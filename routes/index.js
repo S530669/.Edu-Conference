@@ -132,10 +132,6 @@ router.get('/admin', ensureAuthenticated, function (req, res) {
   res.redirect('/users/login');
 });
 
-router.get("/adminhomepage", function (request, response) {
-  response.render('adminhomepage.ejs');
-});
-
 
 
 function ensureAuthenticated(req, res, next) {
@@ -145,7 +141,7 @@ function ensureAuthenticated(req, res, next) {
   res.redirect('/users/login');
   }
 
-}
+
 
   router.get("/adminhomepage", function (request, response) {
     response.render('adminhomepage.ejs');
@@ -277,4 +273,343 @@ router.post('/cleardb', function (request, response) {
 
 })
 
+router.get('/view', function (req, res) {
+  Attendee.find({}, function (err, docs) {
+    if (err) res.json(err);
+    else res.render('example', { mayData: docs });
+  });
+});
+
+
+//mail
+
+
+router.post("/mail", function (request, response) {
+  var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'gdp2.fastrack@gmail.com',
+      pass: 'gdp21234'
+    }
+  });
+
+  var mailOptions = {
+    from: 'gdp2.fastrack@gmail.com',
+    to: request.body.email1,
+    subject: 'Coupon code for code registration',
+    html: '<p>Hello,</p><p>Here is the coupon code that you need enter:</p>' + code + '<p>Thanks&Regards</p><p>conference team</p> ',
+  };
+  console.log(request.body.email1);
+  transporter.sendMail(mailOptions, function (error, info) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log('Email sent: ' + info.response);
+      response.redirect('/faculty');
+    }
+  });
+});
+
+//----Admin----
+
+
+router.post("/send", function (request, response) {
+  db.collection('presenters').update({ 'email': request.body.email1 }, { $set: { 'confirm': "confirmed" } });
+  var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'gdp2.fastrack@gmail.com',
+      pass: 'gdp21234'
+    }
+  });
+
+  var mailOptions = {
+    from: 'gdp2.fastrack@gmail.com',
+    to: request.body.email1,
+    subject: 'Acceptance from Conference.',
+    html: '<p>Hello,</p><p>Your application as a presenter to Conference is successfully accepted.</p><p>Here is the link to pay through card : <a href="http://127.0.0.1:8082/PayThroughCards"> Click here</a></br></p><p>Here is the link to pay through Cheque : <a href="http://127.0.0.1:8082/Paymentthroughcheck"> Click here</a></br></p><p>Thanks&Regards</p><p>conference team</p> ',
+  };
+  console.log(request.body.email1);
+  transporter.sendMail(mailOptions, function (error, info) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log('Email sent: ' + info.response);
+      db.collection('presenters').find().toArray(function (err, result) {
+        if (err) throw err;
+        response.render('AdminPresenter.ejs', { list: result });
+
+      });
+    }
+  });
+});
+
+  router.post("/sende",function(request,response){
+    db.collection('presenters').update({'email' : request.body.email1},{$set:{'delete':"deleted"}});
+    
+   var transporter = nodemailer.createTransport({
+     service: 'gmail',
+     auth: {
+       user: 'gdp2.fastrack@gmail.com',
+       pass: 'gdp21234'
+     }
+   });
+   
+   var mailOptions = {
+     from: 'gdp2.fastrack@gmail.com',
+     to: request.body.email1,
+     subject: 'Decline from Conference.',
+     html: '<p>Hello,</p><p>We are sorry to inform you that, your application as a Presenter to the Conference is rejected.</p><p>Thanks&Regards</p><p>conference team</p> ',
+   };
+   transporter.sendMail(mailOptions, function(error, info){
+     if (error) {
+       console.log(error);
+     } else {
+       console.log('Email sent: ' + info.response);
+       db.collection('presenters').find().toArray(function(err,result){
+         if (err) throw err;
+         response.render('AdminPresenter.ejs',{list : result});
+       
+     });
+     }
+   });
+   });
+  
+// Reply in admin contact
+
+router.post("/reply", function (request, response) {
+  
+  db.collection('contacts').update({ 'reply': request.body.reply }, { $set: { 'reply': "replied" } });
+ 
+      db.collection('contacts').find().toArray(function (err, result) {
+        if (err) throw err;
+        response.redirect('/admincontact')
+
+      });
+    
+  });
+//payment status in adminattendee page
+
+router.post("/pay", function (request, response) {
+  db.collection('attendees').update({ 'email': request.body.email1 }, { $set: { 'pay': "paid" } });
+ 
+      db.collection('attendees').find().toArray(function (err, result) {
+        if (err) throw err;
+        response.redirect('/adminattendee')
+
+      });
+    
+  });
+  //payment status in adminattendee page
+
+router.post("/presenterpay", function (request, response) {
+  db.collection('presenters').update({ 'email': request.body.email1 }, { $set: { 'pay': "paid" } });
+ 
+      db.collection('presenters').find().toArray(function (err, result) {
+        if (err) throw err;
+        response.redirect('/AdminPresenter')
+
+      });
+    
+  });
+  router.post("/vendorpay", function (request, response) {
+    db.collection('vendors').update({ 'email': request.body.email1 }, { $set: { 'pay': "paid" } });
+    //db.collection('vendors').update({ 'pay': request.body.pay }, { $set: { 'pay': "paid" } });
+   
+        db.collection('vendors').find().toArray(function (err, result) {
+          if (err) throw err;
+          response.redirect('/adminvendor')
+  
+        });
+      
+    });
+
+    
+
+  //  Delete Deadlines Info from Database
+ 
+  router.post("/deletedeadlines",function(request,response){
+    var query = {"_id" : ObjectId(request.body.presId)};
+    db.collection('deadlines').deleteOne(query,function(err, result){
+      response.redirect('/Deadline')
+   });
+  });
+  
+ //  Delete Programs Info from Database
+
+ router.post("/deletepgm",function(request,response){
+   var query = {"_id" : ObjectId(request.body.presId)};
+   db.collection('programdetails').deleteOne(query,function(err, result){
+     response.redirect('/programdetails')
+  });
+ });
+ 
+ //  Delete Fee Details Info from Database
+
+ router.post("/deletefee",function(request,response){
+   var query = {"_id" : ObjectId(request.body.presId)};
+   db.collection('feedetails').deleteOne(query,function(err, result){
+     response.redirect('/feedetails')
+  });
+ });
+
+ //  Add Deadlines Info to Database
+
+router.post("/new", (req, res) => {
+ 
+ var myData = new Deadlines(req.body);
+ myData.save()
+ .then(item => {
+   console.log(req.body)
+   res.redirect('/Deadline');
+
+})
+
+.catch(err => {
+ res.status(400).send("unable to save to database");
+ });
+
+});
+  //  Add Fee Details Info to Database
+
+router.post("/fee", (req, res) => {
+ 
+ var myData = new FeeDetails(req.body);
+ myData.save()
+ .then(item => {
+   res.redirect('/feedetails')
+})
+.catch(err => {
+res.status(400).send("unable to save to database");
+});
+});
+
+//  Add Program Details Info to Database
+
+router.post("/pgm", (req, res) => {
+ 
+ var myData = new ProgramDetails(req.body);
+ myData.save()
+ .then(item => {
+   res.redirect('/programdetails')
+})
+
+.catch(err => {
+res.status(400).send("unable to save to database");
+});
+
+});
+
+//  Add or Drop Program Info to Database
+router.post("/add", (req, res) => {
+  
+  var myData = new addprograms(req.body);
+  myData.save()
+  .then(item => {
+    console.log(req.body)
+    res.redirect('/Add');
+ 
+ })
+ 
+ .catch(err => {
+  res.status(400).send("unable to save to database");
+  });
+ 
+ });
+
+ //Update Prices
+ router.post("/amount", (req, res) => {
+  
+  var myData = new amount(req.body);
+  myData.save()
+  .then(item => {
+    console.log(req.body)
+    res.redirect('/amount');
+ 
+ })
+ 
+ .catch(err => {
+  res.status(400).send("unable to save to database");
+  });
+ 
+ });
+
+//  Drop
+router.post("/addpgm",function(request,response){
+  var query = {"_id" : ObjectId(request.body.presId)};
+  db.collection('addprograms').deleteOne(query,function(err, result){
+    response.redirect('/Add')
+ });
+});
+
+//Drop Conference name
+router.post("/deletename",function(request,response){
+  var query = {"_id" : ObjectId(request.body.presId)};
+  db.collection('names').deleteOne(query,function(err, result){
+    response.redirect('/conferencename')
+ });
+});
+
+
+//Update amount
+router.post("/updateamount/:id",function(request,response){
+  var ty = String(request.params.id);
+  var am = parseFloat(request.body.amount)
+  console.log(ty)
+  console.log(am)
+  var query = {"type" : ty};
+  var query1 = { $set: {"amount": am} };
+  db.collection('amounts').updateOne(query, query1, function(err, result){
+    response.redirect('/amount')
+ });
+});
+
+//  Program Details (Room and all) mail option
+router.post("/pgmmail",function(request,response){
+  db.collection('programdetails').find().toArray(function(err,result){    
+    if (err) throw err;
+    db.collection('attendees').find().toArray(function(err,result1){  
+      // console.log( result1)  
+      if (err) throw err;
+ var transporter = nodemailer.createTransport({
+   service: 'gmail',
+   auth: {
+     user: 'gdp2.fastrack@gmail.com',
+     pass: 'gdp21234'
+   }
+ });
+ let z=[];
+ for (let i=0; i< result.length; i++){
+  z.push("Time:"+result[i].Time,"Activity:"+result[i].Activity,"Location:"+result[i].Location+"<br><br>")
+     }
+     let mail=[];
+     for (let i=0; i< result1.length; i++){
+      console.log(result1[i].email)     
+     mail.push(result1[i].email)
+    }
+     console.log(mail)
+     
+ var mailOptions = {
+
+   from: 'gdp2.fastrack@gmail.com',
+   to: mail,
+   subject: 'Details Regarding the Conference',   
+   html: '<p>Hello,</p>'+z+'<p>Here is the detailed schedule regarding conference </p> ',
+ 
+  };
+ transporter.sendMail(mailOptions, function(error, info){
+   if (error) {
+     console.log(error);
+   } else {
+     console.log('Email sent: ' + info.response);     
+     response.render('UpdateProgramDetails.ejs',{list : result});
+    }   
+   });
+  })
+ });
+ }); 
+
+
+
+}
 module.exports = router;
